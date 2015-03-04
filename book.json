@@ -1,0 +1,10 @@
+{
+    "plugins": [
+        "disqus", "swibranch", "exercises"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "chunfu"
+        }
+    }
+}
