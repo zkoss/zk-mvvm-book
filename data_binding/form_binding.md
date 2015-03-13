@@ -169,5 +169,4 @@ public class OrderVM {
 
 Form Validation
 ===============
-Before saving data to form's middle object, we also can validate user input with validator. Please refer to [ZK Developer's Reference/MVVM/DataBinding/Validator]().
-#link not yet
+Before saving data to form's middle object, we also can validate user input with validator. Please refer to [Data Binding/Validator](/data_binding/validator.html).

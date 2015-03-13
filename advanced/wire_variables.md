@@ -4,12 +4,12 @@ Wire Variables
 ==============
 We can use ` @WireVariable ` to wire variables **from implicit objects or registered variable resolvers** in a ViewModel as we do in a composer (please refer to [ZK Developer's Reference/MVC/Controller/Wire Variables](http://books.zkoss.org/wiki/ZK_Developer%27s_Reference/MVC/Controller/Wire_Variables).
 Because ** [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindComposer.html) wires those variables for us before calling initial method **. But it will **not**
-wire components and listeners automatically like a composer. To achieve it, please refer to [ZK Developer's Reference/MVVM/Advance/Wire Components]() and [ZK Developer's Reference/MVVM/Advance/Wire Event Listeners]().
-#link not yet!!
+wire components and listeners automatically like a composer. To achieve it, please refer to [Advance/Wire Components](/advanced/wire_components.html) and [Advance/Wire Event Listeners](/advanced/wire_event_listeners.html).
 
 Wire from Implicit Objects
 --------------------------
-Wiring from implicit object is equivalent to calling [Components.getImplicit(org.zkoss.zk.ui.Page, java.lang.String)](), by the name specified on `@WireVariable`. If the name is absent and the field or method parameter is of type [Execution](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Execution.html), [Page](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Page.html), [Desktop](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Desktop.html), [Session](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Session.html), or [WebApp](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/WebApp.html), it still will be wired to the correct implicit object. However, in other cases, an exception will be thrown.
+Wiring from implicit object is equivalent to calling [Components.getImplicit(org.zkoss.zk.ui.Page, java.lang.String)](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Components.html#getImplicit%28org.zkoss.zk.ui.Page, java.lang.String%29), by the name specified on `@WireVariable`. If the name is absent and the field or method parameter is of type [Execution](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Execution.html), [Page](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Page.html), [Desktop](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Desktop.html), [Session](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Session.html), or [WebApp](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/WebApp.html), it still will be wired to the correct implicit object. However, in other cases, an exception will be thrown.
+
 ```java
 public class FooViewModel{
 
@@ -95,7 +95,7 @@ Wiring Sequence
 When wiring variables, the predefined sequence to look for variable resolvers is as follows:
 
 1.  The variable resolver defined in the ZUML document.
-2.  The variable resolver annotated registered in the class with the [VariableResolver]() annotation.
+2.  The variable resolver annotated registered in the class with the [VariableResolver](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/select/annotation/VariableResolver.html) annotation.
 3.  If none of above is found, it looks for [the implicit objects](http://books.zkoss.org/wiki/ZUML_Reference/EL_Expressions/Implicit_Objects), such as session and page.
 
 

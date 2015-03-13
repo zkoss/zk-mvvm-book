@@ -187,8 +187,7 @@ When we trigger a global command by an event, a binder posts an event to the que
 
 In above image, when we trigger a global command "show" in View A, binder A posts an event to the event queue. Binder B which subscribes to the same event queue and binder A itself will both receive the event and try to look up for global command "show" in their associated ViewMoels (ViewModel A and ViewModel B)
 
-ZK allows you to change the name and scope of the event queue a binder subscribes to. Please refer to [ZK Developer's Reference/MVVM/DataBinding/Binder]().
-#link not yet
+ZK allows you to change the name and scope of the event queue a binder subscribes to. Please refer to [Data Binding/Binder](/data_binding/binder.html).
 
 Trigger a Command Dynamically
 =============================

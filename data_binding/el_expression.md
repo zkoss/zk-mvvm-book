@@ -3,12 +3,11 @@
 EL Expression in Data Binding
 =============================
 In ZK bind annotation, we adopt EL expression to specify a binding target and reference an implicit object. The binding target is mostly a ViewModel's (nested) properties. You can use EL expression in a ZUL
-which is described in the section [ZK Developer's Reference/UIComposing/ZUML/EL Expressions](). But using EL in ZK bind annotation is a little bit different in format and evaluation.
-#link not yet!
+which is described in the section [ZK Developer's Reference/UIComposing/ZUML/EL Expressions](http://books.zkoss.org/wiki/ZK_Developer%27s_Reference/UI_Composing/ZUML/EL_Expressions). But using EL in ZK bind annotation is a little bit different in format and evaluation.
 
 Basic Format
 ------------
-[ All ZK bind annotation]() has the general format:
+[ All ZK bind annotation](/syntax/data_binding.html) has the general format:
 ```xml
 @[Annotation](value=[EL-expression], [arbitraryKey]=[EL-expression])
 ```

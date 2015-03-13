@@ -1,7 +1,6 @@
 # Strength of MVVM
 
-**Separation of data and logic from presentation**
-
+#### Separation of data and logic from presentation
 The key feature is that ViewModel knows nothing about View's visual elements guarantees the one way dependency from View to the ViewModel thus avoiding mutual programming ripple effects between UI and the ViewModel. Consequently, it brings the following advantages:
 
 * It's suitable for **design-by-contract** programming.<sub>[4]</sub> As long as the contract is made (what data to show and what actions to perform), the UI design and coding of ViewModel can proceed in parallel and independently. Either side will not block the other's way.

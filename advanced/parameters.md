@@ -136,8 +136,7 @@ You can even pass UI components. This resort can make you manipulate UI componen
 
 Retrieve Context Object
 =======================
-We can retrieve a value or implicit objects from various context scopes in **initial methods** (methods with **` @Init `**) and **command methods** (methods with **` @Command `**) by applying parameter related annotation on these method's parameters. We list all available HTTP context objects retrieved by parameters annotations related annotations in sections under [Parameters]()
-#link not yet!!
+We can retrieve a value or implicit objects from various context scopes in **initial methods** (methods with **` @Init `**) and **command methods** (methods with **` @Command `**) by applying parameter related annotation on these method's parameters. We list all available HTTP context objects retrieved by parameters annotations related annotations in sections under [Parameters](/syntax/parameters.html)
 
 Retrieve HTTP Context Object
 ----------------------------
@@ -167,8 +166,7 @@ You can apply multiple parameter-related annotations on one method's parameter, 
 
 Retrieve ZK Context Object
 --------------------------
-You can also receive ZK context object by `@ContextObject` with various `org.zkoss.bind.annotation.ContextType ` including [Execution](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Execution.html), [Desktop](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Desktop.html), [Session](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Session.html), [BindContext](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindContext.html), [Binder](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Binder.html), etc. We list all available context objects you can retrieve by ` @ContextObject ` in [ZK Developer's Reference/MVVM/Syntax/ViewModel/Parameters/@ContextParam]()
-#link not yet!!
+You can also receive ZK context object by `@ContextObject` with various `org.zkoss.bind.annotation.ContextType ` including [Execution](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Execution.html), [Desktop](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Desktop.html), [Session](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Session.html), [BindContext](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindContext.html), [Binder](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Binder.html), etc. We list all available context objects you can retrieve by ` @ContextObject ` in [Syntax/ViewModel/Parameters/@ContextParam](/syntax/contextparam.html)
 
 We retrieve current binding source component and ViewModel's view component at initial method and command method.
 

@@ -173,5 +173,4 @@ For example:
 ```
 
 ## Debugging
-ZK supports debug features such as printing ZK bind debugging information that can be enabled manually. Please refer to [MVVM/Configuration]().
-#link no yet!!
+ZK supports debug features such as printing ZK bind debugging information that can be enabled manually. Please refer to [MVVM/Configuration](/configuration/README.html).

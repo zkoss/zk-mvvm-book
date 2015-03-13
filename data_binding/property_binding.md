@@ -111,8 +111,8 @@ We also can specify multiple Command's name in an array of string literal for pr
 ```xml
 <label value="@load(vm.person.firstname, after={'update','delete'})"/>
 ```
-When we use property binding to collect user input, we might need to validate it before saving to a ViewModel. ZK provides a standard validation mechanism through a reusable element called **validator**. We'll describe its detail [here]().
-#link no yet!!
+When we use property binding to collect user input, we might need to validate it before saving to a ViewModel. ZK provides a standard validation mechanism through a reusable element called **validator**. We'll describe its detail [here](/data_binding/validator.html).
+
 Collection Binding
 ==================
 We need collection binding when we bind a container component's “model” attribute of , e.g. listbox or grid, to a ViewModel. That target property of ViewModel must be a ` Collection ` object, e.g. ` List ` or ` Set `. When the getter method returns ` List `, binder wraps it as ListModel automatically. If getter already returns a ListModel object, binder won't wrap it.
