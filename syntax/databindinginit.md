@@ -18,8 +18,7 @@ In "form" attribute, the result of evaluating the EL expression should be a [For
 
 For other attributes, binder initializes their value with EL evaluation result.
 
-When using on "viewModel" attribute, we can pass arguments in key-value pairs with comma separated. And we can get the arguments in a initial method of ViewModel by [`@BindingParam`]().
-#link not yet!!
+When using on "viewModel" attribute, we can pass arguments in key-value pairs with comma separated. And we can get the arguments in a initial method of ViewModel by [`@BindingParam`](/syntax/bindingparam.html).
 
 **_[arbitraryKey]=[EL-expression]_**
 

@@ -25,8 +25,7 @@ For example, in a class hierarchy: A(has @init) &lt;- B(has @init) &lt;- C(no @i
 -   When binder initializes B , it will call As' then B's.
 -   When binder initializes A, it will call A's.
 
-We also can use parameter related annotation on initial method's parameters, please refer to subsections of [ZK Developer's Reference/MVVM/Syntax/ViewModel/Parameters]().
-#link not yet!!
+We also can use parameter related annotation on initial method's parameters, please refer to subsections of [Syntax/ViewModel/Parameters](/syntax/parameters.html).
 
 [1]: If you override parent class's initial method e.g. Parent.m1() &lt;- Child.m1(). Because of Java's limitation, binder still call Child.m1(), and Child.m1() will be called twice. To avoid this, you should set superclass to false of Child.m1() and call super.m1() inside it.
 

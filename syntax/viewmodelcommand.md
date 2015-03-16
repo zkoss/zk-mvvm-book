@@ -18,8 +18,7 @@ Description
 
 The optional annotation's element is a String for command's name and that name is referenced in a ZUL with event-command binding. If it's not provided, the method name is set as the command name by default.
 
-We also can use parameter related annotation on initial method's parameters, please refer to subsections of [ Parameters]() for more information.
-#link not yet!!
+We also can use parameter related annotation on initial method's parameters, please refer to subsections of [ Parameters](/syntax/parameters.html) for more information.
 
 Example
 =======
