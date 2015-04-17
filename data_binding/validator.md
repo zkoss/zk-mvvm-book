@@ -578,4 +578,93 @@ Syntax:
 ```
 
 ### Limitation
-This validator cannot validate a form object's nested property like `fx.firstProp.secondProp`. It can only validate a property like `fx.firstProp`.
+This validator cannot validate a form object's nested property like `fx.firstProp.secondProp`. It can only validate a property like `fx.firstProp`. If we want validate a form object's nested property, we need to use the concept - **Groups** in ZK 8.
+
+Groups
+-------------------
+> Available for ZK: EE
+
+> Since 8.0.0
+
+The concept of constraints grouping means that we can easily divide contraints into groups, even though the contraints are belong to different JavaBeans. And those constraints in each group can be validated per validator invocation.
+
+### Usage
+There are four main parts to use a validation group:
+- ``Group Interface``
+- ``Java Beans``
+- ``@Validator in zul file``
+- ``ViewModel``
+
+First we need to define an empty interface:
+
+```java
+public interface GroupValidation {}
+```
+And there are two JavaBeans : ``PersonDto`` , ``NameDto``
+
+```java
+public class PersonDto {
+	private NameDto nameDto;
+	private int age;
+
+	@Max(value=120, groups=GroupValidation.class)
+	public int getAge() {
+		return age;
+	}
+
+    // getter/setter
+}
+```
+
+```java
+public class NameDto {
+	private String name;
+	@Size(min=4, max=10, groups=GroupValidation.class)
+	public String getName() {
+		return name;
+	}
+    // setter
+}
+```
+
+In these two JavaBeans, we can see the constraint of properties and the group in Java annotation.
+
+Then we should specify the group in zul and viewmodel.
+
+Syntex:
+
+```@validator('formBeanValidator', prefix='p_', groups=vm.validationGroups)"```
+
+In zul:
+```xml
+<div form="@id('fx') @load(vm.personDto)
+	@save(vm.personDto, after='submit')
+	@validator('formBeanValidator', prefix='p_', groups=vm.validationGroups)" >
+
+    <intbox value="@bind(fx.age)"/>
+	<label id="err1" value="@load(vmsgs['p_age'])"/>
+	<textbox value="@bind(fx.nameDto.name)"/>
+	<label id="err2" value="@load(vmsgs['p_nameDto.name'])"/>
+</div>
+```
+In viewmodel:
+```java
+public class FromValidationViewModel {
+	private PersonDto personDto = new PersonDto();
+
+	public PersonDto getPersonDto() {
+		return personDto;
+	}
+
+	public Class[] getValidationGroups() {
+		return new Class[]{GroupValidation.class};
+	}
+
+	@Command("submit")
+	public void submit() {
+		//submit
+	}
+}
+```
+
+
