@@ -111,7 +111,7 @@ We also can specify multiple Command's name in an array of string literal for pr
 ```xml
 <label value="@load(vm.person.firstname, after={'update','delete'})"/>
 ```
-When we use property binding to collect user input, we might need to validate it before saving to a ViewModel. ZK provides a standard validation mechanism through a reusable element called **validator**. We'll describe its detail [here](/data_binding/validator.html).
+When we use property binding to collect user input, we might need to validate it before saving to a ViewModel. ZK provides a standard validation mechanism through a reusable element called **validator**. We'll describe its detail [here](./validator.html).
 
 Collection Binding
 ==================

@@ -14,6 +14,8 @@ Description
 
 You can pass arbitrary arguments in key-value pairs with comma separated.
 
+Notice that **value** is a reserved word, you should avoid to use it as an arbitraryKey.
+
 ***[arbitraryKey]=[EL-expression]***
 
 It's key-value pairs basically. You can write multiple key-value pairs with different key names.

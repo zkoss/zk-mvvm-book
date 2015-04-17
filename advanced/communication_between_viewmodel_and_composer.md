@@ -1,12 +1,12 @@
 # Communication between ViewModel and Composer
-To get an in-depth understanding of the following paragraphs, it is recommended that you have read and understood the [ concept of global command](/viewmodel/commands.html#global-command) and [ global command binding](/data_binding/global_command_binding.html) prior reading this article.
+To get an in-depth understanding of the following paragraphs, it is recommended that you have read and understood the [ concept of global command](../viewmodel/commands.html#global-command) and [ global command binding](../data_binding/global_command_binding.html) prior reading this article.
 
-The [ global command binding usage section](/data_binding/global_command_binding.html#usage) demonstrates how you can communicate between multiple ViewModels. We can also use the same mechanism to perform communication between a composer and a ViewModel, but of course, usage is a little different.
+The [ global command binding usage section](../data_binding/global_command_binding.html#usage) demonstrates how you can communicate between multiple ViewModels. We can also use the same mechanism to perform communication between a composer and a ViewModel, but of course, usage is a little different.
 
 Posting a Command from a Composer to a ViewModel
 ================================================
 
-We know that global command is triggered by [ binder sending events into event queue](/data_binding/binder.html), hence, ViewModels attached with binders are able to communicate with each other by global command. However, a composer doesn't have a binder to send a global command, therefore, we provide a utility class, **[BindUtils](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindUtils.html)**, that can do this job. You can use it in a composer.
+We know that global command is triggered by [ binder sending events into event queue](../data_binding/binder.html), hence, ViewModels attached with binders are able to communicate with each other by global command. However, a composer doesn't have a binder to send a global command, therefore, we provide a utility class, **[BindUtils](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindUtils.html)**, that can do this job. You can use it in a composer.
 
 For example, after adding a product, you want to tell ` ShoppingCartViewModel ` to refresh shopping cart's items. Assuming that we do not change the default setting such that ShoppingCartViewModel's binder (receiver) subscribes to the default event queue.
 
@@ -41,8 +41,8 @@ public class ShoppingCartViewModel {
     }
 }
 ```
--   As [a binder subscribes to desktop scope event queue by default](/data_binding/binder.html), we only need to declare a global command.
--   To receive parameters with global command, please refer to [Advanced/Parameters\#A\_Global\_Command\_Example](/advanced/parameters.html#a-global-command-example).
+-   As [a binder subscribes to desktop scope event queue by default](../data_binding/binder.html), we only need to declare a global command.
+-   To receive parameters with global command, please refer to [Advanced/Parameters\#A\_Global\_Command\_Example](./parameters.html#a-global-command-example).
 
 Posting a Command from a ViewModel to a Composer
 ================================================

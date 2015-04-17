@@ -134,7 +134,7 @@ We also can use implicit variable, **each** and **forEachStatus**, in EL express
 
 Collection Property in Children Binding
 ---------------------------------------
-For those components that do not support "model" attribute, we still can bind them to a collection type property with **children binding** ( please refer to [ Data Binding/Children Binding](/data_binding/children_binding.html) to know basic concept.).
+For those components that do not support "model" attribute, we still can bind them to a collection type property with **children binding** ( please refer to [ Data Binding/Children Binding](./children_binding.html) to know basic concept.).
 
 For those components that already support "model" attribute, we also can use children binding to change original component's rendering. For example, *Radio*s are arranged horizontally inside a *Radiogroup*, we can use children binding on *Vlayout* to arrange *Radios* vertically.
 
@@ -152,7 +152,7 @@ For those components that already support "model" attribute, we also can use chi
 </window>
 ```
 ### Combine with Dynamic Template
-We can combine children binding with [dynamic template](/data_binding/property_binding.html#dynamic-template)
+We can combine children binding with [dynamic template](./property_binding.html#dynamic-template)
 in order to render different child components upon different conditions.
 
 Here is an example to create a menu bar dynamically. If a menu item has no sub-menu, it creates *Menuitem* otherwise it creates *Menu*.
@@ -174,7 +174,7 @@ The example above is to use a tree like data structure that the sub-template wil
 
 #### Dynamic menu bar screenshot
 
-![Mvvm-dynamic-menu](http://books.zkoss.org/images/6/60/Mvvm-dynamic-menu.png)
+![Mvvm-dynamic-menu](../images/Mvvm-dynamic-menu.png)
 
 Selection in Collection
 =======================
@@ -406,7 +406,7 @@ public class CustomMultipleSelectionsVM {
     //omit getter and setter for brevity
 }
 ```
--   Line 8: For details of argument annotations, please refer to [Advanced/Parameters](/advanced/parameters.html).
+-   Line 8: For details of argument annotations, please refer to [Advanced/Parameters](../advanced/parameters.html).
 
 *Checkbox* doesn't support "model" attribute, so we use children binding to render them upon item list. We also bind "onCheck" attribute to a command and pass selected `Item` object to command method for updating selected set.
 
@@ -433,7 +433,7 @@ for us. It is convenient but one of its cost is "scroll position lost when colle
 
 One more issue about performance is *Listbox* re-renders all items <sub>[1]</sub> when using Java collection object as the model in default mold. When you change the collection property by removing or adding an item, you have to notify its change. This will trigger *Listbox* to re-render from the beginning. But if you use `ListModelList` as a model and modify it by calling its method `add()` and `remove()`. `ListModelList` will update to client automatically without explicitly specifying property notification. And this update only re-renders the affected (added or removed) item instead of all items which is more efficient.<sub>[2]</sub>
 
-But if you have huge amount of data, and getting them takes unbearable long time. You should implement your own model object which we will talk in [Advance](/advanced/displaying_huge_amount_of_data.html) section.
+But if you have huge amount of data, and getting them takes unbearable long time. You should implement your own model object which we will talk in [Advance](../advanced/displaying_huge_amount_of_data.html) section.
 
 [1]: If ROD enabled, it only renders visible items .
 

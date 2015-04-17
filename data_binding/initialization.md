@@ -29,4 +29,4 @@ We can also use the initial binding on the form binding to fill in predefined va
 
 </div>
 ```
-We'll describe more advanced usage with ` @init ` in section [Data Binding/Form Binding](/data_binding/form_binding.html).
+We'll describe more advanced usage with ` @init ` in section [Data Binding/Form Binding](./form_binding.html).

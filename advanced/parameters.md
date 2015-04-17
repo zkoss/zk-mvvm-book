@@ -19,7 +19,7 @@ A Local Command Example
 -----------------------
 Assume we have data in grid. It's common to put a button at the end of a row to manipulate it, like delete or update. We usually need index or domain object of a row to perform a action like update.
 
-![Mvvm-binding-parameters](http://books.zkoss.org/images/9/98/Mvvm-binding-parameters.png)
+![Mvvm-binding-parameters](../images/Mvvm-binding-parameters.png)
 
 Here is the zul of above screenshot:
 
@@ -136,7 +136,7 @@ You can even pass UI components. This resort can make you manipulate UI componen
 
 Retrieve Context Object
 =======================
-We can retrieve a value or implicit objects from various context scopes in **initial methods** (methods with **` @Init `**) and **command methods** (methods with **` @Command `**) by applying parameter related annotation on these method's parameters. We list all available HTTP context objects retrieved by parameters annotations related annotations in sections under [Parameters](/syntax/parameters.html)
+We can retrieve a value or implicit objects from various context scopes in **initial methods** (methods with **` @Init `**) and **command methods** (methods with **` @Command `**) by applying parameter related annotation on these method's parameters. We list all available HTTP context objects retrieved by parameters annotations related annotations in sections under [Parameters](../syntax/parameters.html)
 
 Retrieve HTTP Context Object
 ----------------------------
@@ -166,7 +166,7 @@ You can apply multiple parameter-related annotations on one method's parameter, 
 
 Retrieve ZK Context Object
 --------------------------
-You can also receive ZK context object by `@ContextObject` with various `org.zkoss.bind.annotation.ContextType ` including [Execution](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Execution.html), [Desktop](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Desktop.html), [Session](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Session.html), [BindContext](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindContext.html), [Binder](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Binder.html), etc. We list all available context objects you can retrieve by ` @ContextObject ` in [Syntax/ViewModel/Parameters/@ContextParam](/syntax/contextparam.html)
+You can also receive ZK context object by `@ContextObject` with various `org.zkoss.bind.annotation.ContextType ` including [Execution](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Execution.html), [Desktop](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Desktop.html), [Session](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/Session.html), [BindContext](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindContext.html), [Binder](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Binder.html), etc. We list all available context objects you can retrieve by ` @ContextObject ` in [Syntax/ViewModel/Parameters/@ContextParam](../syntax/contextparam.html)
 
 We retrieve current binding source component and ViewModel's view component at initial method and command method.
 

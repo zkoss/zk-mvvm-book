@@ -37,7 +37,7 @@ Steps to use this feature:
 ```
 
 #### Basic usage screenshot
-![MVVM Children Binding](http://books.zkoss.org/images/9/93/Mvvm-children-binding.png)
+![MVVM Children Binding](../images/Mvvm-children-binding.png)
 
 Combine with Dynamic Template
 =============================
@@ -59,7 +59,7 @@ Here is an example to create a dynamic menu bar. If a menu item has no sub-menu,
 ```
 #### Dynamic menu bar screenshot
 
-![MVVM Dynamic Menu](http://books.zkoss.org/images/6/60/Mvvm-dynamic-menu.png)
+![MVVM Dynamic Menu](../images/Mvvm-dynamic-menu.png)
 
 Default Converter for Children Binding
 ======================================
@@ -67,4 +67,4 @@ Default Converter for Children Binding
 
 > Since 6.0.1
 
-Users usually bind attribute “children” to a `Collection` object, but you can also bind it to a ` Array `, ` Enum `, even an ` Object `. An implicit default converter will convert them to a ` Collection ` object. Certainly, you can apply your customized converter and we will talk about it at [Data Binding/Converter](/data_binding/converter.html)
+Users usually bind attribute “children” to a `Collection` object, but you can also bind it to a ` Array `, ` Enum `, even an ` Object `. An implicit default converter will convert them to a ` Collection ` object. Certainly, you can apply your customized converter and we will talk about it at [Data Binding/Converter](./converter.html)

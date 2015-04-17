@@ -223,10 +223,10 @@ public class DurationViewModel  {
     }
 }
 ```
-* About how to implement a converter, please refer to [Data Binding/Converter](/data_binding/converter.html).
+* About how to implement a converter, please refer to [Data Binding/Converter](../data_binding/converter.html).
 
 ## Notify Programmatically
-Sometimes the changed properties we want to notify depends on value at run-time, so we cannot determine the property's name at design time. In this case, we can use [BindUtils.postNotifyChange(String queueName, String queueScope, Object bean, String property)](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindUtils.html#postNotifyChange(java.lang.String queueName, java.lang.String queueScope, java.lang.Object bean, java.lang.String property)) to notify change dynamically. The underlying mechanism for this notification is binder subscribed event queue that we talk about in [the binder section](/data_binding/binder.html). It uses **desktop scope** event queue by default.
+Sometimes the changed properties we want to notify depends on value at run-time, so we cannot determine the property's name at design time. In this case, we can use [BindUtils.postNotifyChange(String queueName, String queueScope, Object bean, String property)](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindUtils.html#postNotifyChange(java.lang.String queueName, java.lang.String queueScope, java.lang.Object bean, java.lang.String property)) to notify change dynamically. The underlying mechanism for this notification is binder subscribed event queue that we talk about in [the binder section](../data_binding/binder.html). It uses **desktop scope** event queue by default.
 
 #### Dynamic Notification
 ```java

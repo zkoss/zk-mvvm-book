@@ -10,7 +10,7 @@ after the user confirms it. Form binding provide a middle object to store unconf
 Form binding can keep target object in ViewModel unchanged before executing a Command for confirmation. Before saving to ViewModel's properties (target object) upon a Command, we can save input in Form binding's middle object. When the command is executed (e.g. button is clicked), input data is really saved to ViewModel's properties. Developers can achieve the whole process easily just by writing ZK bind expression and it reduces developer's burden of cleaning dirty data manually or implementing buffer himself.
 
 #### The data flow among ZUL, middle object, and the target object is illustrated below:
-![MVVM Form Binding](http://books.zkoss.org/images/c/cb/Mvvm-form-binding.png)
+![MVVM Form Binding](../images/Mvvm-form-binding.png)
 
 
 Steps
@@ -142,7 +142,7 @@ Continue above example, we add an exclamation icon right next to Id value. If us
 ```
 -   In this example, form status variable is `fxStatus ` for the form’s id is ` fx `. Its **dirty** property indicates that whether the form has been modified by users or not.
 
-![MVVM FormBinding Form Dirty](http://books.zkoss.org/images/5/54/Smalltalks-mvvm-in-zk6-formbinding-form-dirty.png)
+![MVVM FormBinding Form Dirty](../images/Smalltalks-mvvm-in-zk6-formbinding-form-dirty.png)
 
 After users modify a field, an exclamation icon shows up next to “Id” field. If users click “Save” button or change data back to original value, the exclamation icon disappears.
 
@@ -169,4 +169,4 @@ public class OrderVM {
 
 Form Validation
 ===============
-Before saving data to form's middle object, we also can validate user input with validator. Please refer to [Data Binding/Validator](/data_binding/validator.html).
+Before saving data to form's middle object, we also can validate user input with validator. Please refer to [Data Binding/Validator](./validator.html).

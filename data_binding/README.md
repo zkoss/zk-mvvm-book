@@ -7,7 +7,7 @@ Data binding is a mechanism to ensure that any change made to the data in a UI c
 
 **ZK Bind** is a whole new data binding mechanism with new specifications and implementations. Based on the experiences learned from data binding 1 and taking into account suggestions and feedback from users and contributors, we have created this easy to use, flexible, feature-rich new data binding system in ZK6.
 
-![MVVM DataBinding Role](http://books.zkoss.org/images/7/7e/Mvvm-databinding-role.png)
+![MVVM DataBinding Role](../images/Mvvm-databinding-role.png)
 
 Developers use ZK bind annotation to define various data binding relationship. The **binding source** is a component's attribute and **binding target** is a ViewModel's property or Command. When we bind a component to a ViewModel, that component becomes the ViewModel's **Root View Component**. Attributes of all child components and root view component itself can be bound to the ViewModel's properties (or command) through ZK bind annotation. This Root View Component doesn't have to be the root component of a page,
 
@@ -173,4 +173,4 @@ For example:
 ```
 
 ## Debugging
-ZK supports debug features such as printing ZK bind debugging information that can be enabled manually. Please refer to [MVVM/Configuration](/configuration/README.html).
+ZK supports debug features such as printing ZK bind debugging information that can be enabled manually. Please refer to [MVVM/Configuration](../configuration/README.html).

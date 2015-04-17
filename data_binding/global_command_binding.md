@@ -4,7 +4,7 @@ Overview
 ========
 **Global Command Binding** is similar to command binding but the target becomes a global command. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The main difference from command binding is the event doesn't have to belong to the ViewModel's root view component or its child component. **By default we can bind an event to any ViewModel's global command within the same desktop**. When we trigger a global command, all matched global command in all ViewModels of the same scope will be executed.
 
-![MVVM Global Command Overview](http://books.zkoss.org/images/6/6a/Mvvm-global-command-overview.png)
+![MVVM Global Command Overview](../images/Mvvm-global-command-overview.png)
 
 Default Global Command
 ----------------------
@@ -42,7 +42,7 @@ Assume we have 2 areas in a page, one is main area for adding items and another 
 
 The interface looks like this:
 
-![MVVM Global Command Simple](http://books.zkoss.org/images/6/6a/Mvvm-global-command-simple.png)
+![MVVM Global Command Simple](../images/Mvvm-global-command-simple.png)
 
 #### A zul with 2 ViewModels
 ```xml
@@ -119,13 +119,13 @@ public class ListViewModel {
 
 #### A new item "hat" is added
 
-![MVVM Global Command Simple Add](http://books.zkoss.org/images/2/24/Mvvm-global-command-simple-add.png)
+![MVVM Global Command Simple Add](../images/Mvvm-global-command-simple-add.png)
 
 In above example, we bind onClick event to local and global commands, the global command will always be executed after local command is executed. If the local command is not executed for validation failure, the global command will not be executed. We have a validator to validate item's name, its length can not be less than 3. When we enter a short item name to violate the validation rule, the local command is not executed. So, the global command is not executed, either. We can confirm this behaviour because the message in main area and last update in list area doesn't change.
 
 **Validation failure blocks command execution**
 
-![MVVM Global Command Simple Fail](http://books.zkoss.org/images/4/4d/Mvvm-global-command-simple-fail.png)
+![MVVM Global Command Simple Fail](../images/Mvvm-global-command-simple-fail.png)
 
 One to Many Communication
 -------------------------
@@ -135,7 +135,7 @@ Based on previous example, assume that we want to hide and show 2 areas simultan
 
 The interface is:
 
-![MVVM Global Command Menu](http://books.zkoss.org/images/5/5a/Mvvm-global-command-menu.png)
+![MVVM Global Command Menu](../images/Mvvm-global-command-menu.png)
 
 #### One to many communication
 ```xml
@@ -175,7 +175,7 @@ Command Execution
 =================
 Global command's execution is quite simple. It just executes a command method and then reloads those properties that specified in ` @NotifyChange ` annotation. But if you bind an event to a local and global command at the same time, binder always **executes local command first**. If any reason blocks the local command's execution, e.g. validation fails, it  won't execute the global command.
 
-![MVVM Global Command Execution](http://books.zkoss.org/images/1/18/Mvvm-global-command-execution.png)
+![MVVM Global Command Execution](../images/Mvvm-global-command-execution.png)
 
 Background Concept
 ==================
@@ -183,11 +183,11 @@ When we apply a [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/
 
 When we trigger a global command by an event, a binder posts an event to the queue it subscribes. All binders (including the binder that posts the event) that subscribe to the same queue in the same scope will receive this event and try to look up requested global command in their associated ViewModel. If a binder finds a matched global command, it will execute it. Otherwise, it ignores the event without throwing any exception.
 
-![MVVM Binder](http://books.zkoss.org/images/7/7b/Mvvm-binder.png)
+![MVVM Binder](../images/Mvvm-binder.png)
 
 In above image, when we trigger a global command "show" in View A, binder A posts an event to the event queue. Binder B which subscribes to the same event queue and binder A itself will both receive the event and try to look up for global command "show" in their associated ViewMoels (ViewModel A and ViewModel B)
 
-ZK allows you to change the name and scope of the event queue a binder subscribes to. Please refer to [Data Binding/Binder](/data_binding/binder.html).
+ZK allows you to change the name and scope of the event queue a binder subscribes to. Please refer to [Data Binding/Binder](./binder.html).
 
 Trigger a Command Dynamically
 =============================

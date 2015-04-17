@@ -5,9 +5,9 @@ The ViewModel is an abstraction of the View. The View is responsible for display
 
 As ViewModel acts a role like Controller, developers can bind a UI component's event to a Command by specifying Command's name which is similar to register a event listener. Multiple events can bind to the same Command. When a user interacts with a component (e.g. click a button), the component fire an event then the data binding mechanism triggers the execution of Command. The Command may modify ViewModel's properties and then information displayed on View changes.
 
-![MVVM ViewModel Command](http://books.zkoss.org/images/d/db/Mvvm-viewmodel-command.png)
+![MVVM ViewModel Command](../images/Mvvm-viewmodel-command.png)
 
-The Command is implemented as ViewModel's method. Because ViewModel is a POJO, in order to make data binding mechanism identify which method represent a Command, developers have to annotate the method with ZK provided `@Command` annotation. We'll use the term: **Command method** to depict the special annotated method of a ViewModel in the later section. These methods usually manipulate ViewModel's property, like deleting an item. Firing a component's event triggers the execution of bound command, that is invoking the Command method. During executing the Command, the developer also has to specify what properties change to notify through Java annotation that we will describe in [later section](/syntax/notifychange.html)
+The Command is implemented as ViewModel's method. Because ViewModel is a POJO, in order to make data binding mechanism identify which method represent a Command, developers have to annotate the method with ZK provided `@Command` annotation. We'll use the term: **Command method** to depict the special annotated method of a ViewModel in the later section. These methods usually manipulate ViewModel's property, like deleting an item. Firing a component's event triggers the execution of bound command, that is invoking the Command method. During executing the Command, the developer also has to specify what properties change to notify through Java annotation that we will describe in [later section](../syntax/notifychange.html)
 
 #Declare Commands
 
@@ -51,7 +51,7 @@ Then we can bind component's event to the command in the ZUL.
     <button label="Save" onClick="@command('save')" />
 </toolbar>
 ```
-We describe the detail of [command binding here](/data_binding/command_binding.html). This binding allow you to pass parameters to Command method, please refer [here](/advanced/parameters.html).
+We describe the detail of [command binding here](../data_binding/command_binding.html). This binding allow you to pass parameters to Command method, please refer [here](../advanced/parameters.html).
 
 ## Global Command
 Global Command is also a ViewModel's command and can hook UI component's events to it. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The global command can be triggered by a component's event from any ZUL. The main difference of a global command from local command is that the event doesn't have to belong to the ViewModel's root view component or its child component. By default we can bind an event to any ViewModel's global command **within the same desktop**. A method can be both a local command and a global command.
@@ -83,4 +83,4 @@ public class ListViewModel {
 * If we trigger global command "show", each binder associated with each ViewModel will execute the show global command method but not in any particular order.
 
 # Command Execution
-A command execution is a mechanism of ZK Bind where it performs a method call on the ViewModel. It binds to a component's event and when a binding event comes, binder will follow the lifecycle to complete the execution. We'll describe this in detail in [Command Binding](/data_binding/command_binding.html) and [Global Command Binding](/data_binding/global_command_binding.html).
+A command execution is a mechanism of ZK Bind where it performs a method call on the ViewModel. It binds to a component's event and when a binding event comes, binder will follow the lifecycle to complete the execution. We'll describe this in detail in [Command Binding](../data_binding/command_binding.html) and [Global Command Binding](../data_binding/global_command_binding.html).

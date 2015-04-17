@@ -131,7 +131,7 @@ Debugging Tool: ZK Binding Tracker
 
 The above configuration will print messages on the server's console, and it is system-wide, which means debugging information of all pages will be printed and it might become hard to read. We therefore hereby present you a tool: **ZK Binding Tracker** which is a Chrome extension that can be installed on your Chrome browser. It can display the debugging information for the current ZUL page in rich format.
 
-![Binding tracker introduction](http://books.zkoss.org/images/3/38/Binding_tracker_introduction.png)
+![Binding tracker introduction](../images/Binding_tracker_introduction.png)
 
 For more details, please refer to [Small\_Talks/2013/June/ZK\_Binding\_Tracker\_-\_A\_Chrome\_Extension](http://books.zkoss.org/wiki/Small_Talks/2013/June/ZK_Binding_Tracker_-_A_Chrome_Extension).
 

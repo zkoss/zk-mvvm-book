@@ -46,4 +46,4 @@ public class ParentViewModel {
 public class ChildViewModel extends ParentViewModel{
 }
 ```
-The initial method can retrieve various context object by applying annotation on its parameter, please refer [Advanced/Parameters](/advanced/parameters.html).
+The initial method can retrieve various context object by applying annotation on its parameter, please refer [Advanced/Parameters](../advanced/parameters.html).

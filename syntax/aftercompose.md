@@ -22,7 +22,7 @@ For example, in a class hierarchy: A(has @AfterCompose) &lt;- B(has @AfterCompos
 -   When [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindComposer.html) reaches B , it will call As' then B's.
 -   When [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindComposer.html) reaches A, it will call A's.
 
-We also can use parameter related annotation on AfterCompose method's parameters just as what we can do in @Init, please refer to subsections of [Syntax/ViewModel/Parameters](/syntax/parameters.html).
+We also can use parameter related annotation on AfterCompose method's parameters just as what we can do in @Init, please refer to subsections of [Syntax/ViewModel/Parameters](./parameters.html).
 
 [1] If you override parent class's @AfterCompose-annotated method e.g. Parent.m1() &lt;- Child.m1(). Because of Java's limitation, [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindComposer.html) still call Child.m1(), and Child.m1() will be called twice. To avoid this, you should set `superclass=false ` for Child.m1() and call super.m1() inside it.
 

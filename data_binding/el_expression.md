@@ -7,7 +7,7 @@ which is described in the section [ZK Developer's Reference/UIComposing/ZUML/EL 
 
 Basic Format
 ------------
-[ All ZK bind annotation](/syntax/data_binding.html) has the general format:
+[ All ZK bind annotation](../syntax/data_binding.html) has the general format:
 ```xml
 @[Annotation](value=[EL-expression], [arbitraryKey]=[EL-expression])
 ```

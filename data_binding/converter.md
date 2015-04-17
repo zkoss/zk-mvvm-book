@@ -111,7 +111,7 @@ Use Converter in Children Binding
 =================================
 > since 6.0.1
 
-Children-binding also supports converters, and it has a [default converter](/data_binding/children_binding.html) (If user doesn't assign one) to convert user provided object into a ` Collection ` object. Users can use a customized converter like other binding. If you implement a converter for children
+Children-binding also supports converters, and it has a [default converter](./children_binding.html) (If user doesn't assign one) to convert user provided object into a ` Collection ` object. Users can use a customized converter like other binding. If you implement a converter for children
 binding, remember to return a ` Collection ` object in
 ` coerceToUi( ) `.
 
