@@ -101,11 +101,20 @@ ZK have provided some built-in application level converters that are commonly us
 Currently, built-in converter we provide are :
 - **formattedNumber**
 - **formattedDate**
+
 ```xml
     <label value="@load(item.price) @converter('formatedNumber', format='###,##0.00')"/>
     <label value="@load(item.creationDate) @converter('formatedDate', format='yyyy/MM/dd')"/>
 ```
 - You should specify number or date pattern in format parameter's value for formattedNumber converter or formattedDate converter.
+
+> since 8.0.0
+
+- **formattedTime**
+```xml
+    <label value="@load(item.time) @converter('formattedTime', format='hhmmss')"/>
+```
+- You should specify time pattern in format parameter's value for formattedTime converter, the value is only related to hour/minute/second/millisecond value of Date object.
 
 Use Converter in Children Binding
 =================================

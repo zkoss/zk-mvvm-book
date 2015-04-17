@@ -10,6 +10,10 @@ To use a ViewModel you have to apply a BindComposer by setting “org.zkoss.bind
 </window>
 ```
 
+> Since 8.0.0
+
+In ZK 8, **BindComposer** would be auto applied when the attribute of **viewModel** being used.
+
 Initialize a ViewModel
 ======================
 You also have to specify ViewModel's full-qualified class name to initialize it and give it an ID. The typical usage is like:
