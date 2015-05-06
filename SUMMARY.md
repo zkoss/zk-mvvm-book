@@ -42,6 +42,7 @@
        * [@AfterCompose](syntax/aftercompose.md)
        * [@NotifyChange](syntax/notifychange.md)
        * [@NotifyChangeDisabled](syntax/notifychangedisabled.md)
+       * [@SmartNotifyChange](syntax/smartnotifychange.md)
        * [@DependsOn](syntax/dependson.md)
        * [@Command](syntax/viewmodelcommand.md)
        * [@DefaultCommand](syntax/defaultcommand.md)
