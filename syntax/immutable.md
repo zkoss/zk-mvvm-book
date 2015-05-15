@@ -10,9 +10,9 @@ Syntax
 Description
 ===========
 
-**Target:** class
+**Target:** method, class
 
-**Purpose:** Marker annotation to indicate an immutable class.
+**Purpose:** Marker annotation to indicate an immutable class or a method.
 
 The properties of an immutable class won't be tracked and thus reduce the resources needed in the application.
 
@@ -23,5 +23,17 @@ Example
 @Immutable
 public class SysConfiguration{
 
+}
+```
+
+``` java
+public class DataObject{
+
+    //other code...
+
+    @Immutable
+	public String getInfo() {
+		return info;
+	}
 }
 ```
