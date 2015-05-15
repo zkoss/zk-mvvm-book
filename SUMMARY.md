@@ -49,6 +49,7 @@
        * [@GlobalCommand](syntax/viewmodelglobalcommand.md)
        * [@DefaultGlobalCommand](syntax/defaultglobalcommand.md)
        * [@Immutable](syntax/immutable.md)
+       * [@ImmutableElements](syntax/immutableelements.md)
        * [@NotifyCommand](syntax/notifycommand.md)
        * [@NotifyCommands](syntax/notifycommands.md)
        * [@ClientCommand](syntax/clientcommand.md)
