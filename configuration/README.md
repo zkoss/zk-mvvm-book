@@ -66,7 +66,7 @@ To enable it, add the configuration below (default is `false`) in zk.xml:
 
 The printed message looks like:
 
-``` text
+```
 [0]ADD-BINDING[add-binding:prop-init]   vm.element.name > value <label uuid="j5VUb" id="" />     at [file:/data/zk/git/zk/zktest/src/archive/bind/basic/allfunction.zul, line:27, nearby column: 45]
 [0]ADD-BINDING[add-binding:prop-load]   vm.element.name > value <textbox uuid="j5VUd" id="" />   at [file:/data/zk/git/zk/zktest/src/archive/bind/basic/allfunction.zul, line:29, nearby column: 47]
 [0]ADD-BINDING[add-binding:prop-save]   value > vm.element.name <textbox uuid="j5VUd" id="" />   at [file:/data/zk/git/zk/zktest/src/archive/bind/basic/allfunction.zul, line:29, nearby column: 47]
@@ -89,6 +89,7 @@ The printed message looks like:
 [0]  *[load:prop-load]  vm.escValue1 > value    '   <label uuid="j5VUn" id="" />
 [0]LOAD_BINDING
 [0]  *[load:prop-load]  vm.escValue2 > value    "   <label uuid="j5VUo" id="" />
+
 =======================================
 [6431]ON_EVENT
 [6431]  *[event]    [onClick]   <button uuid="j5VUl" id="" />
