@@ -523,7 +523,7 @@ public static class User {
     }
 }
 ```
-Use this validator with its name *beanValidator* with syntax:
+Use this validator with its name *beanValidator* and with syntax:
 
 `@validator('beanValidator')`
 ```xml
@@ -539,7 +539,7 @@ Use this validator with its name *beanValidator* with syntax:
 
 > Since 6.0.1
 
-It also supports to **validate a form object's property** loaded from a bean<sub>[3]</sub>.
+It also supports **validating a form object's property** loaded from a bean<sub>[3]</sub>.
 ```xml
 <grid form="@id('fx') @load(vm.user) @save(vm.user,after='save')">
     <textbox id="tb" value="@bind(fx.lastName) @validator('beanValidator')"/>
