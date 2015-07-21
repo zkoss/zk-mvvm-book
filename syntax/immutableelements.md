@@ -13,7 +13,7 @@ Description
 **Target:** collection
 
 **Purpose:** Marker annotation to indicate that the elements of the collection for
- `FormProxyObject` are immutable class.
+ `FormProxyObject` are an immutable class.
 
 The properties of an immutable class won't be tracked and thus reduce the resources needed in the application.
 
