@@ -35,7 +35,7 @@ Following is a comparison table for the two saving syntaxes mentioned above:
 | **Validation Timing** | <ul><li>Immediately validate for single field</li> <li>No validation when executing a command</li></ul>| <ul><li>Batch validate all fields when triggering specified command</li> <li>No immediate validation of single fields after a user input</li></ul> |
 | **Validation Fails** | **Not** save data to ViewModel | **Not** save data to ViewModel & **Not** execute the command |
 
-In form-binding, you can apply a validator to “form” attribute or an input component. If you apply it to both places, you can double validate user input. The first time is when saving the data to a middle object; this can give a user immediate response after input. The second time is when saving to a ViewModel upon a command; this can validate user input even if he doesn't input anything and submit empty data directly.
+In form-binding, you can apply a validator to “form” attribute or an input component. If you apply it to both places, you can double validate user input. The first time is when saving the data to a middle object; this can provide the user with an immediate response after input. The second time is when saving to a ViewModel upon a command; this can validate user input even if he doesn't input anything and submit empty data directly.
 ```xml
 ...
 <toolbar>
@@ -174,7 +174,7 @@ public Validator getRangeValidator(){
 ### Dependent Property Validation
 We sometimes need another property's value to validate the current property. We have to save those values that have dependency among them **upon the same Command** (use ` @save(vm.p, before='command' `) ; thus, the binder will pass those properties that are saved as the same command to ` ValidationContext ` and we can retrieve them with property's key to process.
 
-Assume shipping date to be at least 3 days later than creation date.
+Assume the shipping date to be at least 3 days later than the creation date.
 ```xml
 <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('eg.ValidationMessagesVM')"
   validationMessages = "@id('vmsgs')">
