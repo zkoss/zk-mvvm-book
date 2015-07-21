@@ -8,14 +8,15 @@ Syntax
 @ToClientCommand(commandNames)
 ```
 
+
 Description
 ===========
 
 **Target:** class
 
-**Purpose:** Put which commands we want to notify the client after execution has been done. Notice only the commands we put inside this annotation will trigger the callback we put in *binder.after* at client.
+**Purpose:** Put the commands we want to notify the client after execution has been done. Notice only the commands we put inside this annotation will trigger the callback we put in *binder.after* at client.
 
-**Note:** if the value of the annotation contains with a value __"*"__ that means all of the commands are accepted to notify the client.
+**Note:** if the value of the annotation contains a value __"*"__ that means all of the commands are accepted to notify the client.
 Example
 =======
 
