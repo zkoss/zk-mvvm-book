@@ -13,7 +13,7 @@ Description
 
 **Target:** class
 
-**Purpose:** Put the commands we want to notify the server triggered by the client binder. Notice only the commands we put inside this annotation will be received from the server.
+**Purpose:** Specify the client binder commands that we will use to notify the server.  Only the commands placed inside this annotation will be sent to the server.
 
 **Note:** if the value of the annotation contains a value __"*"__ that means all of the commands are accepted for notifying the server.
 Example
