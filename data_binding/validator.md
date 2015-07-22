@@ -247,9 +247,9 @@ Dependent Property Validator in Form Binding
 --------------------------------------------
 If you want to validate a property according to another property's value in form binding, you would have to apply a validator to the `form` attribute instead of an input component that will bind to a middle object's property. Then you can get all properties from validation context.
 
-The following is an example that demonstrates the same shipping date validator but used in the context of form binding.
+The following is an example that demonstrates the same shipping date validator but used in the context of form-binding.
 
-#### Using validator in form binding
+#### Using validator in form-binding
 ```xml
 ...
 <toolbar>
@@ -404,7 +404,7 @@ For example:
 ```xml
 <textbox  value="@bind(vm.value) @validator(vm.myValidator)" onChange="@command('submit')"/>
 ```
--   When onChange event fires, the binder will perform validation before saving vm.value. No matter validation fails or suceeds, it will execute command “submit”. Validation failure only stops binder from saving textbox's value into vm.value.
+-   When onChange event fires, the binder will perform validation before saving vm.value. It doesn't matter if validation fails or suceeds; it will still execute command “submit”. Validation failure only stops binder from saving textbox's value into vm.value.
 
 An example showing the opposite:
 ```xml
@@ -505,7 +505,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] (%F:%L) - %m%n
     <constraint-validator-factory>org.hibernate.validator.engine.ConstraintValidatorFactoryImpl</constraint-validator-factory>
 </validation-config>
 ```
-You can customize the setting depending on your requirement.
+You can customize the settings according to your requirements.
 
 ### Usage
 Add constraint in JavaBean's property with Java annotation.
@@ -557,7 +557,7 @@ Form Bean Validator
 Like Bean Validator, this validator also integrates JavaBean Validation and validates a bean's all-saving properties. For the configuration and JavaBean usage, please refer to [#Prepare_to_Use_JSR_303](#prepare-to-use-jsr-303)
 
 ### Usage
-Use this validator with the name **formBeanValidator** and set a unique<sub>[1]</sub> prefix key by **prefix** argument of validator. When any property of the bean is invalid, it puts the invalid message to validation message holder with key **prefix**+propertyName.
+Use this validator with the name **formBeanValidator** and set a unique<sub>[1]</sub> prefix key by **prefix** argument of validator. When any property of the bean is invalid, it puts the invalid message to into the validation message holder with key **prefix**+propertyName.
 
 [1]: The prefix has to be unique in the same binder.
 
