@@ -16,7 +16,7 @@ Description
 
 **Purpose:** Specify the commands that will be used for notifying the client after execution. Notice only the commands placed inside this annotation will trigger the callback following *binder.after* at client.
 
-**Note:** if the value of the annotation contains a value __"*"__ that means all of the commands are accepted for notifying the client.
+**Note:** if the value of the annotation contains a value __"*"__ this means all of the commands are accepted for notifying the client.
 Example
 =======
 
