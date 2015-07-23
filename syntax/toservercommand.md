@@ -13,9 +13,9 @@ Description
 
 **Target:** class
 
-**Purpose:** Specify the client binder commands that we will use to notify the server.  Only the commands placed inside this annotation will be sent to the server.
+**Purpose:** Specify the client binder commands that will be used to notify the server. Only the commands placed inside this annotation will be sent to the server.
 
-**Note:** if the value of the annotation contains a value __"*"__ that means all of the commands are accepted for notifying the server.
+**Note:** If the value of the annotation contains a value __"*"__ that means all of the commands are accepted for notifying the server.
 Example
 =======
 
