@@ -29,7 +29,7 @@ binder.command(commandName, data);
 This method is used to trigger a command we have on our server.
 
 **Parameters**
--   `commandName` - Command name on server side (ViewModel).
+-   `commandName` - Command name on server-side (ViewModel).
 -   `data`- JavaScript object, to pass any information you want with the command.
 
 **Note : ** You could also pass ZK widgets in the data object and use @BindingParam to get the corresponding ZK component on the server.
@@ -39,15 +39,15 @@ This method is used to trigger a command we have on our server.
 ```javascript
 binder.after(commandName, callback);
 ```
-This method is used to place a callback at the client after a command gets executed on the server.
+This method is used to place a callback at the client after a command is executed on the server.
 
 **Parameters**
 -   `commandName` - Command name on server side (ViewModel).
 -   `callback`- Callback function after the command gets executed on the server.
 
-#### Server Side
+#### Server-Side
 
-On server side, we can use the following two annotations for the client-side binding. They should be placed at the beginning of the class declaration of our View Model.
+On server-side, we can use the following two annotations for the client-side binding. They should be placed at the beginning of the class declaration of our View Model.
 
 **Annotation 1 - NotifyCommand**
 
@@ -63,10 +63,10 @@ The notify command annotation allows us to trigger a command whenever the given 
 @ClientCommand(commandNames)
 ```
 
-The client command annotation allows us to put the commands we want for notifying the client after execution has been done. Notice only the commands we put inside this annotation will trigger the callback; we put in *binder.after* at client.
+The client command annotation allows us to put the commands we want for notifying the client after execution. Notice only the commands we put inside this annotation will trigger the callback following *binder.after* at client.
 
 ###Examples
-Two examples for using client binding:
+Two examples for using client-binding:
 - ZK Blog :[
 ZK8: Work with Polymer Components using ZK’s new client side binding API](http://blog.zkoss.org/index.php/2015/03/11/zk8-work-with-native-web-components-using-the-new-zk-client-side-data-binding-api/)
 - ZK Small Talk :[ZK8 Series: Interact with Client Side Libaries using ZK's New Client Side Binding](http://books.zkoss.org/wiki/Small_Talks/2015/April/ZK8_Series:_Interact_with_Client_Side_Libaries_using_ZK8%27s_New_Client_Side_Binding)
