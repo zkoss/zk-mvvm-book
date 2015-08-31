@@ -40,5 +40,5 @@ Example
 
 #### Saving and loading form attribute
 ``` xml
-<textbox value="@save(vm.number) @load(vm.number, after='cmd')" />
+<textbox value="@save(vm.number) @load(vm.number, after='cmd')"/>
 ```

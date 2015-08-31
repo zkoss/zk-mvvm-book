@@ -5,9 +5,9 @@ Syntax
 ``` java
 @Command()
 
-@Command("commanName")
+@Command("commandName")
 
-@Command({"commanName1", "commandName2"})
+@Command({"commandName1", "commandName2"})
 ```
 
 Description
@@ -24,21 +24,19 @@ Example
 =======
 #### Method name as command name
 ``` java
-
-    @Command
-    public void search(){
-        items = new ListModelList<Item>();
-        items.addAll(getSearchService().search(filter));
-        selected = null;
-    }
+@Command
+public void search() {
+    items = new ListModelList<Item>();
+    items.addAll(getSearchService().search(filter));
+    selected = null;
+}
 ```
 #### Specify command name
 ``` java
-
-    @Command("delete")
-    public void deleteOrder(){
-        getService().delete(selected);  //delete selected
-        getOrders().remove(selected);
-        selected = null;                //clean the selected
-    }
+@Command("delete")
+public void deleteOrder() {
+    getService().delete(selected); //delete selected
+    getOrders().remove(selected);
+    selected = null; //clean the selected
+}
 ```

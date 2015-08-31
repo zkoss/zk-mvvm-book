@@ -35,9 +35,11 @@ If a member field is annotated by `@WireVariable` in a ViewModel, the variable (
 about wiring variables. Following is a example that shows how to wire a `messagService` variable to the ViewModel.
 ```java
 public class OrderVM {
+
     @WireVariable
     MessageService messageService;
-...
+
+    //rest of the class...
 }
 ```
 
@@ -54,11 +56,13 @@ The validate message holder is also created by BindComposer. It's a container of
     apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init(orderVm)"
     validationMessages="@id('vmsgs')">
         <hlayout>
-            <intbox id="qbox"
-            value="@load(vm.selected.quantity) @save(vm.selected.quantity, before='saveOrder') @validator(quantityValidator)"/>
+            <intbox id="qbox" value="@load(vm.selected.quantity)
+                @save(vm.selected.quantity, before='saveOrder')
+                @validator(quantityValidator)"/>
             <label value="@bind(vmsgs[qbox])" sclass="red" />
         </hlayout>
 </window>
 ```
+
 * Give validation message holder an id in order to reference it. (line 3)
-* We can retrieve validation messages of a input component, it's qbox, with the component as a key. (line 7)
+* We can retrieve validation messages of a input component, it's qbox, with the component as a key. (line 8)

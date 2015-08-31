@@ -5,7 +5,7 @@ Syntax
 ``` java
 @NotifyChange("anotherProperty")
 
-@NotifyChange({"secondProperty","thirdProperty"})
+@NotifyChange({"firstProperty", "secondProperty"})
 
 @NotifyChange("*")
 
@@ -29,18 +29,18 @@ public class OrderVM {
 
     //other code...
 
-    @NotifyChange({"selected","messages"})
+    @NotifyChange({"selected", "messages"})
     public void setSelected(Order selected) {
         this.selected = selected;
     }
 
     //action command
-    @NotifyChange({"selected","orders","messages"})
+    @NotifyChange({"selected", "orders", "messages"})
     @Command
-    public void newOrder(){
+    public void newOrder() {
         Order order = new Order();
-        getOrders().add(order); //add new order to order list
-        selected = order;//select the new one
+        getOrders().add(order); // add new order to order list
+        selected = order; // select the new one
     }
 }
 ```

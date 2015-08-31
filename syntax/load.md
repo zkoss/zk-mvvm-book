@@ -32,11 +32,11 @@ Example
 =======
 
 ``` xml
-<label value="@load(vm.user.id)" />
+<label value="@load(vm.user.id)"/>
 
-<label value="@load(vm.user.permission, after='showPermission')" />
+<label value="@load(vm.user.permission, after='showPermission')"/>
 
-<label value="@load(vm.user.permission, after={'showPermission', 'showAll'})" />
+<label value="@load(vm.user.permission, after={'showPermission', 'showAll'})"/>
 
-<label value="@load(vm.user.action, before='process')" />
+<label value="@load(vm.user.action, before='process')"/>
 ```

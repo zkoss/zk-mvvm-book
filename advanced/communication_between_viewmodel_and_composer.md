@@ -12,7 +12,7 @@ For example, after adding a product, you want to tell ` ShoppingCartViewModel ` 
 
 #### Send a global command in a composer (Sender)
 ``` java
-public class MyComposer extends SelectorComposer{
+public class MyComposer extends SelectorComposer {
 
     @Listen("onAddProductOrder=#PrdoDiv #prodGrid row productOrder")
     public void addProduct(Event fe) {
@@ -26,19 +26,18 @@ public class MyComposer extends SelectorComposer{
 -   We use ` BindUtils.postGlobalCommand(String queueName, String queueScope, String cmdName, Map<java.lang.String,java.lang.Object> args) ` to post a command. We leave first two arguments as "null" to use default queue name and default scope (**desktop**). The third arguments is **global command's name**. You can send extra parameters with a Map by the fourth argument.
 -   The specified global command is then executed by all ViewModel's binders that have subscribed to the event queue in the same (desktop) scope.
 
-In the <b>ShoppingCartViewModel</b>, we should declare a global command method named "updateShoppingCart" to receive this command request and refresh cart items. The code snippet below shows this.
+In the `ShoppingCartViewModel`, we should declare a global command method named `updateShoppingCart` to receive this command request and refresh cart items. The code snippet below shows this.
 
 #### Global command in a ViewModel (Receiver)
 ``` java
 public class ShoppingCartViewModel {
-
-    ...
-
     @GlobalCommand
     @NotifyChange("cartItems")
     public void updateShoppingCart() {
         //update shopping cart
     }
+
+    // rest of the class body
 }
 ```
 -   As [a binder subscribes to desktop scope event queue by default](../data_binding/binder.html), we only need to declare a global command.
@@ -52,9 +51,8 @@ Assuming that we want to inform a composer to update shopping cart's items.
 
 #### Bind global command in a ZUL (Sender)
 ``` xml
- <window apply="org.zkoss.bind.BindComposer" binder="@init(queueName='myqueue')"
-   viewModel="@id('vm') @init('example.MyViewModel')" >
-
+<window apply="org.zkoss.bind.BindComposer" binder="@init(queueName='myqueue')"
+    viewModel="@id('vm') @init('example.MyViewModel')">
     <button id="addProduct" label="Add" onClick="@global-command('updateShoppingCart')"/>
 </window>
 ```
@@ -64,12 +62,12 @@ As mentioned earlier, global command is sent by event queue, the composer (recei
 
 #### To subscribe global command (Receiver) to the event queue
 ``` java
-public class MyComposesr extends SelectorComposer<Component>{
+public class MyComposesr extends SelectorComposer<Component> {
 
     @Subscribe("myqueue")
-    public void updateShoppingCart(Event evt){
-        if(evt instanceof GlobalCommandEvent){
-            if("updateShoppingCart".equals(((GlobalCommandEvent)evt).getCommand())){
+    public void updateShoppingCart(Event evt) {
+        if (evt instanceof GlobalCommandEvent) {
+            if ("updateShoppingCart".equals(((GlobalCommandEvent)evt).getCommand())) {
                 //update shopping cart's items
             }
         }

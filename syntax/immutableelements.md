@@ -21,12 +21,12 @@ Example
 =======
 
 ``` java
-public class CustomVM{
+public class CustomVM {
 
     @ImmutableElements
     private Map<String, Object> info;
 
-     //other code...
+    // other code...
 }
 ```
 

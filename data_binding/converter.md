@@ -21,7 +21,7 @@ public class MyDateFormatConverter implements Converter {
     public Object coerceToUi(Object val, Component comp, BindContext ctx) {
         //user sets format in annotation of binding or args when calling binder.addPropertyBinding()
         final String format = (String) ctx.getConverterArg("format");
-        if(format==null) throw new NullPointerException("format attribute not found");
+        if (format == null) throw new NullPointerException("format attribute not found");
         final Date date = (Date) val;
         return date == null ? null : new SimpleDateFormat(format).format(date);
     }
@@ -35,7 +35,7 @@ public class MyDateFormatConverter implements Converter {
      */
     public Object coerceToBean(Object val, Component comp, BindContext ctx) {
         final String format = (String) ctx.getConverterArg("format");
-        if(format==null) throw new NullPointerException("format attribute not found");
+        if (format == null) throw new NullPointerException("format attribute not found");
         final String date = (String) val;
         try {
             return date == null ? null : new SimpleDateFormat(format).parse(date);
@@ -103,8 +103,8 @@ Currently, built-in converter we provide are :
 - **formattedDate**
 
 ```xml
-    <label value="@load(item.price) @converter('formatedNumber', format='###,##0.00')"/>
-    <label value="@load(item.creationDate) @converter('formatedDate', format='yyyy/MM/dd')"/>
+<label value="@load(item.price) @converter('formatedNumber', format='###,##0.00')"/>
+<label value="@load(item.creationDate) @converter('formatedDate', format='yyyy/MM/dd')"/>
 ```
 - You should specify number or date pattern in format parameter's value for formattedNumber converter or formattedDate converter.
 
@@ -112,7 +112,7 @@ Currently, built-in converter we provide are :
 
 - **formattedTime**
 ```xml
-    <label value="@load(item.time) @converter('formattedTime', format='hhmmss')"/>
+<label value="@load(item.time) @converter('formattedTime', format='hhmmss')"/>
 ```
 - You should specify time pattern in format parameter's value for formattedTime converter, the value is only related to hour/minute/second/millisecond value of Date object.
 
@@ -125,9 +125,9 @@ binding, remember to return a ` Collection ` object in
 ` coerceToUi( ) `.
 
 ```xml
-    <hlayout children="@init(vm.items) @converter(vm.itemConverter)">
-        <template name="children">
-            <label value="@load(each) "/>
-        </template>
-    </hlayout>
+<hlayout children="@init(vm.items) @converter(vm.itemConverter)">
+    <template name="children">
+        <label value="@load(each)"/>
+    </template>
+</hlayout>
 ```

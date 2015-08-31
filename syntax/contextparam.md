@@ -21,7 +21,7 @@ enum ContextType {
     PAGE,           //Page instance of current component
     DESKTOP,        //Desktop instance of current component
     SESSION,        //Session instance
-    APPLICATION //Application instance
+    APPLICATION     //Application instance
 }
 ```
 
@@ -39,35 +39,40 @@ Example
 
 #### Retrieve various context object in a ViewModel
 ``` java
-    @Init
-    public void init(
-            @ContextParam(ContextType.EXECUTION) Execution execution,
-            @ContextParam(ContextType.COMPONENT) Component component,
-            @ContextParam(ContextType.VIEW) Component view,
-            @ContextParam(ContextType.SPACE_OWNER) IdSpace spaceOwner,
-            @ContextParam(ContextType.PAGE) Page page,
-            @ContextParam(ContextType.DESKTOP) Desktop desktop,
-            @ContextParam(ContextType.SESSION) Session session,
-            @ContextParam(ContextType.APPLICATION) WebApp application,
+@Init
+public void init(
+    @ContextParam(ContextType.EXECUTION) Execution execution,
+    @ContextParam(ContextType.COMPONENT) Component component,
+    @ContextParam(ContextType.VIEW) Component view,
+    @ContextParam(ContextType.SPACE_OWNER) IdSpace spaceOwner,
+    @ContextParam(ContextType.PAGE) Page page,
+    @ContextParam(ContextType.DESKTOP) Desktop desktop,
+    @ContextParam(ContextType.SESSION) Session session,
+    @ContextParam(ContextType.APPLICATION) WebApp application,
+    @ContextParam(ContextType.BIND_CONTEXT) BindContext bindContext,
+    @ContextParam(ContextType.BINDER) Binder binder) {
 
-            @ContextParam(ContextType.BIND_CONTEXT) BindContext bindContext,
-            @ContextParam(ContextType.BINDER) Binder binder) {..}
+    // method body
+}
 ```
 
 The following is another example.
 
 ``` xml
 <vbox id="vbox" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('eg.ContextParamVM')">
-    <button id="cmd" label="cmd" onClick="@command('cmd')" />
+    <button id="cmd" label="cmd" onClick="@command('cmd')"/>
 </vbox>
 ```
 
 #### A ViewModel used by above zul
 ``` java
-public class ContextParamVM{
+public class ContextParamVM {
     @Command
-    public void cmd(@ContextParam(ContextType.COMPONENT) Component component,
-            @ContextParam(ContextType.VIEW) Component view) {
+    public void cmd(
+        @ContextParam(ContextType.COMPONENT) Component component,
+        @ContextParam(ContextType.VIEW) Component view) {
+
+        // method body
     }
 }
 ```

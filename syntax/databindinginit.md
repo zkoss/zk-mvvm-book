@@ -37,31 +37,30 @@ Example
 
 #### Usage example in viewModel attribute
 ``` xml
-<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.ChildrenMenuVM')" >
+<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.ChildrenMenuVM')">
 </window>
 ```
 
 #### Usage example in form attribute
 ``` xml
-
 <vbox form="@id('fx') @init(vm.myForm) @load(vm.person) @save(vm.person, before='save')">
 </vbox>
 ```
 
 #### Pass arguments
 ``` xml
-    <window  width="400px" apply="org.zkoss.bind.BindComposer"
-    viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.databinding.InitVM', arg1='myValue')">
-        ...
-    </window>
+<window width="400px" apply="org.zkoss.bind.BindComposer"
+	viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.databinding.InitVM', arg1='myValue')">
+    <!-- other components -->
+</window>
 ```
 
 ``` java
 public class InitVM {
 
     @Init
-    public void init(@BindingParam("arg1") String arg1){
-        System.out.println("arg1: "+arg1);
+    public void init(@BindingParam("arg1") String arg1) {
+        System.out.println("arg1: " + arg1);
     }
 }
 ```

@@ -19,11 +19,11 @@ Example
 
 #### Dynamic template upon iteration status variable
 ``` xml
-<combobox model="@bind(item.options ) @template(forEachStatus.index eq 0 or forEachStatus.index eq 2?'model1':'model2')">
-    <template name="model1" var="option" >
+<combobox model="@bind(item.options ) @template(forEachStatus.index eq 0 or forEachStatus.index eq 2 ? 'model1' : 'model2')">
+    <template name="model1" var="option">
         <comboitem label="@bind(optionStatus)" description="@bind(option)"/>
     </template>
-    <template name="model2" var="option" >
+    <template name="model2" var="option">
         <comboitem label="@bind(optionStatus)" description="@bind(option)"/>
     </template>
 </combobox>
@@ -33,10 +33,9 @@ Example
 ``` xml
 <vlayout id="vlayout" children="@load(vm.nodes) @template('greenBox')">
     <template name="greenBox" var="node">
-        <vlayout style="padding-left:10px; border:2px solid green;" >
-            <label value="@bind(node.name)" />
-            <vlayout
-                children="@load(node.children) @template('greenBox')" />
+        <vlayout style="padding-left:10px; border:2px solid green;">
+            <label value="@bind(node.name)"/>
+            <vlayout children="@load(node.children) @template('greenBox')"/>
         </vlayout>
     </template>
 </vlayout>

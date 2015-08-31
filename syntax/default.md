@@ -21,16 +21,16 @@ Example
 
 #### Pass parameter from a zul
 ``` xml
-<button id="first" onClick="@command('cmd', arg2=100)" />
-<button id="second" onClick="@command('cmd')" />
+<button id="first" onClick="@command('cmd', arg2=100)"/>
+<button id="second" onClick="@command('cmd')"/>
 ```
 
 #### Example to assign default value
 ``` java
-    @Command
-    public void cmd(@Default("false") Boolean arg1, @BindingParam("arg2") @Default("3") Integer arg2){
-        //...
-    }
+@Command
+public void cmd(@Default("false") Boolean arg1, @BindingParam("arg2") @Default("3") Integer arg2) {
+    // method body
+}
 ```
 
 -   According to above example, if we click first button, binder will pass 100 to arg2. If we click second button, arg2 will be 3.

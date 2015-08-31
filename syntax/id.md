@@ -24,7 +24,7 @@ Example
 #### Usage in viewModel attribute
 ``` xml
 <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.ChildrenMenuVM')"
-  validationMessages = "@id('vmsgs')" >
+	validationMessages = "@id('vmsgs')">
 </window>
 ```
 

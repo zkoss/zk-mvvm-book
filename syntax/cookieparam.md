@@ -25,7 +25,8 @@ public class HttpParamVM {
     String cookieParam;
 
     @Init
-    public void init(@CookieParam("nosuch") String guess){
+    public void init(@CookieParam("nosuch") String guess) {
         cookieParam = guess;
+    }
 }
 ```

@@ -6,9 +6,9 @@ Syntax
 ``` java
 @GlobalCommand
 
-@GlobalCommand("commanName")
+@GlobalCommand("commandName")
 
-@GlobalCommand({"commanName1", "commandName2"})
+@GlobalCommand({"commandName1", "commandName2"})
 ```
 
 Description
@@ -27,15 +27,16 @@ Example
 
 #### Method name as command name
 ``` java
-    @GlobalCommand
-    public void show(){
-        //...
-    }
+@GlobalCommand
+public void show() {
+    // method body
+}
 ```
 #### Specify command name
 ``` java
-    @Command("delete") @GlobalCommand("delete")
-    public void deleteOrder(){
-        //...
-    }
+@GlobalCommand("delete")
+@Command("delete")
+public void deleteOrder() {
+    // method body
+}
 ```

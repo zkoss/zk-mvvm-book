@@ -21,13 +21,13 @@ Example
 
 ``` java
 @Immutable
-public class SysConfiguration{
-
+public class SysConfiguration {
+	// class body
 }
 ```
 
 ``` java
-public class DataObject{
+public class DataObject {
 
     //other code...
 

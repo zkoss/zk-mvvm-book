@@ -22,8 +22,8 @@ Example
 
 #### Mark a default global command method
 ``` java
-    @DefaultGlobalCommand
-    public void defaultAction(){
-        //...
-    }
+@DefaultGlobalCommand
+public void defaultAction() {
+    // method body
+}
 ```

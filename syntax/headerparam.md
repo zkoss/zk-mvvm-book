@@ -25,7 +25,7 @@ public class HttpParamVM {
     String headerParam;
 
     @Init
-    public void init(@HeaderParam("user-agent")String browser){
+    public void init(@HeaderParam("user-agent") String browser) {
         headerParam = browser;
     }
 }

@@ -23,17 +23,17 @@ Assume we want to pass an object by execution's attribute to an included ZUL tha
 
 #### outer ZUL
 ``` xml
-    <window id="w2">
-        <zscript>
-            void doClick(){
-                org.zkoss.zk.ui.Execution ex = org.zkoss.zk.ui.Executions.getCurrent();
-                ex.setAttribute("param1","abc");
-                inc.src = "executionparam-inner.zul";
-            }
-        </zscript>
-        <button label="do include" onClick="doClick()"/>
-        <include id="inc" />
-    </window>
+<window id="w2">
+    <zscript>
+        void doClick() {
+            org.zkoss.zk.ui.Execution ex = org.zkoss.zk.ui.Executions.getCurrent();
+            ex.setAttribute("param1", "abc");
+            inc.src = "executionparam-inner.zul";
+        }
+    </zscript>
+    <button label="do include" onClick="doClick()"/>
+    <include id="inc"/>
+</window>
 ```
 
 We use annotation to retrieve execution's attribute with key "param1".
@@ -44,16 +44,15 @@ public class ExecutionParamVM {
     private String param1;
 
     @Init
-    public void init(@ExecutionParam("param1") String param1){
+    public void init(@ExecutionParam("param1") String param1) {
         this.param1 = param1;
     }
-    //setter, getter, and others
+    // setter, getter, and others
 }
 ```
 #### executionparam-inner.zul
 ``` xml
     <vbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.ExecutionParamVM')">
-
         <label value="@load(vm.param1)"/>
     </vbox>
 ```
