@@ -6,26 +6,26 @@ The binder is responsible for creating and initializing a ViewModel instance. If
 public class MyViewModel {
 
     @Init
-    public void init(){
+    public void init() {
         //initialization code
     }
 }
 ```
 This annotation has an attribute named "superclass", if you set it to "true". The binder will look for the initial method of ViewModel's parent class and invoke it first if it exists.
 ```java
-public class ParentViewModel{
+public class ParentViewModel {
 
     @Init
-    public void parentInit(){
+    public void parentInit() {
         //initialization code
     }
 }
 
-public class ChildViewModel extends ParentViewModel{
+public class ChildViewModel extends ParentViewModel {
 
     /* ParentViewModel's initial method is invoked first then ChildViewModel's. */
     @Init(superclass=true)
-    public void childInit(){
+    public void childInit() {
         //initialization code
     }
 }
@@ -43,7 +43,7 @@ public class ParentViewModel {
 }
 
 @Init(superclass=true)
-public class ChildViewModel extends ParentViewModel{
+public class ChildViewModel extends ParentViewModel {
 }
 ```
 The initial method can retrieve various context object by applying annotation on its parameter, please refer [Advanced/Parameters](../advanced/parameters.html).

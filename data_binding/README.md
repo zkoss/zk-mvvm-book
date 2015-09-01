@@ -72,7 +72,7 @@ For example:
 <textbox value="@save(vm.person.firstname) @save(vm.tmpperson.firstname)"/>
 <textbox value="@save(vm.person.firstname, before='update')"/>
 <textbox value="@save(vm.person.firstname, after='delete')"/>
-<textbox value="@save(vm.selected.firstname, before={'update','add'})"/>
+<textbox value="@save(vm.selected.firstname, before={'update', 'add'})"/>
 ```
 
 ## Initial Binding
@@ -84,7 +84,7 @@ For example:
 ##Two Way Data Binding
 * Multiple conditional load and save on different back-end beans before/after executing different/same commands
 ```xml
-<textbox value="@load(vm.selected.firstname) @save(vm.selected.firstname) @save(vm.newperson.firstname,before='add')"/>
+<textbox value="@load(vm.selected.firstname) @save(vm.selected.firstname) @save(vm.newperson.firstname, before='add')"/>
 ```
 * Short expression for both save and load bindings without command condition.<sub>[1]</sub>
 ```xml
@@ -161,7 +161,7 @@ For example:
 ## Dynamic Template
 * Dynamically determine which template to render.
 ```xml
-<grid model="@bind(vm.nodes) @template(vm.type='foo'?'template1':'template2')">
+<grid model="@bind(vm.nodes) @template(vm.type = 'foo' ? 'template1' : 'template2')">
     <template name="template1">
     <!-- child components -->
     </template>
@@ -173,4 +173,4 @@ For example:
 ```
 
 ## Debugging
-ZK supports debug features such as printing ZK bind debugging information that can be enabled manually. Please refer to [MVVM/Configuration](../configuration/README.html).
+ZK supports debug features such as printing ZK bind debugging information that can be enabled manually. Please refer to [MVVM/Configuration](../configuration/).

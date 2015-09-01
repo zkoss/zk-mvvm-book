@@ -9,14 +9,14 @@ public class ItemsVM {
     private ItemService itemService = new ItemService();
     private List<Item> itemList = itemService.getAllItems();
 
-    public List<Item> getItemList(){
+    public List<Item> getItemList() {
         return itemList;
     }
 }
 ```
-For a ViewModel's ` Collection` type property, we usually bind it to those components that have **model** attribute like *Listbox*, *Grid*, or *Tree*. (You should not bind multiple attributes to a shared collection object,e.g. a static List, as concurrent issues may arise.)
+For a ViewModel's ` Collection` type property, we usually bind it to those components that have **model** attribute like *Listbox*, *Grid*, or *Tree*. (You should not bind multiple attributes to a shared collection object, e.g. a static List, as concurrent issues may arise.)
 ```xml
-    <grid width="400px" model="@bind(vm.itemList)">
+<grid width="400px" model="@bind(vm.itemList)">
 ```
 If the property is one of Java Collection type object like ` List ` or ` Set `, an internal converter will convert the collection object as a [ListModel](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zul/ListModel.html) object automatically for user's convenience. But it has limitations that we will talk them in [later section](#choose-a-components-model-type).
 
@@ -26,19 +26,19 @@ After binding collection type property as a data source, we have to specify how 
 
 **each**, iteration object variable which references to each object of the model. We can use it to access an object's properties with dot notation, e.g. `each.name`.
 
-**forEachStatus**, iteration status variable. it's used to get iteration index by `forEachStatus.index`.
+**`forEachStatus`**, iteration status variable. It's used to get iteration index by `forEachStatus.index`.
 ```xml
 <window apply="org.zkoss.bind.BindComposer"
-viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.ItemsVM')">
+    viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.ItemsVM')">
     <grid width="400px" model="@bind(vm.itemList)">
         <columns>
-            <column label="index" />
-            <column label="name" />
+            <column label="index"/>
+            <column label="name"/>
         </columns>
-        <template name="model" >
+        <template name="model">
             <row>
-                <label value="@bind(forEachStatus.index)" />
-                <label value="@bind(each.name)" />
+                <label value="@bind(forEachStatus.index)"/>
+                <label value="@bind(each.name)"/>
             </row>
         </template>
     </grid>
@@ -63,21 +63,21 @@ public class TreeVM {
 ```xml
 <window apply="org.zkoss.bind.BindComposer"
     viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.TreeVM')">
-    <tree model="@bind(vm.itemTree)" width="400px" >
+    <tree model="@bind(vm.itemTree)" width="400px">
         <treecols>
-            <treecol label="name" />
-            <treecol label="index" />
+            <treecol label="name"/>
+            <treecol label="index"/>
         </treecols>
         <template name="model" var="node" status="s">
             <treeitem>
                 <treerow>
-                    <treecell label="@bind(node.data)" />
-                    <treecell label="@bind(s.index)" />
+                    <treecell label="@bind(node.data)"/>
+                    <treecell label="@bind(s.index)"/>
                 </treerow>
             </treeitem>
         </template>
     </tree>
-...
+    <!-- other components -->
 </window>
 ```
 -   When using template element, we don't need to put `<treechildren>` inside a `<tree>`.
@@ -94,23 +94,23 @@ The binder will evaluate an EL expression as a template's name and look for corr
 ```xml
 <grid model="@bind(vm.itemList) @template('myTemplate')">
     <template name="myTemplate">
-    <!-- child components -->
+        <!-- child components -->
     </template>
 </grid>
 ```
--   Use the template whose name is specified in `@template`.
+- Use the template whose name is specified in `@template`.
 
 We could use EL to decide which template to use.
 
 #### Conditional
 ```xml
-<grid model="@bind(vm.itemList) @template(vm.type eq 'foo'?'template1':'template2')">
+<grid model="@bind(vm.itemList) @template(vm.type eq 'foo' ? 'template1' : 'template2')">
     <template name="template1">
-    <!-- child components -->
+        <!-- child components -->
     </template>
 
     <template name="template2">
-    <!-- child components -->
+        <!-- child components -->
     </template>
 </grid>
 ```
@@ -119,15 +119,14 @@ We also can use implicit variable, **each** and **forEachStatus**, in EL express
 
 #### Condition with implicit variables
 ```xml
-<grid model="@bind(vm.itemList) @template(each.type eq 'A'?'templateA':'templateB')">
+<grid model="@bind(vm.itemList) @template(each.type eq 'A' ? 'templateA' : 'templateB')">
     <template name="templateA">
-    <!-- child components -->
+        <!-- child components -->
     </template>
 
     <template name="templateB">
-    <!-- child components -->
+        <!-- child components -->
     </template>
-
 </grid>
 ```
 -   Line 1: Assume that the object in binding collection has a property "type". Its value could be A or B.
@@ -159,16 +158,16 @@ Here is an example to create a menu bar dynamically. If a menu item has no sub-m
 
 #### An example of dynamic menu bar
 ```xml
-    <menubar id="mbar" children="@bind(vm.menuList) @template(empty each.children?'menuitem':'menu')">
-        <template name="menu" var="menu">
-            <menu label="@bind(menu.name)">
-                <menupopup children="@bind(menu.children) @template(empty each.children?'menuitem':'menu')"/>
-            </menu>
-        </template>
-        <template name="menuitem" var="item">
-            <menuitem label="@bind(item.name)" onClick="@command('menuClicked',node=item)" />
-        </template>
-    </menubar>
+<menubar id="mbar" children="@bind(vm.menuList) @template(empty each.children ? 'menuitem' : 'menu')">
+    <template name="menu" var="menu">
+        <menu label="@bind(menu.name)">
+            <menupopup children="@bind(menu.children) @template(empty each.children ? 'menuitem' : 'menu')"/>
+        </menu>
+    </template>
+    <template name="menuitem" var="item">
+        <menuitem label="@bind(item.name)" onClick="@command('menuClicked', node=item)" />
+    </template>
+</menubar>
 ```
 The example above is to use a tree like data structure that the sub-template will render the content recursively.
 
@@ -178,8 +177,7 @@ The example above is to use a tree like data structure that the sub-template wil
 
 Selection in Collection
 =======================
-*Listbox* and *Tree* store user selection state including single or multiple selection. Single selection is enabled by default. The way to enable multiple selection depends on object's type you bind with "model"
-attribute. ZK allows us to bind selection state with ViewModel's property.
+*Listbox* and *Tree* store user selection state including single or multiple selection. Single selection is enabled by default. The way to enable multiple selection depends on object's type you bind with "model" attribute. ZK allows us to bind selection state with ViewModel's property.
 
 Single Selection
 ----------------
@@ -187,7 +185,7 @@ For single selection state, ZK provides 2 kind of state. One is selected index a
 
 #### Properties for selection
 ```java
-public class SingleSelectionVM{
+public class SingleSelectionVM {
 
     private ItemService itemService = new ItemService();
     private List<Item> itemList = itemService.getAllItems();
@@ -206,9 +204,9 @@ To save or restore a component's selected index, we should bind **selectedIndex*
 #### Listbox selectedIndex example
 ```xml
 <window apply="org.zkoss.bind.BindComposer"
-viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.SingleSelectionVM')">
-    <listbox  width="400px" model="@bind(vm.itemList)"
-    selectedIndex="@bind(vm.pickedIndex)">
+    viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.SingleSelectionVM')">
+    <listbox width="400px" model="@bind(vm.itemList)"
+        selectedIndex="@bind(vm.pickedIndex)">
         <listhead>
             <listheader label="index"/>
             <listheader label="name"/>
@@ -229,9 +227,9 @@ To save or restore selected item we should bind **selectedItem** to a property w
 #### Listbox selectedItem example
 ```xml
 <window apply="org.zkoss.bind.BindComposer"
-viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.SingleSelectionVM')">
-    <listbox  width="400px" model="@bind(vm.itemList)"
-    selectedItem="@bind(vm.pickedItem)" >
+    viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.SingleSelectionVM')">
+    <listbox width="400px" model="@bind(vm.itemList)"
+        selectedItem="@bind(vm.pickedItem)" >
         <listhead>
             <listheader label="index"/>
             <listheader label="name"/>
@@ -260,16 +258,16 @@ public class TreeSelectionVM {
 <window apply="org.zkoss.bind.BindComposer"
     viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.TreeSelectionVM')">
     <tree id="tree" model="@bind(vm.itemTree) " width="600px"
-    selectedItem="@bind(vm.pickedItem)">
+        selectedItem="@bind(vm.pickedItem)">
         <treecols>
-            <treecol label="name" />
-            <treecol label="index" />
+            <treecol label="name"/>
+            <treecol label="index"/>
         </treecols>
         <template name="model" var="node" status="s">
             <treeitem open="@bind(node.open)">
                 <treerow>
-                    <treecell label="@bind(node.data)" />
-                    <treecell label="@bind(s.index)" />
+                    <treecell label="@bind(node.data)"/>
+                    <treecell label="@bind(s.index)"/>
                 </treerow>
             </treeitem>
         </template>
@@ -282,14 +280,14 @@ public class TreeSelectionVM {
 
 > Since 6.5.1
 
-We can bind "selectedItem" with any type of object, not only String.
+We can bind `selectedItem` with any type of object, not only String.
 ```xml
-         <vlayout children="@load(vm.itemList)">
-            <template name="children">
-                <radio label="@load(each.name)" value="@load(each)" radiogroup="rg" />
-            </template>
-        </vlayout>
-        <radiogroup id="rg" selectedItem="@bind(vm.pickedItem)"/>
+<vlayout children="@load(vm.itemList)">
+    <template name="children">
+        <radio label="@load(each.name)" value="@load(each)" radiogroup="rg"/>
+    </template>
+</vlayout>
+<radiogroup id="rg" selectedItem="@bind(vm.pickedItem)"/>
 ```
 
 ### Binding to Selected Item with Static UI Data
@@ -297,11 +295,11 @@ When using static data, we still can get and save "selectedItem" with similar ru
 
 #### Static data model
 ```xml
-        <radiogroup selectedItem="@bind(vm.pickedItemName)">
-            <radio label="Item 0" value="Item 0" />
-            <radio label="Item 1" value="Item 1" />
-            <radio label="Item 2" value="Item 2" />
-        </radiogroup>
+<radiogroup selectedItem="@bind(vm.pickedItemName)">
+    <radio label="Item 0" value="Item 0"/>
+    <radio label="Item 1" value="Item 1"/>
+    <radio label="Item 2" value="Item 2"/>
+</radiogroup>
 ```
 -   Line 1: `vm.pickedItemName` is a String property.
 
@@ -319,7 +317,7 @@ public class CustomSingleSelectionVM {
     //omit setter and getter for brevity
     @NotifyChange("pickedItem")
     @Command
-    public void select(@BindingParam("item") Item item){
+    public void select(@BindingParam("item") Item item) {
         pickedItem = item;
     }
 }
@@ -333,13 +331,13 @@ object bound with each *Tab*.
         <tabs children="@load(vm.itemList)">
             <template name="children">
                 <tab label="@load(each.name)" selected="@load(vm.pickedItem eq each)"
-                    onSelect="@command('select',item=each)" />
+                    onSelect="@command('select', item=each)"/>
             </template>
         </tabs>
         <tabpanels children="@load(vm.itemList)">
             <template name="children">
                 <tabpanel height="200px">
-                    <label value="@load(each.name)" />
+                    <label value="@load(each.name)"/>
                 </tabpanel>
             </template>
         </tabpanels>
@@ -355,7 +353,7 @@ To keep multiple selections state, we should bind **selectedItems** to a propert
 
 #### Selected Set
 ```java
-public class MultipleSelectionsVM{
+public class MultipleSelectionsVM {
 
     private ItemService itemService = new ItemService();
     private List<Item> itemList = itemService.getAllItems();
@@ -367,9 +365,9 @@ public class MultipleSelectionsVM{
 #### Multiple selections enabled Listbox
 ```xml
 <window apply="org.zkoss.bind.BindComposer"
-viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.MultipleSelectionsVM')">
+    viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.collection.MultipleSelectionsVM')">
     <listbox  width="400px" model="@bind(vm.itemList)" checkmark="true" multiple="true"
-    selectedItems="@bind(vm.pickedItemSet)" >
+        selectedItems="@bind(vm.pickedItemSet)" >
         <listhead>
             <listheader label="index"/>
             <listheader label="name"/>
@@ -395,10 +393,10 @@ public class CustomMultipleSelectionsVM {
 
     @Command
     @NotifyChange("pickedItemSet")
-    public void pick(@BindingParam("checked") boolean isPicked, @BindingParam("picked")Item item){
-        if (isPicked){
+    public void pick(@BindingParam("checked") boolean isPicked, @BindingParam("picked") Item item) {
+        if (isPicked) {
             pickedItemSet.add(item);
-        }else{
+        } else {
             pickedItemSet.remove(item);
         }
     }
@@ -428,7 +426,7 @@ public class CustomMultipleSelectionsVM {
 
 Choose a Component's Model Type
 ===============================
-As we mentioned in previous section, we could bind a Java Collection type property to be a component's model . An internal converter will convert it to [LIstModel](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zul/LIstModel.html) automatically
+As we mentioned in previous section, we could bind a Java Collection type property to be a component's model . An internal converter will convert it to [ListModel](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zul/ListModel.html) automatically
 for us. It is convenient but one of its cost is "scroll position lost when collection size changes". If you scroll to an item of index 50 and delete (or add) an item. The component will force to scroll back to first item because it has to re-convert and re-render all items. One simple way to handle this is to set *Listbox* as "paging" mold. Another way is to wrap the collection object with [ListModelList](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zul/ListModelList.html).
 
 One more issue about performance is *Listbox* re-renders all items <sub>[1]</sub> when using Java collection object as the model in default mold. When you change the collection property by removing or adding an item, you have to notify its change. This will trigger *Listbox* to re-render from the beginning. But if you use `ListModelList` as a model and modify it by calling its method `add()` and `remove()`. `ListModelList` will update to client automatically without explicitly specifying property notification. And this update only re-renders the affected (added or removed) item instead of all items which is more efficient.<sub>[2]</sub>
@@ -441,67 +439,70 @@ But if you have huge amount of data, and getting them takes unbearable long time
 
 #### Use Java List as a model
 ```java
-public class ModelTypeVM extends SingleSelectionVM{
+public class ModelTypeVM extends SingleSelectionVM {
+
     protected List<Item> itemList;
 
     @Init
-    public void init(){
+    public void init() {
         pickedItem = new Item();
         itemService = new ItemService(100);
         itemList = itemService.getAllItems();  //return a java.util.List
         ...
     }
 
-    @Command @NotifyChange({"itemList","pickedItem"})
-    public void add(){
+    @NotifyChange({"itemList", "pickedItem"})
+    @Command
+    public void add() {
         itemList.add(pickedItem);
         pickedItem = new Item();
     }
 
-    @Command  @NotifyChange({"itemList","pickedItem"})
-    public void delete(){
+    @NotifyChange({"itemList", "pickedItem"})
+    @Command
+    public void delete() {
         int index = itemList.indexOf(pickedItem);
-        if (index != -1){
+        if (index != -1) {
             itemList.remove(index);
             pickedItem = new Item();
         }
-
     }
 
     //omit setter and getter
 }
 ```
--   Line 8: `itemList` is java.util.List object.
--   Line 12, 18: Because we change the property "itemList", we should notify binder to reload it.
+-   Line 9: `itemList` is java.util.List object.
+-   Line 13, 20: Because we change the property "itemList", we should notify binder to reload it.
 
 #### Use ListModelList as a model
 ```java
-public class ModelTypeVM extends SingleSelectionVM{
+public class ModelTypeVM extends SingleSelectionVM {
 
     private ListModelList<Item> itemListModel;
 
     @Init
-    public void init(){
+    public void init() {
         pickedItem = new Item();
         itemService = new ItemService(100);
         ...
         itemListModel = new ListModelList<Item>(itemService.getAllItems());
     }
 
-    @Command @NotifyChange("pickedItem")
-    public void modelAdd(){
+    @NotifyChange("pickedItem")
+    @Command
+    public void modelAdd() {
         itemListModel.add(pickedItem);
         pickedItem = new Item();
     }
 
-    @Command  @NotifyChange("pickedItem")
-    public void modelDelete(){
+    @NotifyChange("pickedItem")
+    @Command
+    public void modelDelete() {
         int index = itemListModel.indexOf(pickedItem);
-        if (index != -1){
+        if (index != -1) {
             itemListModel.remove(index);
             pickedItem = new Item();
         }
-
     }
 
     //omit setter and getter

@@ -11,14 +11,14 @@ Assume that you want to show a "Delete" button only to a user who has administra
 
 #### specialAttribte.zul
 ```xml
-        <!-- wrong usage, no effect -->
-        <button label="Delete " if="@load(vm.currentUser.admin)" />
-        <!-- determined at the beginning -->
-        <button label="Delete (EL)" if="${vm.currentUser.admin}" />
-        <!-- can change during user interaction -->
-        <button label="Delete (visible)" visible="@load(vm.currentUser.admin)" />
-        <button label="Delete (disabled)" disabled="@load(not vm.currentUser.admin)" />
-        <checkbox label="Is Admin" checked="@bind(vm.currentUser.admin)" />
+<!-- wrong usage, no effect -->
+<button label="Delete " if="@load(vm.currentUser.admin)"/>
+<!-- determined at the beginning -->
+<button label="Delete (EL)" if="${vm.currentUser.admin}"/>
+<!-- can change during user interaction -->
+<button label="Delete (visible)" visible="@load(vm.currentUser.admin)"/>
+<button label="Delete (disabled)" disabled="@load(not vm.currentUser.admin)"/>
+<checkbox label="Is Admin" checked="@bind(vm.currentUser.admin)"/>
 ```
 -   Line 2: It is a wrong usage; the delete button will never be created.
 -   Line 4: The button's creation is determined when a user visits the page and won't appear unless the user becomes a administrator andivsits the page again.
@@ -30,20 +30,18 @@ The `forEach` attribute also has the same issue.
 
 #### specialAttribute.zul
 ```xml
-    <!-- "forEach" versus children binding  -->
-    <!-- wrong usage, no effect -->
-    <checkbox label="@load(each.firstName)" forEach="@load(vm.personList)" />
-    <!-- determined at the beginning -->
-    <checkbox label="${each.firstName}" forEach="${vm.personList}" />
-    <!-- children binding -->
-    <div children="@load(vm.personList)">
-        <template name="children">
-            <checkbox label="@load(each.firstName)" />
-        </template>
-    </div>
+<!-- "forEach" versus children binding  -->
+<!-- wrong usage, no effect -->
+<checkbox label="@load(each.firstName)" forEach="@load(vm.personList)"/>
+<!-- determined at the beginning -->
+<checkbox label="${each.firstName}" forEach="${vm.personList}"/>
+<!-- children binding -->
+<div children="@load(vm.personList)">
+    <template name="children">
+        <checkbox label="@load(each.firstName)"/>
+    </template>
+</div>
 ```
 -   Line 3: It is a wrong usage; it doesn't create multiple checkboxes.
 -   Line 5: The checkboxes are created at the beginning when a user visits the page and won't change even if we change `vm.personLIst`.
 -   Line 7: [ Children binding](../data_binding/children_binding.html) is used when you want to dynamically create and destroy components.
-
-

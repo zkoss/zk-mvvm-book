@@ -20,8 +20,8 @@ Example
 
 #### Mark method as default
 ``` java
-    @DefaultCommand
-    public void defaultAction(){
-        ...
-    }
+@DefaultCommand
+public void defaultAction() {
+    // method body
+}
 ```

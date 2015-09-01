@@ -32,9 +32,9 @@ Example
 =======
 
 ``` xml
-<button label="Save" onClick="@command('saveOrder')" />
+<button label="Save" onClick="@command('saveOrder')"/>
 
-<button label="Delete" onClick="@command(empty vm.selected.id?'deleteOrder':'confirmDelete')" />
+<button label="Delete" onClick="@command(empty vm.selected.id ? 'deleteOrder' : 'confirmDelete')"/>
 
 <button label="Index" onClick="@command('showIndex', index=10, keyword='myKeyword')"/>
 ```

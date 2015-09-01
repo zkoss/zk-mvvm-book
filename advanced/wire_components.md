@@ -7,7 +7,7 @@ One way to get components is [passing components as parameters in command bindin
 
 #### Example to wire components in a ViewModel
 ```java
-public class SearchAutowireVM{
+public class SearchAutowireVM {
 
     //UI component
     @Wire("#msgPopup")
@@ -16,10 +16,9 @@ public class SearchAutowireVM{
     Label msg;
 
     @AfterCompose
-    public void afterCompose(@ContextParam(ContextType.VIEW) Component view){
+    public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
     }
-
 }
 ```
 * `Selectors.wireComponents()`'s first parameters is Root View Component which can be retrieved by `@ContextParam`

@@ -15,7 +15,7 @@ public class OrderVM {
     // create and add a new order to a list
     // command name is set to method name by default
     @Command
-    public void newOrder(){
+    public void newOrder() {
         Order order = new Order();
         getOrders().add(order);
         selected = order;//select the new one
@@ -24,7 +24,7 @@ public class OrderVM {
     // save an order
     // command name is specified
     @Command('save')
-    public void saveOrder(){
+    public void saveOrder() {
         orderService.save(selected);
     }
 }
@@ -32,7 +32,6 @@ public class OrderVM {
 
 ####Command binding example
 ```xml
-
     <toolbar>
         <button label="New" onClick="@command('newOrder')" />
         <button label="Save" onClick="@command('save')" />
@@ -41,8 +40,8 @@ public class OrderVM {
     <menubar>
         <menu label="Order">
             <menupopup >
-                <menuitem label="New"  onClick="@command('newOrder')"/>
-                <menuitem label="Save"  onClick="@command('save')"/>
+                <menuitem label="New" onClick="@command('newOrder')"/>
+                <menuitem label="Save" onClick="@command('save')"/>
             </menupopup>
         </menu>
     </menubar>
@@ -57,9 +56,9 @@ If we specify command name with an **empty string literal** or evaluation result
 
 ####Empty command
 ```xml
-<button onClick="@command(empty vm.selection?'add':''"/>
+<button onClick="@command(empty vm.selection ? 'add' : ''"/>
 
-<button onClick="@command(empty vm.selection?'save':null"/>
+<button onClick="@command(empty vm.selection ? 'save' : null"/>
 ```
 
 Default Command
@@ -75,13 +74,13 @@ Assume that there are only two command methos in the below ViewModel. If we trig
 public class OrderVM {
 
     @Command
-    public void newOrder(){
-    ...
+    public void newOrder() {
+        // ...
     }
 
     @DefaultCommand
-    public void defaultAction(){
-    ...
+    public void defaultAction() {
+        // ...
     }
 }
 ```

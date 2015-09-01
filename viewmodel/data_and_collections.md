@@ -1,28 +1,28 @@
 # Data and Collections
 
 # Expose ViewModel's Properties
-ViewModel, like a JavaBean, exposes its properties through getter and setter methods. Any property that VIew (ZUL) wants to retrieve through data binding should have a corresponding getter method. The method's return type can be primitive type (int, boolean...), or a JavaBean. If a UI component needs to save its attribute value (it's usually user input) back to ViewModel's property, the ViewModel should provide a corresponding setter method. Therefore, through setter and getter can change the data of both the View and the ViewModel using the data binding mechanism.
+ViewModel, like a JavaBean, exposes its properties through getter and setter methods. Any property that View (ZUL) wants to retrieve through data binding should have a corresponding getter method. The method's return type can be primitive type (int, boolean...), or a JavaBean. If a UI component needs to save its attribute value (it's usually user input) back to ViewModel's property, the ViewModel should provide a corresponding setter method. Therefore, through setter and getter can change the data of both the View and the ViewModel using the data binding mechanism.
 
 ## Property is Primitive Type
 
 ### Primitive type property
 ```java
-public class PrimitiveViewModel{
+public class PrimitiveViewModel {
 
     private int index;
     private double price;
 
-    public int getIndex(){
+    public int getIndex() {
         return index;
     }
-    public void setIndex(int index){
+    public void setIndex(int index) {
         this.index = index;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return price;
     }
-    public void setPrice(double price){
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -47,38 +47,39 @@ If a property is a JavaBean, that JavaBean's property can also be accessed throu
 
 ### Object type property
 ```java
-public class Address{
+public class Address {
+
     private String city;
     private String street;
 
     //gettter & setter
 }
 
-public class ObjectViewModel{
+public class ObjectViewModel {
 
     private Integer index;
     private String name;
     //JavaBean
     private Address address;
 
-    public int getIndex(){
+    public int getIndex() {
         return index;
     }
-    public void setIndex(Integer index){
+    public void setIndex(Integer index) {
         this.index = index;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Item getAddress(){
+    public Item getAddress() {
         return address;
     }
-    public void setAddress(Address address){
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -100,22 +101,22 @@ If the UI component is a collection container like listbox or grid, it should be
 
 ### Collection type property
 ```java
-public class CollectionViewModel{
+public class CollectionViewModel {
     //primitive type
     private int selectedIndex;
     //Collection
     private List itemList;
 
-    public int getSelectedIndex(){
+    public int getSelectedIndex() {
         return selectedIndex;
     }
-    public void setSelectedIndex(int index){
+    public void setSelectedIndex(int index) {
         selectedIndex = index;
     }
 
     /* As we can't save whole list through data binding,
     the ViewModel only provides getter for itemList.*/
-    public List getItemList(){
+    public List getItemList() {
         return itemList;
     }
 }

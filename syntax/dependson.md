@@ -17,9 +17,10 @@ It has the same function as ` @NotifyChange ` but inverse meaning. It's used to 
 Example
 =======
 ``` java
-public class FullnameViewModel{
+public class FullnameViewModel {
     private String firstname;
     private String lastname;
+
     public String getFirstname() {
         return firstname;
     }
@@ -37,7 +38,7 @@ public class FullnameViewModel{
     @DependsOn({"firstname", "lastname"})
     public String getFullname() {
         return (firstname == null ? "" : firstname) + " "
-                + (lastname == null ? "" : lastname);
+            + (lastname == null ? "" : lastname);
     }
 }
 ```

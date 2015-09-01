@@ -33,11 +33,10 @@ We use annotation to retrieve execution's argument with key "arg1".
 ``` java
 public class ExecutionParamVM {
 
-
     private String arg1;
 
     @Init
-    public void init(@ExecutionArgParam("arg1") String arg1){
+    public void init(@ExecutionArgParam("arg1") String arg1) {
         this.arg1 = arg1;
     }
     //setter, getter, and others
@@ -46,10 +45,9 @@ public class ExecutionParamVM {
 
 #### executionparam-inner.zul
 ``` xml
-    <vbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.ExecutionParamVM')">
-
-        <label value="@load(vm.arg1)"/>
-    </vbox>
+<vbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.ExecutionParamVM')">
+    <label value="@load(vm.arg1)"/>
+</vbox>
 ```
 
 -   The label will display "foo".

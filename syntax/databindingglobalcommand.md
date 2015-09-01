@@ -32,9 +32,9 @@ Example
 =======
 
 ``` xml
-<button label="Save" onClick="@command('saveOrder') @global-command('refresh')" />
+<button label="Save" onClick="@command('saveOrder') @global-command('refresh')"/>
 
-<button label="ShowAll" onClick="@global-command('show')" />
+<button label="ShowAll" onClick="@global-command('show')"/>
 
 <button label="Index" onClick="@command('showIndex') @global-command('showIndex', index=10, keyword='myKeyword')"/>
 ```

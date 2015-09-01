@@ -32,7 +32,7 @@ Example
 #### Use built-in validator named beanValidator
 ``` xml
 <window id="win" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init(foo.MyViewModel)">
-    <textbox value="@bind(vm.user.lastName) @validator('beanValidator')" />
+    <textbox value="@bind(vm.user.lastName) @validator('beanValidator')"/>
 </window>
 ```
 
