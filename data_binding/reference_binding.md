@@ -16,8 +16,7 @@ Steps to use this feature:
 
 #### Basic usage example
 ```xml
-<window apply="org.zkoss.bind.BindComposer"
-    viewModel="@id('vm') @init('foo.MyVM')">
+<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.MyVM')">
     <vlayout p="@ref(vm.person)">
         <hlayout>
             First Name: <textbox value="@bind(p.firstName)" />
@@ -32,8 +31,7 @@ As shown in the example above, we add a reference `@ref` to **vm.person** with a
 
 #### Modularize view example
 ```xml
-<window apply="org.zkoss.bind.BindComposer"
-    viewModel="@id('vm') @init('foo.MyVM')">
+<window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.MyVM')">
     <include p="@ref(vm.person1)" src="person.zul"/>
     <include p="@ref(vm.person2)" src="person.zul"/>
 </window>
@@ -50,4 +48,4 @@ As shown in the example above, we add a reference `@ref` to **vm.person** with a
     </hlayout>
 </vlayout>
 ```
-In the example above, we have a veiw - person.zul which binds components to **p.firstName** and **p.lastName**. This view could be reused by other views that provides a **p** reference.
+In the example above, we have a view - person.zul which binds components to **p.firstName** and **p.lastName**. This view could be reused by other views that provides a **p** reference.

@@ -26,7 +26,7 @@ A binder usually evaluates an EL expression each time when it wants to access th
 
 ### Command binding according to run-time value
 ```xml
-<button label="Cmd" onClick="@command(vm.checked?'command1':'command2')" />
+<button label="Cmd" onClick="@command(vm.checked ? 'command1' : 'command2')" />
 
 <groupbox visible="@load(not empty vm.selected)" />
 ```
@@ -43,7 +43,7 @@ Call ViewModel Methods
 You can use EL expression to call a method in a ViewModel.
 ### Call concat() of a ViewModel
 ```xml
-<label value="@load(vm.concat(vm.foo,'postfix'))"/>
+<label value="@load(vm.concat(vm.foo, 'postfix'))"/>
 ```
 
 Call Tag Library's Methods
@@ -52,8 +52,8 @@ We could call [tag library's methods in a zul with EL expression](http://books.z
 ```xml
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 ...
-    <label value="@load(c:cat('A-',vm.value))" />
-    <label value="@load(c:cat3('$',c:formatNumber(vm.price, '00'), ' per person'))" />
+    <label value="@load(c:cat('A-', vm.value))" />
+    <label value="@load(c:cat3('$', c:formatNumber(vm.price, '00'), ' per person'))" />
 ```
 * Line 1: Declare the tag library for core methods.
 * Line 3: core's cat method.
@@ -69,7 +69,7 @@ The [xel method](http://books.zkoss.org/wiki/ZUML_Reference/ZUML/Processing_Inst
 ...
     <intbox value="@bind(vm.value1)"/>
     <intbox value="@bind(vm.value2)"/>
-    <label value="@load(x:max(vm.value1,vm.value2))"/>
+    <label value="@load(x:max(vm.value1, vm.value2))"/>
 ```
 
 Tips
@@ -89,5 +89,5 @@ For example:
 ```xml
 <image src="@load(vm.picture ne null ? 'images/'.concat(vm.picture) : 'images/NoImage.png')"/>
 
-<label value="@bind(vm.age lt 18?'true':'false')"/>
+<label value="@bind(vm.age lt 18 ? 'true' : 'false')"/>
 ```

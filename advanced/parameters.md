@@ -25,41 +25,41 @@ Here is the zul of above screenshot:
 
 #### Example to pass parameters
 ```xml
-    <grid id="outergrid" width="700px" model="@bind(vm.items)">
-        <columns>
-            <column label="index"/>
-            <column label="name"/>
-            <column label="action" width="300px"/>
-        </columns>
+<grid id="outergrid" width="700px" model="@bind(vm.items)">
+    <columns>
+        <column label="index"/>
+        <column label="name"/>
+        <column label="action" width="300px"/>
+    </columns>
 
-        <template name="model" var="item">
-            <row>
-                <label value="@bind(itemStatus.index)"/>
-                <label value="@bind(item.name)"/>
-                <hbox>
-                    <button label="Index" onClick="@command('showIndex', index=itemStatus.index)"/>
-                    <button label="Delete" onClick="@command('delete', item=item)"/>
-                </hbox>
-            </row>
-        </template>
-    </grid>
+    <template name="model" var="item">
+        <row>
+            <label value="@bind(itemStatus.index)"/>
+            <label value="@bind(item.name)"/>
+            <hbox>
+                <button label="Index" onClick="@command('showIndex', index=itemStatus.index)"/>
+                <button label="Delete" onClick="@command('delete', item=item)"/>
+            </hbox>
+        </row>
+    </template>
+</grid>
 ```
 -   Line 13: We retrieve row index (Integer class) by iteration status variable and pass it with key "index".
 -   Line 14: We retrieve domain object (Item class) by iteration variable and pass it with key "item".
 
 #### Command methods in the ViewModel
 ```java
-    @Command
-    public void showIndex(@BindingParam("index") Integer index) {
-        message = "item index: " + index;
-    }
+@Command
+public void showIndex(@BindingParam("index") Integer index) {
+    message = "item index: " + index;
+}
 
-    @Command
-    public void delete(@BindingParam("item") Item item ) {
-        int i = items.indexOf(item);
-        items.remove(item);
-        message = "remove item index " + i;
-    }
+@Command
+public void delete(@BindingParam("item") Item item ) {
+    int i = items.indexOf(item);
+    items.remove(item);
+    message = "remove item index " + i;
+}
 ```
 -   Line 2: Command method showIndex() should have a Integer in its argument list. We also have to specify the key "index" in ` @BindingParam `.
 -   Line 7: The same as delete(), it should have a parameter with Item class in its argument list. We also have to specify the key "item" in ` @BindingParam `.
@@ -70,15 +70,14 @@ Passing parameter in global command binding can share data among ViewModels.
 
 The following code passes selected item to another ViewModel.
 ```xml
-
-<button label="Submit" onClick="@command('submit') @global-command('detail', name=vm.selectedName)" />
+<button label="Submit" onClick="@command('submit') @global-command('detail', name=vm.selectedName)"/>
 ```
 The global command method receives parameter through ` @BindingParam `.
 ```java
-    @GlobalCommand
-    public void detail(@BindingParam("name")String name){
-        //...
-    }
+@GlobalCommand
+public void detail(@BindingParam("name") String name) {
+    //method body
+}
 ```
 
 Parameter Default Value
@@ -87,20 +86,19 @@ You could choose not to pass parameter for a command method that has parameters.
 
 #### Specify parameter's default value
 ```java
-    //getter and setter
-    @Command
-    public void showIndex(@BindingParam("index") @Default("0") Integer index) {
+@Command
+public void showIndex(@BindingParam("index") @Default("0") Integer index) {
     this.index = index;
-    }
+}
 ```
 -   We set index's default value to 0.
 
 **Example to bind above command**
 ```xml
-        <label value="@bind(vm.index)"/>
+<label value="@bind(vm.index)"/>
 
-        <button label="button01" onClick="@command('showIndex', index=9)"/>
-        <button label="button02" onClick="@command('showIndex')"/>
+<button label="button01" onClick="@command('showIndex', index=9)"/>
+<button label="button02" onClick="@command('showIndex')"/>
 ```
 -   Click button01, the label's value is 9.
 -   Click button02, the label's value is 0.
@@ -109,29 +107,29 @@ You can even pass UI components. This resort can make you manipulate UI componen
 
 #### Example to pass a UI component
 ```xml
-        <listbox model="@load(vm.items)" selectedItem="@bind(vm.selected)" hflex="true" height="300px">
-            <listhead>
-                <listheader label="Name"/>
-                <listheader label="Price" align="center" />
-                <listheader label="Quantity" align="center"  />
-            </listhead>
-            <template name="model" var="item">
-                <listitem onMouseOver="@command('popupMessage', target=self, content=item.description)">
-                    <listcell label="@bind(item.name)"/>
-                    <listcell label="@bind(item.price)@converter('formatedNumber', format='###,##0.00')"/>
-                    <listcell label="@bind(item.quantity)" sclass="@bind(item.quantity lt 3 ?'red':'')"/>
-                </listitem>
-            </template>
-        </listbox>
+<listbox model="@load(vm.items)" selectedItem="@bind(vm.selected)" hflex="true" height="300px">
+    <listhead>
+        <listheader label="Name"/>
+        <listheader label="Price" align="center" />
+        <listheader label="Quantity" align="center"  />
+    </listhead>
+    <template name="model" var="item">
+        <listitem onMouseOver="@command('popupMessage', target=self, content=item.description)">
+            <listcell label="@bind(item.name)"/>
+            <listcell label="@bind(item.price) @converter('formatedNumber', format='###,##0.00')"/>
+            <listcell label="@bind(item.quantity)" sclass="@bind(item.quantity lt 3 ? 'red' : '')"/>
+        </listitem>
+    </template>
+</listbox>
 ```
 -   We pass listitem by implicit object "self".
 
 #### Command method to receive UI component
 ```java
-    @Command
-    public void popupMessage(@BindingParam("target")Component target, @BindingParam("content")String content){
-        //...
-    }
+@Command
+public void popupMessage(@BindingParam("target") Component target, @BindingParam("content") String content) {
+    //method body
+}
 ```
 
 Retrieve Context Object
@@ -147,9 +145,8 @@ public class HttpParamVM {
     String headerParam;
 
     @Init
-    public void init(@HeaderParam("user-agent")String browser){
+    public void init(@HeaderParam("user-agent") String browser) {
         headerParam = browser;
-
     }
 }
 ```
@@ -157,10 +154,10 @@ You can apply multiple parameter-related annotations on one method's parameter, 
 
 #### Multiple context scope retrieval example
 ```java
-    @Init
-    public void init(@CookieParam("nosuch") @HeaderParam("user-agent") String guess){
-        cookieParam = guess;
-    }
+@Init
+public void init(@CookieParam("nosuch") @HeaderParam("user-agent") String guess) {
+    cookieParam = guess;
+}
 ```
 -   In above example, it searches in HTTP request cookie first. If not found a non-null object, it continue to retrieve in HTTP request header.
 
@@ -172,29 +169,27 @@ We retrieve current binding source component and ViewModel's view component at i
 
 #### Example to retrieve ZK context object
 ```java
-    //getter and setter
-    @Init
-    public void init(@ContextParam(ContextType.COMPONENT) Component component,
-            @ContextParam(ContextType.VIEW) Component view) {
+@Init
+public void init(@ContextParam(ContextType.COMPONENT) Component component,
+    @ContextParam(ContextType.VIEW) Component view) {
 
-        bindComponentId = component.getId();
-        bindViewId = view.getId();
-    }
+    bindComponentId = component.getId();
+    bindViewId = view.getId();
+}
 
-    @Command
-    public void showId(@ContextParam(ContextType.COMPONENT) Component component,
-            @ContextParam(ContextType.VIEW) Component view) {
+@Command
+public void showId(@ContextParam(ContextType.COMPONENT) Component component,
+    @ContextParam(ContextType.VIEW) Component view) {
 
-        bindComponentId = component.getId();
-        bindViewId = view.getId();
-    }
+    bindComponentId = component.getId();
+    bindViewId = view.getId();
+}
 ```
 We create 2 labels that bound to current binding component's id and view component's id.
 
 #### A zul bound to above ViewModel
 ```xml
 <vbox id="vbox" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('eg.ContextParamVM')">
-
     <label id="componentId" value="@load(vm.bindComponentId)" />
     <label id="viewId" value="@load(vm.bindViewId)" />
     <button id="cmd" label="cmd" onClick="@command('showId')" />
@@ -216,19 +211,15 @@ There are two ways to retrieve an event object:
 
 Here we have a *label* to show what a user is typing in the *textbox*. The user's typing content is stored in InputEvent's value property, so we can pass it by **event.value** when we bind a command to **onChanging** attribute.
 ```xml
-
-            <vbox>
-                <label id="msg" value="@load(vm.message)" />
-                <textbox onChanging="@command('showTyping',v=event.value)" />
-            </vbox>
+<vbox>
+    <label id="msg" value="@load(vm.message)"/>
+    <textbox onChanging="@command('showTyping', v=event.value)"/>
+</vbox>
 ```
 
 #### ViewModel for the zul above
 ```java
 public class EventViewModel {
-
-    //getter for "message"
-
     @Command
     @NotifyChange("message")
     public void showTyping(@BindingParam("v") String value, @ContextParam(ContextType.TRIGGER_EVENT) InputEvent event) {
@@ -238,4 +229,3 @@ public class EventViewModel {
 }
 ```
 -   The first parameter receives value from the ZUL. The second one is passed by the binder, so we don't need to specify it in the ZUL.
-

@@ -55,7 +55,7 @@ On server-side, we can use the following two annotations for the client-side bin
 @NotifyCommand(value="commandName", onChange="_vm_.expression")
 ```
 
-The notify command annotation allows us to trigger a command whenever the given expression changes at the server. Notice the command which gets triggered is a command in our view model. The \_vm\_ here means the current view model.
+The notify command annotation allows us to trigger a command whenever the given expression changes at the server. Notice the command which gets triggered is a command in our view model. The `_vm_` here means the current view model.
 
 **Annotation 2 - ClientCommand**
 

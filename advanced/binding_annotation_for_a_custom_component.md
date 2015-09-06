@@ -9,37 +9,36 @@ Create a Custom Component
 In order to explain how to declare data binding definition, we create a macro component with a custom class as an example. (Please [ refer here](http://books.zkoss.org/wiki/ZK_Developer%27s_Reference/UI_Composing/Macro_Component/Implement_Custom_Java_Class) for details.) The macro component is named "EditableLabel". It's a label with in-place editor. This component display a label first. When we double click it, it switch to a textbox for editing and change label's value.
 
 ``` java
-public class EditableLabel extends HtmlMacroComponent{
-
-    private static final long serialVersionUID = 1L;
+public class EditableLabel extends HtmlMacroComponent {
 
     @Wire
     Textbox textbox;
 
     @Wire
     Label label;
-    public EditableLabel(){
+
+    public EditableLabel() {
         setMacroURI("/WEB-INF/component/editablelabel.zul");
     }
 
-    public String getValue(){
+    public String getValue() {
         return textbox.getValue();
     }
 
-    public void setValue(String value){
+    public void setValue(String value) {
         textbox.setValue(value);
         label.setValue(value);
     }
 
     @Listen("onDoubleClick=#label")
-    public void doEditing(){
+    public void doEditing() {
         textbox.setVisible(true);
         label.setVisible(false);
         textbox.focus();
     }
 
     @Listen("onBlur=#textbox")
-    public void doEdited(){
+    public void doEdited() {
         label.setValue(textbox.getValue());
         textbox.setVisible(false);
         label.setVisible(true);
@@ -48,12 +47,13 @@ public class EditableLabel extends HtmlMacroComponent{
 }
 ```
 
--   Line 35: This component sends custom event to notify that *Label*'s value is changed.
+-   Line 34: This component sends custom event to notify that *Label*'s value is changed.
 
 #### editablelabel.zul
 ``` xml
 <zk>
-    <label id="label" /><textbox id="textbox" visible="false"/>
+    <label id="label" />
+    <textbox id="textbox" visible="false"/>
 </zk>
 ```
 
@@ -112,9 +112,9 @@ We can also declare data binding definition by Java annotation, [ComponentAnnota
 The following annotation has the same effect as the XML file of previous section.
 
 ``` java
-@ComponentAnnotation("value:@ZKBIND(ACCESS=both,SAVE_EVENT=onEdited)")
-public class EditableLabel extends HtmlMacroComponent{
-...
+@ComponentAnnotation("value:@ZKBIND(ACCESS=both, SAVE_EVENT=onEdited)")
+public class EditableLabel extends HtmlMacroComponent {
+    //class body
 }
 ```
 
@@ -123,10 +123,9 @@ We can apply `@ComponentAnnotation` on two targets; one is **getter (or setter) 
 Applying the annotation on a getter means we annotated on the property that the getter method gets.For example, you could apply on "value" property as follows:
 
 ``` java
-@ComponentAnnotation(
- "@ZKBIND(ACCESS=both, SAVE_EVENT=onChange)")
+@ComponentAnnotation("@ZKBIND(ACCESS=both, SAVE_EVENT=onChange)")
 public String getValue() {
-    //...
+    // method body
 }
 ```
 
@@ -137,10 +136,9 @@ The syntax of annotation's element is the same as [ZUML's annotations](http://bo
 If the component's Java class doesn't have the getter or setter for the given property, you can specify the annotations at the class level by prefixing the annotation with the **property name** and a **colon**. For example,
 
 ``` java
-@ComponentAnnotation({
- "selectedItem: @ZKBIND(ACCESS=both, SAVE_EVENT=onSelect)",
- "openedItem: @ZKBIND(ACCESS=load, LOAD_EVENT=onOpen)")
+@ComponentAnnotation({"selectedItem: @ZKBIND(ACCESS=both, SAVE_EVENT=onSelect)",
+    "openedItem: @ZKBIND(ACCESS=load, LOAD_EVENT=onOpen)")
 public class Foo extends AbstractComponent {
-    ....
+    // class body
 }
 ```

@@ -34,15 +34,15 @@ Example
 =======
 
 ``` xml
-    <vbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.SelectorParamVM')">
+<vbox apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('foo.SelectorParamVM')">
 
-        <hbox><label id="message" /></hbox>
-        <hbox><label /></hbox>
-        <hbox><label /></hbox>
-        <hbox><label /></hbox>
+    <hbox><label id="message"/></hbox>
+    <hbox><label /></hbox>
+    <hbox><label /></hbox>
+    <hbox><label /></hbox>
 
-        <button id="cmd" label="cmd" onClick="@command('cmd')" />
-    </vbox>
+    <button id="cmd" label="cmd" onClick="@command('cmd')"/>
+</vbox>
 ```
 
 #### Example to pass components by selector
@@ -50,7 +50,9 @@ Example
 public class SelectorParamVM {
 
     @Command
-    public void cmd(@SelectorParam("label") LinkedList<Label> labels, @SelectorParam("#message") Label msg) {
+    public void cmd(@SelectorParam("label") LinkedList<Label> labels, 
+        @SelectorParam("#message") Label msg) {
+
         for (int i = 0; i < labels.size(); i++) {
             labels.get(i).setValue("Command " + i);
         }

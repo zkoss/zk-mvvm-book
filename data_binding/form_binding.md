@@ -32,16 +32,17 @@ An example using property binding :
             <column/>
         </columns>
         <rows>
-            <row>Id
-            <hlayout>
-            <label value="@load(vm.selected.id)"/>
-            </hlayout> </row>
-            <row>Description <textbox value="@bind(vm.selected.description)"/></row>
-            <row>Quantity
-                <intbox value="@bind(vm.selected.quantity)"/>
+            <row>
+                Id <label value="@load(vm.selected.id)"/>
             </row>
-            <row>Price
-                <doublebox value="@bind(vm.selected.price)" format="###,##0.00" />
+            <row>
+                Description <textbox value="@bind(vm.selected.description)"/>
+            </row>
+            <row>
+                Quantity <intbox value="@bind(vm.selected.quantity)"/>
+            </row>
+            <row>
+                Price <doublebox value="@bind(vm.selected.price)" format="###,##0.00" />
             </row>
         </rows>
     </grid>
@@ -58,23 +59,24 @@ The same example but using form binding:
             <column/>
         </columns>
         <rows>
-            <row>Id
-            <hlayout>
-            <label value="@load(fx.id)"/>
-            </hlayout> </row>
-            <row>Description <textbox value="@bind(fx.description)"/></row>
-            <row>Quantity
-                <intbox value="@bind(fx.quantity) "/>
+            <row>
+                Id <label value="@load(fx.id)"/>
             </row>
-            <row>Price
-                <doublebox value="@bind(fx.price)" format="###,##0.00" />
+            <row>
+                Description <textbox value="@bind(fx.description)"/>
+            </row>
+            <row>
+                Quantity <intbox value="@bind(fx.quantity) "/>
+            </row>
+            <row>
+                Price <doublebox value="@bind(fx.price)" format="###,##0.00" />
             </row>
         </rows>
     </grid>
 </groupbox>
 ```
 - We give an id: ` fx ` to the middle object. (line 1)
-- The properties of `fx` we can access are identical to vm.selected. (line 12,14,17)
+- The properties of `fx` we can access are identical to vm.selected. (line 9, 12, 15, 18)
 - Binder saves input data into `fx`, middle object, when each time a user triggers an onChange event. When clicking a button bound to Command 'saveOrder', it will save middle object's data to `vm.selected`.
 
 Middle Object
@@ -84,11 +86,14 @@ Form binding automatically creates a middle object for you to store properties f
 <groupbox form="@id('fx') @load(vm.selected) @save(vm.selected, before='saveOrder')">
     <grid hflex="true" >
         <rows>
-            <row>Id <label value="@load(fx.id)"/>
+            <row>
+                Id <label value="@load(fx.id)"/>
             </row>
-            <row>Description <textbox value="@bind(fx.description)"/>
+            <row>
+                Description <textbox value="@bind(fx.description)"/>
             </row>
-            <row>Quantity <intbox value="@bind(fx.quantity) "/>
+            <row>
+                Quantity <intbox value="@bind(fx.quantity) "/>
             </row>
         </rows>
     </grid>
@@ -106,39 +111,41 @@ Dirty status is stored in an auto-created **form status variable** with a naming
 
 Continue above example, we add an exclamation icon right next to Id value. If users modify any input data, the ex exclamation icon will show up.
 ```xml
-        <groupbox form="@id('fx') @load(vm.selected) @save(vm.selected, before='saveOrder')" >
-            <grid hflex="true" >
-                <columns>
-                    <column width="120px"/>
-                    <column/>
-                </columns>
-                <rows>
-                    <row>
-                        Id
-                        <hlayout>
-                            <label value="@load(fx.id)" />
-                            <image src="@load(fxStatus.dirty?'exclamation.png':'')" />
-                        </hlayout>
-                    </row>
-                    <row>Description <textbox value="@bind(fx.description)"/></row>
-                    <row>Quantity
-                        <intbox value="@bind(fx.quantity) "/>
-                    </row>
-                    <row>Price
-                        <doublebox value="@bind(fx.price)" format="###,##0.00" />
-                    </row>
-                    <row>Total Price
-                        <label value="@load(fx.totalPrice)" />
-                    </row>
-                    <row>Creation Date
-                        <datebox value="@bind(fx.creationDate)"/>
-                    </row>
-                    <row>Shipping Date
-                        <datebox value="@bind(fx.shippingDate)"/>
-                    </row>
-                </rows>
-            </grid>
-        </groupbox>
+<groupbox form="@id('fx') @load(vm.selected) @save(vm.selected, before='saveOrder')" >
+    <grid hflex="true" >
+        <columns>
+            <column width="120px"/>
+            <column/>
+        </columns>
+        <rows>
+            <row>
+                Id
+                <hlayout>
+                    <label value="@load(fx.id)" />
+                    <image src="@load(fxStatus.dirty ? 'exclamation.png' : '')" />
+                </hlayout>
+            </row>
+            <row>
+                Description <textbox value="@bind(fx.description)"/>
+            </row>
+            <row>
+                Quantity <intbox value="@bind(fx.quantity) "/>
+            </row>
+            <row>
+                Price <doublebox value="@bind(fx.price)" format="###,##0.00" />
+            </row>
+            <row>
+                Total Price <label value="@load(fx.totalPrice)" />
+            </row>
+            <row>
+                Creation Date <datebox value="@bind(fx.creationDate)"/>
+            </row>
+            <row>
+                Shipping Date <datebox value="@bind(fx.shippingDate)"/>
+            </row>
+        </rows>
+    </grid>
+</groupbox>
 ```
 -   In this example, form status variable is `fxStatus ` for the form’s id is ` fx `. Its **dirty** property indicates that whether the form has been modified by users or not.
 
@@ -159,6 +166,7 @@ This will initialize form binding with your own middle object (Form object), the
 #### Prepare a Form object
 ```java
 public class OrderVM {
+
     Form myForm = new SimpleForm();
 
     public Form getMyForm() {

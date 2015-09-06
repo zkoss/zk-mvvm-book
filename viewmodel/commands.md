@@ -21,7 +21,7 @@ public class OrderVM {
     /* Notice that we can declare a Command without specifying its name,
     and its name is set to method name by default. */
     @Command
-    public void newOrder(){
+    public void newOrder() {
         Order order = new Order();
         getOrders().add(order); //add a new order to order list
         selected = order;//select the new one
@@ -31,7 +31,7 @@ public class OrderVM {
     // command name is specified
     /* We can also give Command's name by @Command('userDefinedName'). */
     @Command("save")
-    public void saveOrder(){
+    public void saveOrder() {
         orderService.save(selected);
     }
 
@@ -39,7 +39,7 @@ public class OrderVM {
     // multiple command names
     /* We can even give multiple Command's name with array of String. */
     @Command({"delete", "deleteOrder"})
-    public void deleteOrder(){
+    public void deleteOrder() {
         //delete order
     }
 }
@@ -57,7 +57,7 @@ We describe the detail of [command binding here](../data_binding/command_binding
 Global Command is also a ViewModel's command and can hook UI component's events to it. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The global command can be triggered by a component's event from any ZUL. The main difference of a global command from local command is that the event doesn't have to belong to the ViewModel's root view component or its child component. By default we can bind an event to any ViewModel's global command **within the same desktop**. A method can be both a local command and a global command.
 ```java
 @Command("delete") @GlobalCommand("delete")
-public void deleteOrder(){
+public void deleteOrder() {
     //...
 }
 ```
@@ -75,7 +75,7 @@ public class MainViewModel {
 public class ListViewModel {
 
     @GlobalCommand
-    public void show(){
+    public void show() {
         //...
     }
 }

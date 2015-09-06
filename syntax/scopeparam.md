@@ -14,7 +14,7 @@ Syntax
 ``` java
 enum Scope {
     COMPONENT, SPACE, PAGE, DESKTOP, SESSION, APPLICATION, // single scope
-    AUTO //find by comp.getAttribute(name,true)
+    AUTO //find by comp.getAttribute(name, true)
 }
 ```
 
@@ -34,7 +34,10 @@ Example
 public class ScopeParamVM {
 
     @Init
-    public void init(@ScopeParam(scopes=Scope.APPLICATION , value="config") String sysConfig,
-            @ScopeParam(scopes=Scope.SESSION,value="user") String userCredential){
+    public void init(
+    	@ScopeParam(scopes=Scope.APPLICATION , value="config") String sysConfig,
+        @ScopeParam(scopes=Scope.SESSION,value="user") String userCredential) {
+        // method body
     }
+}
 ```

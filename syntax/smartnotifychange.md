@@ -5,7 +5,7 @@ Syntax
 ``` java
 @SmartNotifyChange("anotherProperty")
 
-@SmartNotifyChange({"secondProperty","thirdProperty"})
+@SmartNotifyChange({"firstProperty", "secondProperty"})
 
 @SmartNotifyChange("*")
 
@@ -27,12 +27,12 @@ public class OrderVM {
     //other code...
 
     //action command
-    @SmartNotifyChange({"selected","orders","messages"})
+    @SmartNotifyChange({"selected", "orders", "messages"})
     @Command
-    public void newOrder(){
+    public void newOrder() {
         Order order = new Order();
-        getOrders().add(order); //add new order to order list
-        selected = order;//select the new one
+        getOrders().add(order); // add new order to order list
+        selected = order; // select the new one
     }
 }
 ```

@@ -22,13 +22,13 @@ command method named "exit".
 public class OrderVM {
 
     @GlobalCommand
-    public void newOrder(){
-    ...
+    public void newOrder() {
+        // ...
     }
 
     @DefaultGlobalCommand
-    public void defaultAction(){
-    ...
+    public void defaultAction() {
+        // ...
     }
 }
 ```
@@ -46,41 +46,40 @@ The interface looks like this:
 
 #### A zul with 2 ViewModels
 ```xml
-        <hlayout>
-            <vbox id="mainArea" width="200px" height="300px"
-                style="border:dashed 2px" visible="@bind(vm.visible)"
-                apply="org.zkoss.bind.BindComposer"
-                viewModel="@id('vm') @init('org.zkoss.mvvm.examples.globalcommand.AddViewModel')"
-                validationMessages="@id('vmsgs')">
-                <label value="Main Panel" style="font-size:30px" />
+<hlayout>
+    <vbox id="mainArea" width="200px" height="300px"
+        style="border:dashed 2px" visible="@bind(vm.visible)"
+        apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('org.zkoss.mvvm.examples.globalcommand.AddViewModel')"
+        validationMessages="@id('vmsgs')">
+        <label value="Main Panel" style="font-size:30px"/>
 
-                Enter a Item (at least 3 characters):
-                <textbox id="iBox"
-                    value="@load(vm.item)@save(vm.item, before='add') @validator(vm.itemValidator)" />
-                <label value="@load(vmsgs[iBox])" style="color:red" />
-                <button label="Add"
-                    onClick="@command('add') @global-command('refresh')" />
-                <separator height="20px" />
-                <label value="@load(vm.msg)" />
-            </vbox>
+        Enter a Item (at least 3 characters):
+        <textbox id="iBox"
+            value="@load(vm.item) @save(vm.item, before='add') @validator(vm.itemValidator)"/>
+        <label value="@load(vmsgs[iBox])" style="color:red" />
+        <button label="Add" onClick="@command('add') @global-command('refresh')"/>
+        <separator height="20px"/>
+        <label value="@load(vm.msg)"/>
+    </vbox>
 
-            <vbox id="listArea" width="400px" height="300px"
-                visible="@bind(vm.visible)" apply="org.zkoss.bind.BindComposer"
-                style="border:solid 2px"
-                viewModel="@id('vm') @init('org.zkoss.mvvm.examples.globalcommand.ListViewModel')">
-                <listbox model="@load(vm.items)">
-                    <listhead>
-                        <listheader label="Items"/>
-                    </listhead>
-                    <template name="model">
-                        <listitem>
-                            <listcell label="@load(each)"/>
-                        </listitem>
-                    </template>
-                </listbox>
-                <label value="@load(vm.lastUpdate)" />
-            </vbox>
-        </hlayout>
+    <vbox id="listArea" width="400px" height="300px"
+        visible="@bind(vm.visible)" apply="org.zkoss.bind.BindComposer"
+        style="border:solid 2px"
+        viewModel="@id('vm') @init('org.zkoss.mvvm.examples.globalcommand.ListViewModel')">
+        <listbox model="@load(vm.items)">
+            <listhead>
+                <listheader label="Items"/>
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@load(each)"/>
+                </listitem>
+            </template>
+        </listbox>
+        <label value="@load(vm.lastUpdate)"/>
+    </vbox>
+</hlayout>
 ```
 -   We bind onClick event to a local command "add" and a global command "refresh".
 
@@ -90,10 +89,11 @@ public class MainViewModel {
 
     private String msg;
 
-    @Command @NotifyChange("msg")
-    public void add(){
-        ItemList.add(item);     //add an item
-        msg = "Added "+item;    //update message
+    @NotifyChange("msg")
+    @Command
+    public void add() {
+        ItemList.add(item); //add an item
+        msg = "Added " + item; //update message
     }
     //other code
 }
@@ -106,16 +106,17 @@ public class ListViewModel {
     private List<String> items;
     private Date lastUpdate;
 
-    @GlobalCommand @NotifyChange({"items","lastUpdate"})
-    public void refresh(){
+    @NotifyChange({"items", "lastUpdate"})
+    @GlobalCommand
+    public void refresh() {
         items = ItemList.getList();
         lastUpdate = Calendar.getInstance().getTime();
     }
     //other code
 }
 ```
--   Declare a global command and notify the change. (line 6)
--   The command method reloads items and set current time as last update time. (line 7)
+-   Declare a global command and notify the change. (line 6-7)
+-   The command method reloads items and set current time as last update time. (line 8-11)
 
 #### A new item "hat" is added
 
@@ -139,15 +140,15 @@ The interface is:
 
 #### One to many communication
 ```xml
-    <vlayout >
-        <menubar width="600px" apply="org.zkoss.bind.BindComposer"
+<vlayout >
+    <menubar width="600px" apply="org.zkoss.bind.BindComposer"
         viewModel="@id('vm') @init('org.zkoss.mvvm.examples.globalcommand.ControlViewModel')">
-            <menuitem label="Show" onClick="@global-command('show')"></menuitem>
-            <menuitem label="Hide" onClick="@global-command('hide')"></menuitem>
-        </menubar>
-        <!-- main area-->
-        <!-- list area-->
-    </vlayout>
+        <menuitem label="Show" onClick="@global-command('show')"/>
+        <menuitem label="Hide" onClick="@global-command('hide')"/>
+    </menubar>
+    <!-- main area-->
+    <!-- list area-->
+</vlayout>
 ```
 -   Add a menubar with 2 menuitem: show and hide that are bound to global commands.
 
@@ -157,13 +158,16 @@ public class MainViewModel {
 
     private boolean visible = true;
 
-    @GlobalCommand @NotifyChange("visible")
-    public void show(){
+    @NotifyChange("visible")
+    @GlobalCommand
+    public void show() {
         visible = true;
     }
-    @GlobalCommand @NotifyChange("visible")
-    public void hide(){
-        visible =false;
+
+    @NotifyChange("visible")
+    @GlobalCommand
+    public void hide() {
+        visible = false;
     }
 }
 ```
@@ -193,13 +197,13 @@ Trigger a Command Dynamically
 =============================
 Except triggering a global command in a ZUL, we can also do it by calling API. For above example, we can trigger global command in the local command "add" and the code is as follows:
 ```java
-
-    @Command @NotifyChange("msg")
-    public void add(){
-        ItemList.add(item);     //add an item
-        msg = "Added "+item;    //update message
-        BindUtils.postGlobalCommand(null, null, "refresh", null);
-    }
+@NotifyChange("msg")
+@Command
+public void add() {
+    ItemList.add(item); //add an item
+    msg = "Added " + item; //update message
+    BindUtils.postGlobalCommand(null, null, "refresh", null);
+}
 ```
 -   The first parameter of BindUtils.postGlobalCommand() is queue name, and the second one is queue scope.
 
@@ -210,11 +214,10 @@ public class MyComposer extends SelectorComposer{
     //other codes
 
     @Listen("onClick=button#postx")
-    public void postX(){
+    public void postX() {
         Map<String,Object> args = new HashMap<String,Object>();
         args.put("data", "postX");
         BindUtils.postGlobalCommand("myqueue", EventQueues.DESKTOP, "cmdX", args);
     }
-
 }
 ```

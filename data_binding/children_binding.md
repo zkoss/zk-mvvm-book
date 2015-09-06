@@ -2,7 +2,7 @@
 
 Create Children Dynamically with Template
 =========================================
-Children binding allows us to bind child components to a collection then we can create a group of similar components dynamically upon the collection with `<template>`. Typically we also can do this by listbox or grid, but they have fixed structure and layout. With this feature we can create child components more flexible, like: a group of checkbox that options comes from a list, or dynamic generated menuitems.
+Children binding allows us to bind child components to a collection then we can create a group of similar components dynamically upon the collection with `<template>`. Typically we also can do this by listbox or grid, but they have fixed structure and layout. With this feature we can create child components more flexible, like: a group of checkbox that options comes from a list, or dynamically generated menuitems.
 
 Steps to use this feature:
 1.  Create a **` List ` object** as a ViewModel's property.<sub>[1]</sub>
@@ -46,16 +46,16 @@ If you combine this feature with dynamic template, you can even render different
 Here is an example to create a dynamic menu bar. If a menu item has no sub-menu, we use menuitem otherwise we use menu.
 #### An example of dynamic menu bar
 ```xml
-    <menubar id="mbar" children="@bind(vm.nodes) @template(empty each.children?'menuitem':'menu')">
-        <template name="menu" var="node">
-            <menu label="@bind(node.name)">
-                <menupopup children="@bind(node.children) @template(empty each.children?'menuitem':'menu')"/>
-            </menu>
-        </template>
-        <template name="menuitem" var="node">
-            <menuitem label="@bind(node.name)" onClick="@command('menuClicked',node=node)" />
-        </template>
-    </menubar>
+<menubar id="mbar" children="@bind(vm.nodes) @template(empty each.children ? 'menuitem' : 'menu')">
+    <template name="menu" var="node">
+        <menu label="@bind(node.name)">
+            <menupopup children="@bind(node.children) @template(empty each.children ? 'menuitem' : 'menu')"/>
+        </menu>
+    </template>
+    <template name="menuitem" var="node">
+        <menuitem label="@bind(node.name)" onClick="@command('menuClicked', node=node)" />
+    </template>
+</menubar>
 ```
 #### Dynamic menu bar screenshot
 

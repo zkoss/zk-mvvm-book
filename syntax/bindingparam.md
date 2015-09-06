@@ -21,28 +21,28 @@ Example
 
 #### Command binding that pass parameters*
 ``` xml
-    <listbox model="@load(vm.items)" selectedItem="@bind(vm.selected)" hflex="true" height="300px">
-        <listhead>
-            <listheader label="Name"/>
-            <listheader label="Price" align="center" />
-            <listheader label="Quantity" align="center"  />
-        </listhead>
-        <template name="model" var="item">
-            <listitem onMouseOver="@command('popupMessage', myKey='myValue', content=item.description)">
-                <listcell label="@bind(item.name)"/>
-                <listcell label="@bind(item.price)"/>
-                <listcell label="@bind(item.quantity)"/>
-            </listitem>
-        </template>
-    </listbox>
+<listbox model="@load(vm.items)" selectedItem="@bind(vm.selected)" hflex="true" height="300px">
+    <listhead>
+        <listheader label="Name"/>
+        <listheader label="Price" align="center"/>
+        <listheader label="Quantity" align="center"/>
+    </listhead>
+    <template name="model" var="item">
+        <listitem onMouseOver="@command('popupMessage', myKey='myValue', content=item.description)">
+            <listcell label="@bind(item.name)"/>
+            <listcell label="@bind(item.price)"/>
+            <listcell label="@bind(item.quantity)"/>
+        </listitem>
+    </template>
+</listbox>
 ```
 
 #### Command method in ViewModel with binding parameter
 ``` java
-    @Command
-    public void popupMessage(@BindingParam("myKey")String target, @BindingParam("content")String content){
-        //...
-    }
+@Command
+public void popupMessage(@BindingParam("myKey") String target, @BindingParam("content") String content) {
+    // method body
+}
 ```
 
 -   The `target `'s value is “myValue”, and ` content`'s is object item's description property.

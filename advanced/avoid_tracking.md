@@ -4,8 +4,8 @@ When we create a property binding to a ViewModel's property, a **tracker** creat
 #### Immutable object
 ``` java
 @Immutable
-public class SysDefaultConfig{
-
+public class SysDefaultConfig {
+	// class body
 }
 ```
 

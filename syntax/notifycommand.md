@@ -13,20 +13,18 @@ Description
 
 **Target:** class
 
-**Purpose:** Trigger a command in viewmodel whenever the given expression changes at the server. The *\_vm\_* here means the current view model.
+**Purpose:** Trigger a command in viewmodel whenever the given expression changes at the server. The `_vm_` here means the current view model.
 
 Example
 =======
 
 ``` java
 @NotifyCommand(value="upateData", onChange="_vm_.data")
-public class VM{
+public class VM {
     private Map<String, String> data = new HashMap<String, String>();
 
-    // getter/setter...
-
     @Command
-    public void upateData(){
+    public void upateData() {
         data.put("Status", "updated");
     }
 }

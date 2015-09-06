@@ -3,7 +3,7 @@ When you load a ZUL page using ` Executions.createComponents("mypage.zul", args)
 
 #### outer.zul
 ``` xml
-<include type="outerPageLiteralValue" src="inner.zul" />
+<include type="outerPageLiteralValue" src="inner.zul"/>
 ```
 
 -   Here we pass an argument named "type" to an included ZUL.
@@ -15,10 +15,11 @@ public class InnerVM {
     private String typeFromOuter;
 
     @Init
-    public void init(@ExecutionArgParam("type") String type){
+    public void init(@ExecutionArgParam("type") String type) {
         typeFromOuter = type;
     }
-    ...
+
+    //rest of the class body
 }
 ```
 
@@ -27,7 +28,7 @@ public class InnerVM {
 #### inner.zul
 ``` xml
 <div apply="org.zkoss.bind.BindComposer"
-        viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.advance.InnerVM')">
+    viewModel="@id('vm') @init('org.zkoss.reference.developer.mvvm.advance.InnerVM')">
     <groupbox width="400px">
         Argument passed from outer page:
         <label value="@load(vm.typeFromOuter)"/>
@@ -46,4 +47,3 @@ If an argument comes from a ViewModel's property, "src" attribute must also load
 
 -   The "src" attribute must be specified at last attribute.
 -   ZK only resolves arguments's EL once at component creation, so ViewModel's property change in the future won't reflect on included components.
-

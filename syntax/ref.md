@@ -22,7 +22,7 @@ Example
 
 ``` xml
 <div p="@ref(vm.selectedPerson)">
-    <label value="@load(p.id)" />
-    <label value="@load(p.name)" />
+    <label value="@load(p.id)"/>
+    <label value="@load(p.name)"/>
 </div>
 ```

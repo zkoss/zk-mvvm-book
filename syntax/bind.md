@@ -18,7 +18,7 @@ Example
 =======
 
 ``` xml
-<textbox id="t2" value="@bind(vm.user.account)" />
+<textbox id="t2" value="@bind(vm.user.account)"/>
 
 <doublebox id="pbox" value="@bind(vm.selected.price)"/>
 

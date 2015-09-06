@@ -17,7 +17,7 @@ One property:
 
 Multiple properties:
 
-**@NotifyChange({"property01","property02"})**
+**@NotifyChange({"property01", "property02"})**
 
 All properties in a ViewModel:
 
@@ -36,16 +36,16 @@ public class OrderVM {
 
     @NotifyChange("selected")
     @Command
-    public void saveOrder(){
+    public void saveOrder() {
         getService().save(selected);
     }
 
     /* In newOrder() , we change property "orders" and "selected",
     therefore we apply @NotifyChange to notify binder to reload 2 changed properties
     after command execution. */
-    @NotifyChange({"orders","selected"})
+    @NotifyChange({"orders", "selected"})
     @Command
-    public void newOrder(){
+    public void newOrder() {
         Order order = new Order();
         getOrders().add(order);
         selected = order;//select the new one
@@ -56,7 +56,7 @@ public class OrderVM {
     we can use "*" (asterisk sign) to notify all properties in current class. */
     @NotifyChange("*")
     @Command
-    public void deleteOrder(){
+    public void deleteOrder() {
         getService().delete(selected);//delete selected
         getOrders().remove(selected);
         selected = null; //clean the selected
@@ -70,7 +70,7 @@ For similar reason, property might be changed in setter method. After value is s
 ### Enabled by Default
 A setter method usually changes only one property, e.g. setMessage() will set message to new value. To save developer's effort, **the target property changed by setter method is notified automatically**. That is, `@NotifyChange` annotation on a setter is not required unless there are some other properties changed by the setter and need to be explicitly notified.
 ```java
-public class MessageViewModel{
+public class MessageViewModel {
     private String message;
 
     public String getMessage() {
@@ -100,7 +100,7 @@ For setter method, `@NotifyChange` is used when multiple properties have depende
 
 #### @NotifyChange on Setter
 ```java
-public class FullnameViewModel{
+public class FullnameViewModel {
 
     //getter and setter
 
@@ -112,7 +112,7 @@ public class FullnameViewModel{
     /* By default setLastname() will notify "lastname" property's change.
     Becuase we apply NotifyChange on it, this default notification is overridden.
     We have to notify it explicitly. */
-    @NotifyChange({"lastname","fullname"})
+    @NotifyChange({"lastname", "fullname"})
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
@@ -129,7 +129,7 @@ If a property depends on many properties, `@NotifyChange` will distribute in mul
 
 #### Example of @DependsOn
 ```java
-public class FullnameViewModel{
+public class FullnameViewModel {
 
     //getter and setter
 
@@ -146,7 +146,7 @@ public class FullnameViewModel{
     fullname should be reloaded. */
     @DependsOn({"firstname", "lastname"})
     public String getFullname() {
-        return (firstname == null ? "" : firstname)   + " "
+        return (firstname == null ? "" : firstname) + " "
                 + (lastname == null ? "" : lastname);
     }
 }
@@ -168,7 +168,8 @@ For example, assume there is a web page in a tour website. A customer has to fil
 <hlayout>
     Return Date: <datebox value="@save(vm.trip.returnDate)"/>
 </hlayout>
-Duration including leave and return(day): <label value="@load(vm.trip) @converter(vm.durationConverter)" />
+Duration including leave and return(day): 
+    <label value="@load(vm.trip) @converter(vm.durationConverter)" />
 ```
 * Because durationConverter needs to access 2 properties (leaveDate, returnDate), we have to bind label's value to the trip bean itself not an individual property of the bean.
 
@@ -204,11 +205,11 @@ public class DurationViewModel  {
                     Date leaveDate = trip.getLeaveDate();
                     Date returnDate = trip.getReturnDate();
                     if (null != leaveDate && null != returnDate){
-                        if (returnDate.compareTo(leaveDate)==0){
+                        if (returnDate.compareTo(leaveDate) == 0){
                             return 1;
 
-                        }else if (returnDate.compareTo(leaveDate)>0){
-                            return ((returnDate.getTime() - leaveDate.getTime())/1000/60/60/24)+1;
+                        }else if (returnDate.compareTo(leaveDate) > 0) {
+                            return ((returnDate.getTime() - leaveDate.getTime())/1000/60/60/24) + 1;
                         }
                         return null;
                     }
@@ -237,10 +238,10 @@ String data;
 public void cmd() {
     if (data.equal("A")) {
         //other codes...
-        BindUtils.postNotifyChange(null,null,this,"value1");
+        BindUtils.postNotifyChange(null, null, this, "value1");
     } else {
         //other codes...
-        BindUtils.postNotifyChange(null,null,this,"value2");
+        BindUtils.postNotifyChange(null, null, this, "value2");
     }
 }
 ```

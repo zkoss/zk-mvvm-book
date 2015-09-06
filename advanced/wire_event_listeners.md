@@ -6,16 +6,15 @@ To wire event listeners in a ViewModel like [ZK Developer's Reference/MVC/Contro
 
 #### Wire event listener in a ViewModel
 ``` java
-
-public class SearchAutowireVM{
+public class SearchAutowireVM {
 
     @AfterCompose
-    public void afterCompose(@ContextParam(ContextType.VIEW) Component view){
+    public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireEventListeners(view, this);
     }
 
     @Listen("onClick=#mybutton")
-    public void submit(MouseEvent event){
+    public void submit(MouseEvent event) {
         //handle events
     }
 }

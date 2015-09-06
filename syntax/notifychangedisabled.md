@@ -25,6 +25,5 @@ public class OrderVM {
     public void setSelected(Order selected) {
         this.selected = selected;
     }
-
 }
 ```
