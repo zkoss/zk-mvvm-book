@@ -81,7 +81,10 @@ The same example but using form binding:
 
 Middle Object
 -------------
-Form binding automatically creates a middle object for you to store properties from ViewModel's object you specified. But it **only stores those properties which attributes are bound to**. If you still need to access a property that are not stored in the middle object, you can access it from ViewModel's original object. Assume that ` vm.selected ` has 4 properties: **id, description, quantity, price**. For the example below:
+Form binding automatically creates a middle object for you to store properties from ViewModel's object you specified. 
+It can deeply support these types - Collections, Map, and POJO in a form concept, as a proxy object for developers to manipulate them when users edit data in the form field. Once the form is submitted, all the edited data will be synchronized back to the original data object.
+
+But it **only stores those properties which attributes are bound to**. If you still need to access a property that are not stored in the middle object, you can access it from ViewModel's original object. Assume that ` vm.selected ` has 4 properties: **id, description, quantity, price**. For the example below:
 ```xml
 <groupbox form="@id('fx') @load(vm.selected) @save(vm.selected, before='saveOrder')">
     <grid hflex="true" >
@@ -152,28 +155,6 @@ Continue above example, we add an exclamation icon right next to Id value. If us
 ![MVVM FormBinding Form Dirty](../images/Smalltalks-mvvm-in-zk6-formbinding-form-dirty.png)
 
 After users modify a field, an exclamation icon shows up next to “Id” field. If users click “Save” button or change data back to original value, the exclamation icon disappears.
-
-Initialize with Form Object
-===========================
-If you want to gain more control over form binding, e.g. to manipulate the middle object, you can provide an object which implements [Form](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Form.html) interface (or you can use [SimpleForm](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/SimpleForm.html) for convenient) within ` @init() `.
-This will initialize form binding with your own middle object (Form object), then you can do whatever you want like notifying others when middle object's properties change.
-
-#### Initialize with Form object
-```xml
-<groupbox form="@id('fx') @init(vm.myForm) @load(vm.selected) @save(vm.selected, before='saveOrder') " >
-```
-
-#### Prepare a Form object
-```java
-public class OrderVM {
-
-    Form myForm = new SimpleForm();
-
-    public Form getMyForm() {
-        return myForm;
-    }
-}
-```
 
 Form Validation
 ===============
