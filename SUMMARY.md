@@ -47,7 +47,7 @@
        * [@GlobalCommand](syntax/viewmodelglobalcommand.md)
        * [@DefaultGlobalCommand](syntax/defaultglobalcommand.md)
        * [@Immutable](syntax/immutable.md)
-       * [@Parameters](syntax/parameters.md)
+       * [Parameters](syntax/parameters.md)
            * [@BindingParam](syntax/bindingparam.md)
            * [@QueryParam](syntax/queryparam.md)
            * [@HeaderParam](syntax/headerparam.md)
