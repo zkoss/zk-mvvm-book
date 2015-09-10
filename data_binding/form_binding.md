@@ -185,19 +185,14 @@ Form proxy object provides 9 built-in methods transparently for developers to cl
 For example:
 ```xml
 <hlayout>
-        Add Category
-        <textbox width="150px" 
-          value="@load(fx.resetEmptyStringValue, after={'addCategory', 'cancel'})" />
-        <a iconsclass="z-icon-plus-circle" 
-          onclick="@command('addCategory', form=fx, cateName=self.previousSibling.value)"></a>
+    Add Category
+    <textbox value="@load(fx.resetEmptyStringValue, after={'addCategory', 'cancel'})" />
+    <a iconsclass="z-icon-plus-circle" 
+      onclick="@command('addCategory', form=fx, cateName=self.previousSibling.value)"></a>
 </hlayout>
 ```
 
-
-
-
-
- 
+As shown above in line 5, the “fx.resetEmptyStringValue” expression is used to clean up the value of the textbox when those two command “**addCategory**” or “**cancel**” executed.
 
 Form Status Variable
 ====================
