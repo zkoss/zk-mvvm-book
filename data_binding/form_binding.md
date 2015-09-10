@@ -36,10 +36,10 @@ An example using property binding :
                 Id <label value="@load(vm.selected.id)"/>
             </row>
             <row>
-                Description <textbox value="@bind(vm.selected.description)"/>
+                Name <textbox value="@bind(vm.selected.name)"/>
             </row>
             <row>
-                Quantity <intbox value="@bind(vm.selected.quantity)"/>
+                Author <textbox value="@bind(vm.selected.author)"/>
             </row>
             <row>
                 Price <doublebox value="@bind(vm.selected.price)" format="###,##0.00" />
@@ -63,10 +63,10 @@ The same example but using form binding:
                 Id <label value="@load(fx.id)"/>
             </row>
             <row>
-                Description <textbox value="@bind(fx.description)"/>
+                Name <textbox value="@bind(fx.name)"/>
             </row>
             <row>
-                Quantity <intbox value="@bind(fx.quantity) "/>
+                Author <intbox value="@bind(fx.author) "/>
             </row>
             <row>
                 Price <doublebox value="@bind(fx.price)" format="###,##0.00" />
@@ -82,27 +82,81 @@ The same example but using form binding:
 Middle Object
 -------------
 Form binding automatically creates a middle object for you to store properties from ViewModel's object you specified. 
-It can deeply support these types - Collections, Map, and POJO in a form concept, as a proxy object for developers to manipulate them when users edit data in the form field. Once the form is submitted, all the edited data will be synchronized back to the original data object.
+It can deeply support these types - **Collections**, **Map**, and **POJO** in a form concept, as a proxy object for developers to manipulate them when users edit data in the form field. Once the form is submitted, all the edited data will be synchronized back to the original data object.
 
-But it **only stores those properties which attributes are bound to**. If you still need to access a property that are not stored in the middle object, you can access it from ViewModel's original object. Assume that ` vm.selected ` has 4 properties: **id, description, quantity, price**. For the example below:
-```xml
-<groupbox form="@id('fx') @load(vm.selected) @save(vm.selected, before='saveOrder')">
-    <grid hflex="true" >
-        <rows>
-            <row>
-                Id <label value="@load(fx.id)"/>
-            </row>
-            <row>
-                Description <textbox value="@bind(fx.description)"/>
-            </row>
-            <row>
-                Quantity <intbox value="@bind(fx.quantity) "/>
-            </row>
-        </rows>
-    </grid>
-</groupbox>
+Continue above example, we define a **Collections** property in the user bean.
+
+Book.java:
+```java 
+public class Book {
+    // ... (id, author, name, price)
+    
+    // collection property
+	private Set<Category> categories = new LinkedHashSet<Category>();
+	
+	public Book() {} //used for proxy to access
+	
+	//... getters and setters
+}
 ```
-- Because we only bind attributes to 3 properties:“id”, “description”, and “quantity”, the middle object only stores these 3 properties. Therefore the “price” property is not stored in middle object, we cannot reference it without binding it first. For example, we cannot pass it as parameter by ` @command('cmd', currentPrice=fx.price) `, because ` fx.price ` doesn't exist in the middle object.
+Category.java:
+```java
+public class Category {
+	private String name;
+	
+	// used for proxy to access
+	public Category() {}
+	
+	public Category(String name) {
+		this.name = name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	
+	public int hashCode() {
+		String name = getName();
+		if (name == null) {
+			return 0;
+		}
+		return name.hashCode();
+	}
+	public boolean equals(Object obj) {
+		if (obj == null)
+			return false;
+		if (obj instanceof Category) {
+			String oname = ((Category) obj).getName();
+			String name = getName();
+			if (oname == null)
+				return name == oname;
+			else
+				return oname.equals(name);
+		}
+		return false;
+	};
+}
+```
+
+Notice that the proxy mechanism follows the Java Proxy contract, so the user bean classes need to provide an **empty constructor** for the proxy mechanism to use.
+
+And we use some commands to add a new Category
+
+Form proxy would cache all the properties in the user bean. You can use `@Transient` to mark  an element transient, and the element would not be cached.
+
+```java
+public class Pojo {
+    //... other properties
+    public Pojo() {} //used for proxy to access
+    @Transient
+	public long getAreal() {
+		return (long)getWidth() * getHeight();
+	}
+}
+```
+Because the result of `getAreal()` is a calculation, we don't need to cache the calculated value.
 
 Form Status Variable
 ====================
@@ -116,45 +170,20 @@ Continue above example, we add an exclamation icon right next to Id value. If us
 ```xml
 <groupbox form="@id('fx') @load(vm.selected) @save(vm.selected, before='saveOrder')" >
     <grid hflex="true" >
-        <columns>
-            <column width="120px"/>
-            <column/>
-        </columns>
-        <rows>
-            <row>
-                Id
-                <hlayout>
-                    <label value="@load(fx.id)" />
-                    <image src="@load(fxStatus.dirty ? 'exclamation.png' : '')" />
-                </hlayout>
-            </row>
-            <row>
-                Description <textbox value="@bind(fx.description)"/>
-            </row>
-            <row>
-                Quantity <intbox value="@bind(fx.quantity) "/>
-            </row>
-            <row>
-                Price <doublebox value="@bind(fx.price)" format="###,##0.00" />
-            </row>
-            <row>
-                Total Price <label value="@load(fx.totalPrice)" />
-            </row>
-            <row>
-                Creation Date <datebox value="@bind(fx.creationDate)"/>
-            </row>
-            <row>
-                Shipping Date <datebox value="@bind(fx.shippingDate)"/>
-            </row>
-        </rows>
+     ...
     </grid>
+    <button iconSclass="z-icon-undo" disabled="@load(not fxStatus.dirty)" 
+       tooltiptext="cancel" visible="@load(vm.editable)" onClick="@command('cancel')" />
+    <button iconSclass="z-icon-save" tooltiptext="submit" onClick="@command('save')" />
 </groupbox>
 ```
 -   In this example, form status variable is `fxStatus ` for the form’s id is ` fx `. Its **dirty** property indicates that whether the form has been modified by users or not.
 
-![MVVM FormBinding Form Dirty](../images/Smalltalks-mvvm-in-zk6-formbinding-form-dirty.png)
+![MVVM FormBinding Form Dirty-1](Mvvm-form-binding-formstatus-1.png)
+![MVVM FormBinding Form Dirty-2](Mvvm-form-binding-formstatus-2.png)
 
-After users modify a field, an exclamation icon shows up next to “Id” field. If users click “Save” button or change data back to original value, the exclamation icon disappears.
+
+After users modify a field, the cancel button would be enabled.
 
 Form Validation
 ===============
