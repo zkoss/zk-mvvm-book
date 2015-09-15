@@ -14,7 +14,7 @@ Description
 
 **Purpose:** Tell binder to retrieve this parameter with specified key from the current execution's attribute.
 
-The annotation is applied to initial (or command) method's parameter. It declare the applied parameter should come from the current execution's attribute with specified key.
+The annotation is applied to initial (or command) method's parameter. It declares that the applied parameter should come from the current execution's attribute with specified key.
 
 Example
 =======
