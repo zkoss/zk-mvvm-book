@@ -11,7 +11,7 @@ Description
 ===========
 **Purpose:**
 
-The `<choose>` tag works like a Java switch statement in that it lets you choose between a number of alternatives. Where the switch statement has case statements, the `<choose>` tag has `<when>` tags. A a switch statement has default clause to specify a default action and similar way `<choose>`
+The `<choose>` tag works like a Java switch statement, as it lets you choose between a number of alternatives. Where the switch statement has case statements, the `<choose>` tag has `<when>` tags. A switch statement has a default clause to specify a default action, similar to how `<choose>`
 has `<otherwise>` as default clause.
 
 
