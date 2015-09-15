@@ -13,7 +13,7 @@ Description
 ===========
 **Target:** method, class
 
-**Purpose:** Marker annotation to identify a life cycle method which will be invoked in doAfterCompose() of [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindComposer.html). **Only one @AfterCompose-annotated method is allowed at the most** in a ViewModel class. If you set annotation element **superclass** to **true**, the ViewModel's parent class's @AfterCompose-annotated method will be invoked first then child's, and this logic repeats on super class. If a class has no method with @AfterCompose, no method will be called (including the super class's).<sub>[1]</sub>.
+**Purpose:** Marker annotation to identify a life cycle method which will be invoked in doAfterCompose() of [BindComposer](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindComposer.html). **Only one @AfterCompose-annotated method is allowed at the most** in a ViewModel class. If you set annotation element **superclass** to **true**, the ViewModel's parent class's @AfterCompose-annotated method will be invoked first, then the child's; this logic repeats on super class. If a class has no method with @AfterCompose, no method will be called (including the super class's).<sub>[1]</sub>.
 
 For example, in a class hierarchy:
 ```java
@@ -52,7 +52,7 @@ E is the last child class.
 	2. A's `@AfterCompose` method will **NOT** be called, bacause `superclass=true` was **NOT** set in B's `@AfterCompose`
 
 - When BindComposer reaches **C**, it will...
-	1. do nothing, bacause no method was annotated with `@AfterCompose`
+	1. do nothing, because no method was annotated with `@AfterCompose`
 
 - When BindComposer reaches **D**, it will...
 	1. since `superclass=true`, BindComposer will try to look for `@AfterCompose` method in C first
@@ -60,14 +60,14 @@ E is the last child class.
 	3. call D's `@AfterCompose` method `doD()`
 
 - When BindComposer reaches **E**, it will...
-	1. found `superclass=true`, BindComposer will look for `@AfterCompose` method in D first
-	2. found `superclass=true` again, BindComposer will look for `@AfterCompose` method in C first
+	1. find `superclass=true`, BindComposer will look for `@AfterCompose` method in D first
+	2. find `superclass=true` again, BindComposer will look for `@AfterCompose` method in C first
 	3. no `@AfterCompose` method exists in C, so nothing happens
 	4. call D's `@AfterCompose` method `doD()`
 	5. call E's `@AfterCompose` method `doE()`
 
 
-We also can use parameter related annotation on AfterCompose method's parameters just as what we can do in @Init, please refer to subsections of [Syntax/ViewModel/Parameters](./parameters.html).
+We can also use parameter related annotation on AfterCompose method's parameters just as what we can do in @Init; please refer to subsections of [Syntax/ViewModel/Parameters](./parameters.html).
 
 [1]: If you override parent class's @AfterCompose-annotated method and set `superclass=true`, due to Java's limitation, child's method will be called twice. To avoid this, you should **remove** `superclass=true` in child class and use `super` to invoke parent's implementation.
 ```java
