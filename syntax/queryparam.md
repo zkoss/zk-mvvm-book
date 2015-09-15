@@ -14,7 +14,7 @@ Description
 
 **Purpose:** Tell binder to retrieve this parameter with specified key from HTTP request parameters.
 
-The annotation is applied to initial method's (or command method's) parameter. It declare the applied parameter should come from HTTP request parameters with specified key.
+The annotation is applied to initial method's (or command method's) parameter. It declares that the applied parameter should come from HTTP request parameters with specified key.
 
 Example
 =======
@@ -35,4 +35,4 @@ public class HttpParamVM {
 }
 ```
 
--   In this example, binder will pass ¡§abc¡¨ to parm1.
+-   In this example, binder will pass Â¡Â§abcÂ¡Â¨ to parm1.
