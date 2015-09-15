@@ -13,7 +13,7 @@ Description
 
 **Target:** class
 
-**Purpose:** Trigger a command in viewmodel whenever the given expression changes at the server. The `_vm_` here means the current view model.
+**Purpose:** Trigger a command in viewmodel whenever the given expression changes on the server. The `_vm_` here means the current view model.
 
 Example
 =======
