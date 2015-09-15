@@ -23,7 +23,7 @@ Description
  The apply tag allows you to choose which `<template>` to be
  applied. You specify the template's name using the **template** attribute or the template's URI using the **templateURI** attribute.
 
- There are two ways to pass parameters to the apply shadow:
+ There are two ways to pass parameters to the applied shadow:
  First, you can use an additional attribute in ZUL, like:
  `<apply templateURI="/WEB-INF/mypage" arg="something" />`
 
@@ -31,7 +31,7 @@ Description
  `<apply templateURI="/WEB-INF/mypage?arg=something" />`
 
  With the query string, you can pass only the String values.
- The parameter can be accesse with the <tt>arg</tt> variable in EL expressions.
+ The parameter can be accessed with the <tt>arg</tt> variable in EL expressions.
 
 Example
 =======
