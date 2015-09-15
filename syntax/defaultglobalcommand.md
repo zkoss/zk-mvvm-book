@@ -15,7 +15,7 @@ Description
 
 **Purpose:** To mark a method as a default global command.
 
-When a binder receives a global command, it starts to find ViewModel's global command methods by matching its name. Only if the binder cannot find a matched method, it invokes existing default global command method.
+When a binder receives a global command, it starts to look for ViewModel's global command methods by matching its name. If the binder cannot find a matched method, it invokes existing default global command method.
 
 Example
 =======
