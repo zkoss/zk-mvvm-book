@@ -14,7 +14,7 @@ Description
 
 **Purpose:** Tell binder to retrieve this parameter with specified key from binding argument on the ZUL.
 
-The annotation is applied to command method's parameter. It declares the applied parameter should come from binding argument written on the ZUL with specified key.
+The annotation is applied to command method's parameter. It declares that the applied parameter should come from binding argument written on the ZUL with the specified key.
 
 Example
 =======
