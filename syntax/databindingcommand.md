@@ -12,21 +12,21 @@ Description
 
 **Purpose:** Specify which command to execute when the event fires
 
-You can pass arbitrary arguments in key-value pairs with comma separated.
+You can pass arbitrary arguments in key-value pairs with a comma to separate.
 
 Notice that **value** is a reserved word, you should avoid to use it as an arbitraryKey.
 
 ***[arbitraryKey]=[EL-expression]***
 
-It's key-value pairs basically. You can write multiple key-value pairs with different key names.
+Basically, it uses key-value pairs. You can write multiple key-value pairs with different key names.
 
 An EL expression without key is set to a default key named **"value"** implicitly.
 
-Due to each annotation has different functions, some annotations may ignore key-value pair expression other than default key, e.g.@id.
+Since each annotation has different functions, some annotations may ignore key-value pair expressions other than default key, e.g.@id.
 
 ***[arbitraryKey]***
 
-It could be any name, it's used as a key for parameter related Java annotation in a ViewModel.
+It could be any name; it's used as a key for parameter related Java annotation in a ViewModel.
 
 Example
 =======
