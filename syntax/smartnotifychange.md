@@ -16,7 +16,7 @@ Description
 ===========
 **Target:** method (command method)
 
-**Purpose:** Notify value change once it changed, unlike `@NotifyChange`.
+**Purpose:** Notify value change once it has changed, unlike `@NotifyChange`.
 Usually the annotation is used with `@Command`.
 
 Example
