@@ -10,9 +10,9 @@ Description
 
 **Target Attribute:** all (except viewModel, validationMessages, form)
 
-**Purpose:** Specify that binder can both save and load data
+**Purpose:** Specifying the binder can both save and load data
 
-It's like a shortcut annotation that combines both ` @save ` and ` @load `. When your saving and loading don't depend on different condition, it's suggested to use this annotation.
+It's like a shortcut annotation that combines both ` @save ` and ` @load `. When your saving and loading don't depend on different conditions, it is suggested to use this annotation.
 
 Example
 =======
