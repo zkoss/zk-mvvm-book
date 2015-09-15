@@ -1,11 +1,11 @@
 # Flow Control
 To use flow control in shadow elements, we can use the following shadow element tags:
 - `<if>`: allows the conditional execution of its body according to the value of the test attribute.
-- `<choose>/<when>/<otherwise>`: they are used for logic and flow control like Java's switch/case/default statement.
+- `<choose>/<when>/<otherwise>`: they are used for logic and flow control, such as Java's switch/case/default statement.
 
 
 # Work with UI components
-Continue with the example in previous chapter, we will render a menu node upon its sub-menu existence. First we specify whether to show *Home* icon of not. And if a menu node has a sub-menu, we render it by `<nav>`, otherwise render it by `<navitem>`. To achieve this, we have to use shadow components for flow control, `<if>`, `<choose>`, `<when>`, and `<otherwise>`.
+Continuing with the example from the previous chapter, we will render a menu node upon its sub-menu existence. First we specify whether or not to show *Home* icon. And if a menu node has a sub-menu, we render it by `<nav>`; otherwise render it by `<navitem>`. To achieve this, we have to use shadow components for flow control, `<if>`, `<choose>`, `<when>`, and `<otherwise>`.
 
 - The `<if>` is just like Java **if** statement.
 - The `<choose>` is just like Java **switch** statement.
@@ -31,4 +31,4 @@ Now, we can test whether a menu node has a subMenus or not by `test="@load(empty
 </navbar>
 ```
 
-But this way we only create a `<nav>` without its `<navitem>`. We need to traverse each node in its sub-menu and create correponding components (`<nav>` or `<navitem>`) which is just like the way to do now for each menu-node. It means we need to reuse this `<forEach>` and its child elements.
+But this way we only create a `<nav>` without its `<navitem>`. We need to traverse each node in its sub-menu and create correponding components (`<nav>` or `<navitem>`) which is just like what we would do now for each menu-node. It means we need to reuse this `<forEach>` and its child elements.
