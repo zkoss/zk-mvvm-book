@@ -32,7 +32,7 @@ Description
 
 **Purpose:** Tell binder to pass the context object with specified type.
 
-The annotation is applied to initial (or command) method's parameter. Methods can get various ZK context object like: Page or Desktop by applying annotation on parameters.
+The annotation is applied to initial (or command) method's parameter. Methods can get various ZK context objects like Page or Desktop by applying annotation on parameters.
 
 Example
 =======
@@ -77,5 +77,5 @@ public class ContextParamVM {
 }
 ```
 
--   In above example, the variable component is a Button object and view is a Vbox object.
+-   In above example, the variable component is a Button object and the view is a Vbox object.
 
