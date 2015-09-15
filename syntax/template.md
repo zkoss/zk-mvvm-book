@@ -10,7 +10,7 @@ Description
 
 **Target Attribute:** model, children
 
-**Purpose:** It should be used with ` @bind `, ` @load `. It determines which template to be used to render child components.
+**Purpose:** It should be used with ` @bind `, ` @load `. It determines which template should be used to render child components.
 
 The evaluation result of EL expression should be the name of a template which is used to render child components. The result template's name can be any template defined in the same id space.
 
