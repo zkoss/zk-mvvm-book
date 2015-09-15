@@ -24,11 +24,11 @@ Description
 
 **Target:** A method's parameter (for initial and command methods)
 
-**Purpose:** To identify that a method's parameter should be retrieved from view component of the binder.
+**Purpose:** To specify that a method's parameter should be retrieved from view component of the binder.
 
-The **value** element is the selector to find components. It uses [Selectors](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/select/Selectors.html) to select the components. The base component of the selector is the view component of the binder, the component which uses ViewModel.
+The **value** element is the selector for finding components. It uses [Selectors](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/select/Selectors.html) to select the components. The base component of the selector is the view component of the binder, the component which uses ViewModel.
 
-If the parameter type is a Collection, binder passes the result directly. Otherwise it passes the first result or null if no result.
+If the parameter type is a Collection, binder passes the result directly. Otherwise it passes the first result or null if there is no result.
 
 Example
 =======
