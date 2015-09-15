@@ -13,7 +13,7 @@ Description
 
 **Target:** class
 
-**Purpose:** Put which commands we want to notify the client after execution has been done. Notice only the commands we put inside this annotation will trigger the callback we put in *binder.after* at client.
+**Purpose:** Specify the commands we want for notifying the client after execution has been done. Notice only the commands we put inside this annotation will trigger the callback we put in *binder.after* at client.
 
 Example
 =======
