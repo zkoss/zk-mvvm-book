@@ -12,19 +12,19 @@ Description
 
 **Purpose:** It should be used with ` @bind `, ` @load `, ` @save `. It applies a converter to convert data during transformation between UI components and ViewModel.
 
-The evaluation result of EL expression should be a [Converter](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Converter.html) object. You can append arbitrary arguments in key-value pair with comma separated to pass it to the Converter object. Built-in Converter is referenced by a string literal as its name.
+The evaluation result of EL expression should be a [Converter](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/Converter.html) object. You can append arbitrary arguments in key-value pair with a comma for separation to pass it to the Converter object. Built-in Converter is referenced by a string literal as its name.
 
 ***[arbitraryKey]=[EL-expression]***
 
-It's key-value pairs basically. You can write multiple key-value pairs with different key names.
+Basically, it uses key-value pairs. You can write multiple key-value pairs with different key names.
 
-An EL expression without key is set to a default key named **"value"** implicitly.
+An EL expression without a key is set to a default key named **"value"** implicitly.
 
-Due to each annotation has different functions, some annotations may ignore key-value pair expression other than default key, e.g.@id.
+Since each annotation has different functions, some annotations may ignore key-value pair expressions other than the default key, e.g.@id.
 
 ***[arbitraryKey]***
 
-It could be any name, it's used as a key for parameter related Java annotation in a ViewModel.
+It could be any name. It's used as a key for parameter related Java annotation in a ViewModel.
 
 Example
 =======
