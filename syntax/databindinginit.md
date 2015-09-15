@@ -18,19 +18,19 @@ In "form" attribute, the result of evaluating the EL expression should be a [For
 
 For other attributes, binder initializes their value with EL evaluation result.
 
-When using on "viewModel" attribute, we can pass arguments in key-value pairs with comma separated. And we can get the arguments in a initial method of ViewModel by [`@BindingParam`](./bindingparam.html).
+When using on "viewModel" attribute, we can pass arguments in key-value pairs with a comma to separate. And we can get the arguments in a initial method of ViewModel by [`@BindingParam`](./bindingparam.html).
 
 **_[arbitraryKey]=[EL-expression]_**
 
-It's key-value pairs basically. You can write multiple key-value pairs with different key names.
+Basically, it uses key-value pairs. You can write multiple key-value pairs with different key names.
 
 An EL expression without key is set to a default key named **"value"** implicitly.
 
-Due to each annotation has different functions, some annotations may ignore key-value pair expression other than default key, e.g.@id.
+Since each annotation has different functions, some annotations may ignore key-value pair expressions other than default key, e.g.@id.
 
 ***[arbitraryKey]***
 
-It could be any name, it's used as a key for parameter related Java annotation in a ViewModel.
+It could be any name; it's used as a key for parameter related Java annotation in a ViewModel.
 
 Example
 =======
