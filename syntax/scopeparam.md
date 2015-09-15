@@ -25,7 +25,7 @@ Description
 
 **Purpose:** Tell binder to retrieve a value with specified scope
 
-The default scope: **AUTO** means searching the value from COMPONENT to SPACE, PAGE, DESKTOP, SESSION, APPLICATION one by one automatically until find a non-null value. If you specified the **scopes** element, binder will search the only scope you specified.
+The default scope: **AUTO** means searching the value from COMPONENT to SPACE, PAGE, DESKTOP, SESSION, APPLICATION one by one automatically until a non-null value is found. If you specified the **scopes** element, binder will search the only scope you specified.
 
 Example
 =======
