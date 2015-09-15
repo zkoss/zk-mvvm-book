@@ -16,7 +16,7 @@ Description
 
 **Purpose:** Marker annotation to identify a initial method.
 
-Binder calls the method with this annotation when initializing a ViewModel. In a ViewModel class, **only one initial method is allowed at the most**. If you set annotation element **superclass** to **true**, the ViewModel's parent class's initial method will be invoked first then child's, and this logic repeats on super class. If a class has no method with @Init, no method will be called (including the super class's)<sub>[1]</sub>.
+Binder calls the method with this annotation when initializing a ViewModel. In a ViewModel class, **only one initial method is allowed at the most**. If you set annotation element **superclass** to **true**, the ViewModel's parent class's initial method will be invoked first, then the child's; this logic repeats on super class. If a class has no method with @Init, no method will be called (including the super class's)<sub>[1]</sub>.
 
 For example, in a class hierarchy:
 ```java
@@ -63,13 +63,13 @@ E is the last child class.
 	3. call D's `@Init` method `initD()`
 
 - When binder initializes **E**, it will...
-	1. found `superclass=true`, binder will look for `@Init` method in D first
-	2. found `superclass=true` again, binder will look for `@Init` method in C first
+	1. find `superclass=true`, binder will look for `@Init` method in D first
+	2. findd `superclass=true` again, binder will look for `@Init` method in C first
 	3. no `@Init` method exists in C, so nothing happens
 	4. call D's `@Init` method `initD()`
 	5. call E's `@Init` method `initE()`
 
-We also can use parameter related annotation on initial method's parameters, please refer to subsections of [Syntax/ViewModel/Parameters](./parameters.html).
+We can also use parameter related annotations on initial method's parameters; please refer to subsections of [Syntax/ViewModel/Parameters](./parameters.html).
 
 [1]: If you override parent class's initial method and set `superclass=true`, due to Java's limitation, child's method will be called twice. To avoid this, you should **remove** `superclass=true` in child class and use `super` to invoke parent's implementation.
 ```java

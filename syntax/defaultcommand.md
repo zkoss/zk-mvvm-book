@@ -13,7 +13,7 @@ Description
 
 **Purpose:** To mark a default Command method.
 
-When a binder receives a command, it starts to find ViewModel's command methods by matching its name. Only if the binder cannot find a matched method, it invokes existing default command method.
+When a binder receives a command, it starts to look for ViewModel's command methods by matching its name. If the binder cannot find a matched method, it invokes existing default command method.
 
 Example
 =======

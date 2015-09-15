@@ -33,5 +33,5 @@ public void cmd(@Default("false") Boolean arg1, @BindingParam("arg2") @Default("
 }
 ```
 
--   According to above example, if we click first button, binder will pass 100 to arg2. If we click second button, arg2 will be 3.
+-   According to the above example, if we click the first button, binder will pass 100 to arg2. If we click second button, arg2 will be 3.
 

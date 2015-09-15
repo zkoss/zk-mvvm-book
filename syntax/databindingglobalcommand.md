@@ -14,7 +14,7 @@ Description
 
 If you use this binding with a local command binding, remember that local command is always executed first.
 
-You can pass arbitrary arguments in comma-separated key-value pairs.
+You can pass arbitrary arguments in key-value pairs with a comma to separate.
 
 ***[arbitraryKey]=[EL-expression]***
 

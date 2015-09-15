@@ -12,7 +12,7 @@ Description
 
 **Purpose:** Specify which command to execute when the event fires
 
-You can pass arbitrary arguments in comma separated key-value pairs.
+You can pass arbitrary arguments in key-value pairs with a comma to separate.
 
 Notice that **value** is a reserved word, you should avoid using it as an arbitraryKey.
 

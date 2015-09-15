@@ -24,7 +24,7 @@ It could be one of [ '''before | after ''' ]
 
 ***[EvaluateOnce EL-expression]***
 
-The evaluation result must be one or more command name.
+The evaluation result must be one or more command names.
 
 Command name must correspond to the name specified in Java annotation ` @Command ` in a ViewModel.
 
