@@ -16,7 +16,7 @@ Description
 
 **Target:** class
 
-**Purpose:** Trigger an array of commands in viewmodel whenever the given expressions change at the server. The `_vm_` here means the current view model.
+**Purpose:** Trigger an array of commands in viewmodel whenever the given expressions change on the server. The `_vm_` here means the current view model.
 
 Example
 =======
