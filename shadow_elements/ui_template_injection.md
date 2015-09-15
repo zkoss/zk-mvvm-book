@@ -6,7 +6,7 @@ In ZK 8, `<template>` is our recommended form to reuse a view pattern composed b
 - Apply a template
 
 ##Define a template
-Since ZK 8, you can put a `<template>` inside any component. Define a template will not create any component until you apply it. You can define a template like:
+In ZK 8, you can put a `<template>` inside any component. Defining a template will not create any component until you apply it. You can define a template like:
 
 ```xml
 <div>
@@ -22,11 +22,11 @@ or a path of a zul
     <template name="layout" src="/mytemplate.zul"/>
 </div>
 ```
-The usage is the same as we mentioned in previous chapters. But We can also use the following tags to describe a component creation logic based on certain conditions.
+The usage is the same as we have mentioned in previous chapters. But we can also use the following tags to describe a component creation logic based on certain conditions.
 
 ## Apply a Template
 
-When we apply a template, ZK will create the components inside the template upon its logic and insert those components into the position of `<apply>` tag. Therefore, we also call it Tempalte Injection.
+When we apply a template, ZK will create the components inside the template upon its logic and insert those components into the position of `<apply>` tag. Therefore, we also call it Template Injection.
 
 We usually apply a template with its name like:
 
@@ -77,7 +77,7 @@ Then replace `<choose>`/ `<when>`/ `<otherwise>` with ternary operator ? like:
 ```
 Apply a Template inside a Template
 
-Everything is fine so far except those sub-menu are not rendered. That's because in template menu, we just render a menu node itself as a `<nav>` and doesn't render its sub-menu. A node in a sub-menu is also a menu node, and it could also have sub-menu. We still need to render a sub-menu node like we do for a menu node, using a control structure. The best thing is: we don't need to repeat ourselves in template menu again. We can just apply the template iterate to iterate a collection of menu nodes recursively.
+Everything is fine so far except that those sub-menu are not rendered. That's because in template menu, we just render a menu node itself as a `<nav>` and don't render its sub-menu. A node in a sub-menu is also a menu node, and it could also have a sub-menu. We still need to render a sub-menu node like we would do for a menu node, using a control structure. The best thing is: we don't need to repeat ourselves in template menu again. We can just apply the template iterate to iterate a collection of menu nodes recursively.
 
 All 3 templates used in this example
 
@@ -96,4 +96,4 @@ All 3 templates used in this example
     <navitem label="@load(menuItem.label)" />
 </template>
 ```
-Line 3: Apply the previous tempalte iterate here to traverse each menu node and render them.
+Line 3: Apply the previous template iterate here to traverse each menu node and render them.
