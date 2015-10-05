@@ -58,6 +58,7 @@
        * [@SmartNotifyChange](syntax/smartnotifychange.md)
        * [@ToClientCommand](syntax/toclientcommand.md)
        * [@ToServerCommand](syntax/toservercommand.md)
+       * [@Transient](syntax/transient)
        * [Parameters](syntax/parameters.md)
            * [@BindingParam](syntax/bindingparam.md)
            * [@ContextParam](syntax/contextparam.md)

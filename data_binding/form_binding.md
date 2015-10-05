@@ -154,7 +154,7 @@ public void doRemoveCategory(@BindingParam("form") Book form,
 ```
 The form proxy would synchronize back the edited data (`Category`) after the form submitted.
 
-Notice that the form proxy would cache all the properties in the user bean. You can use `@Transient` to mark  an element transient, and the element would not be cached.
+Notice that the form proxy would cache all the properties in the user bean. You can use `@Transient` to mark an element transient, and the element would not be cached.
 
 ```java
 public class Pojo {
@@ -167,6 +167,9 @@ public class Pojo {
 }
 ```
 Because the result of `getAreal()` is a calculation, we don't need to cache the calculated value.
+
+The form proxy would proxy properties deeply by default, you can use `@Immutable` to mark
+some elements. Once a getter method has been marked, the corresponding element would be cached non-recursively when using a form proxy.
 
 ### Reset Methods
 Form proxy object provides 9 built-in methods transparently for developers to clean up the component value as follows.
