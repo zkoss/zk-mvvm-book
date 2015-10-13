@@ -49,5 +49,25 @@ public class VM{
        <button label="change" onClick="@command('doCountChange')" />
 </window>
 ```
+Combine with `@NotifyCommand` :
 
+``` java
+@NotifyCommand(value="upateData", onChange="_vm_.count")
+@ToClientCommand("upateData")
+public class VM{
+    private int count = 0;
+
+    // getter/setter...
+
+    @Command
+    @NotifyChange("count")
+    public void doCountChange(){
+       count++;
+    }
+}
+```
+Once trigger the command "doCountChange", VM would notify the change of "count".
+Then server would trigger the callback following *binder.after* at client.
+
+Notice that the command "upateData" in VM is not necessary. If the command "updateData" in VM exist, it would be executed first, then server would trigger the callback function.
 

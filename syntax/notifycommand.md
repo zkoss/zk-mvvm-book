@@ -13,7 +13,7 @@ Description
 
 **Target:** class
 
-**Purpose:** Trigger a command in viewmodel whenever the given expression changes on the server. The `_vm_` here means the current view model.
+**Purpose:** Trigger a command in viewmodel whenever the given expression changes on the server  (by @NotifyChange). The `_vm_` here means the current view model.
 
 Example
 =======
@@ -24,6 +24,7 @@ public class VM {
     private Map<String, String> data = new HashMap<String, String>();
 
     @Command
+    @NotifyChange("data")
     public void upateData() {
         data.put("Status", "updated");
     }
