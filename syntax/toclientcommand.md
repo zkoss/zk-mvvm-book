@@ -5,7 +5,8 @@ Syntax
 ======
 
 ``` java
-@ToClientCommand(commandNames)
+@ToClientCommand("commandName")
+@ToClientCommand({"commandName1", "commandName2"})
 ```
 
 
@@ -49,7 +50,8 @@ public class VM{
        <button label="change" onClick="@command('doCountChange')" />
 </window>
 ```
-Combine with `@NotifyCommand` :
+#### Combine with `@NotifyCommand` :
+
 
 ``` java
 @NotifyCommand(value="upateData", onChange="_vm_.count")

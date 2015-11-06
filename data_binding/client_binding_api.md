@@ -34,6 +34,12 @@ This method is used to trigger a command we have on our server.
 
 **Note : ** You could also pass ZK widgets in the data object and use @BindingParam to get the corresponding ZK component on the server.
 
+**Additionally**, you could use `native component` to publish a command.
+
+```xml
+<xhtml:button n:onClick="@command('doClick', {key:value, key1:value1})"/>
+```
+
 **Method 2 - after**
 
 ```javascript
@@ -55,12 +61,14 @@ On server-side, we can use the following two annotations for the client-side bin
 @NotifyCommand(value="commandName", onChange="_vm_.expression")
 ```
 
-The notify command annotation allows us to trigger a command whenever the given expression changes at the server. Notice the command which gets triggered is a command in our view model. The `_vm_` here means the current view model.
+The notify command annotation allows us to trigger a command whenever the given expression changes at the server (by `@NotifyChange`). The `_vm_` here means the current view model.
 
-**Annotation 2 - ClientCommand**
+Notice that the `commandName` which gets triggered is a command in our view model, and it would be triggered once in the initialization of `_vm_.expression`. If the command does not exist, it would do nothing. No matter whether the command exists in VM or not, it would pass to the following annotation - `@ToClientCommand`.
+
+**Annotation 2 - ToClientCommand**
 
 ```java
-@ClientCommand(commandNames)
+@ToClientCommand(commandNames)
 ```
 
 The client command annotation allows us to put the commands we want for notifying the client after execution. Notice only the commands we put inside this annotation will trigger the callback following *binder.after* at client.

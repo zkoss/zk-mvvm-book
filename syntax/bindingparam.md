@@ -16,6 +16,10 @@ Description
 
 The annotation is applied to command method's parameter. It declares that the applied parameter should come from binding argument written on the ZUL with the specified key.
 
+> Since 8.0.0
+
+If using ***Client Binding*** to trigger a command, this annotation would convert JSON data into an appropriate object  automatically.
+
 Example
 =======
 
@@ -46,3 +50,29 @@ public void popupMessage(@BindingParam("myKey") String target, @BindingParam("co
 ```
 
 -   The `target `'s value is “myValue”, and ` content`'s is object item's description property.
+
+> Since 8.0.0
+
+#### Using client binding to trigger a command
+
+```javascript
+zkbind.$(someone).command('dataChange', {data:{title: "myData"}});
+```
+
+* The above code will send `JSON data` to the command function "dataChange"; this can be automatically converted into an appropriate object using the `BindingParam`.
+
+```Java
+public static class DataObject {
+    private String title;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle() {return title;}
+}
+
+@Command
+public void dataChange(@BindingParam("data") DataObject data) {
+    // do something here.
+}
+```
+For more information, please visit [ZK Configuration Reference](http://books.zkoss.org/wiki/ZK_Configuration_Reference/zk.xml/The_Library_Properties/org.zkoss.bind.jsonBindingParamConverter.class).

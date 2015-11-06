@@ -5,7 +5,8 @@ Syntax
 ======
 
 ``` java
-@ToServerCommand(commandNames)
+@ToServerCommand("commandName")
+@ToServerCommand({"commandName1", "commandName2"})
 ```
 
 Description
