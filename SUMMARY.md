@@ -50,6 +50,7 @@
        * [@GlobalCommand](syntax/viewmodelglobalcommand.md)
        * [@Immutable](syntax/immutable.md)
        * [@ImmutableElements](syntax/immutableelements.md)
+       * [@ImmutableFields](syntax/immutablefields.md)
        * [@Init](syntax/viewmodelinit.md)
        * [@NotifyChange](syntax/notifychange.md)
        * [@NotifyChangeDisabled](syntax/notifychangedisabled.md)
