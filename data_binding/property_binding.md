@@ -285,3 +285,18 @@ It also provides implicit variable: **each** (the instance of item in binding co
 </grid>
 ```
 - Assume that the object in binding collection has a property “type”. Its value could be A or B. (line 1)
+
+Defferred Binding
+================
+In many cases, it would be sufficient to mark the onChange event deferrable to avoid unnecessary AU requests and fine-tune the application performance.
+You can register component level deferPost by setting custom attributes(org.zkoss.bind.event.deferPost). By specifying this custom attribute to components, “saving” will occur during the next AU request.
+```xml
+    <textbox value="@bind(vm.text1)">
+        <custom-attributes org.zkoss.bind.event.deferPost="false"/>
+    </textbox>
+    <textbox value="@bind(vm.text2)">
+        <custom-attributes org.zkoss.bind.event.deferPost="true"/>
+    </textbox>
+    <button onClick='Clients.showNotification("AU request has sent")'>click me</button>
+```
+The value of the first textbox component would be saved when you change the input text(it's the same if you don't specify this custom attribute at all), but the value of the second textbox component would only be saved when an AU request is sent after the input text is changed, either by changing the first textbox's input, or clicking the button.
