@@ -55,3 +55,38 @@ We can bind ZK UI component to a ViewModel by setting its **viewModel** attribut
     <button onClick="@command('newOrder')" label="New Order" />
 </window>
 ```
+
+## Use an Existing Object as a ViewModel
+In previous way, `BindComposer` instantiates a ViewModel class for you upon the class name in `@init('foo.YourViewModel')`. However, sometimes you need to instantiate a ViewModel object by yourselves or use an existing object like a Spring bean as a ViewModel. Then, you need another a variable resolver to introduce the existing object for the binder.
+
+First, you should create a resolver that implements your way to instantiate a ViewModel or get the desired Spring bean.
+```java
+public class ViewModelResolver implements VariableResolver {
+
+	/**
+	 * instantiate a ViewModel or locate it e.g. a Spring bean
+	 */
+	@Override
+	public Object resolveVariable(String name) throws XelException {
+		if ("myvm".equals(name)){
+			return new InitVM();
+		}else{
+			return null;
+		}
+	}
+}
+```
+
+Now then, apply the above resolver on a page or [system scope](http://books.zkoss.org/wiki/ZK_Developer's_Reference/UI_Composing/ZUML/EL_Expressions#System-level_Variable_Resolver) and reference the ViewModel object with its name like `@init(myvm)`. Notice that there is no single quote around `myvm` which means it's a variable name rather than a string.
+```xml
+<?variable-resolver class="org.zkoss.reference.developer.mvvm.ViewModelResolver"?>
+<!-- If you use a Spring bean as a view model, use the resolver.
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+ -->
+<zk>
+	<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm')@init(myvm)">
+		<label value="@load(vm)" />
+	</div>
+</zk>
+```
+
