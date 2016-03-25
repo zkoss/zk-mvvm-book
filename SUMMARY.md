@@ -52,6 +52,7 @@
        * [@ImmutableElements](syntax/immutableelements.md)
        * [@ImmutableFields](syntax/immutablefields.md)
        * [@Init](syntax/viewmodelinit.md)
+       * [@MatchMedia](syntax/matchmedia.md)
        * [@NotifyChange](syntax/notifychange.md)
        * [@NotifyChangeDisabled](syntax/notifychangedisabled.md)
        * [@NotifyCommand](syntax/notifycommand.md)
