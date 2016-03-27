@@ -596,7 +596,9 @@ Syntax:
 ```
 
 ### Limitation
-This validator cannot validate a form object's nested property like `fx.firstProp.secondProp`. It can only validate a property like `fx.firstProp`. If we want to validate a form object's nested property, we need to use the concept - **Groups** in ZK 8.
+This validator cannot validate a form object's nested property like `fx.firstProp.secondProp`. It can only validate a property like `fx.firstProp`.
+Nested bean validation is supported by using **@Valid**.
+The validation messages would be able to accessed in the form `fx.firstProp.secondProp`.
 
 Groups
 -------------------
@@ -604,7 +606,7 @@ Groups
 
 > Since 8.0.0
 
-The concept of constraints grouping means that we can easily divide contraints into groups, even though the contraints belong to different JavaBeans. And those constraints in each group can be validated per validator invocation.
+The concept of constraints grouping means that we can easily divide contraints into groups. It means that we can create partial validation for different purpose.
 
 ### Usage
 There are four main parts in a validation group:
@@ -624,13 +626,25 @@ And there are two JavaBeans : ``PersonDto`` , ``NameDto``
 public class PersonDto {
 	private NameDto nameDto;
 	private int age;
+	private int age2;
 
 	@Max(value=120, groups=GroupValidation.class)
 	public int getAge() {
 		return age;
 	}
 
-    // getter/setter
+	@Max(value=100)
+	public int getAge2() {
+		return age2;
+	}
+
+	@Valid //will trigger recursive validation
+	@NotNull
+	public NameDto getNameDto() {
+		return nameDto;
+	}
+
+    // other getter/setters
 }
 ```
 
@@ -663,6 +677,8 @@ In zul:
 	<label id="err1" value="@load(vmsgs['p_age'])"/>
 	<textbox value="@bind(fx.nameDto.name)"/>
 	<label id="err2" value="@load(vmsgs['p_nameDto.name'])"/>
+	<intbox value="@bind(fx.age2)"/>
+	<label id="err3" value="@load(vmsgs['p_age2'])"/>
 </div>
 ```
 In viewmodel:
@@ -684,3 +700,4 @@ public class FromValidationViewModel {
 	}
 }
 ```
+In this case, only the validations of the `name` and `age` would be triggered. The validation of `age2` would be ignored.
