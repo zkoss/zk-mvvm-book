@@ -544,7 +544,6 @@ Use this validator with its name *beanValidator* and with syntax:
 
 `@validator('beanValidator')`
 ```xml
-<window id="win" apply="org.zkoss.bind.BindComposer" 
     viewModel="@id('vm') @init(foo.MyViewModel)"
     validationMessages="@id('vmsgs')">
     <textbox id="tb" value="@bind(vm.user.lastName) @validator('beanValidator')"/>
@@ -597,8 +596,7 @@ Syntax:
 
 ### Limitation
 This validator cannot validate a form object's nested property like `fx.firstProp.secondProp`. It can only validate a property like `fx.firstProp`.
-Nested bean validation is supported by using **@Valid**.
-The validation messages would be able to accessed in the form `fx.firstProp.secondProp`.
+Nested bean validation is supported by using **@Valid**, and the validation messages will be accessible in the form `fx.firstProp.secondProp`.
 
 Groups
 -------------------
