@@ -23,6 +23,16 @@ As shown in the diagram above, the tree is separated into two parts - **Logical 
 
 The shadow tree in the example above with EL expression won't be alive once the output is rendered to the client. This is because shadow elements are not applied with dynamic data such as @load expressions, so there is no reason to store them on the server side to burden the memory consumption.
 
+# Setup
+Before using shadow elements, make sure you include the required jar - `zuti.jar`. With maven, you should add the dependency below:
+```xml
+    <dependency>
+        <groupId>org.zkoss.zk</groupId>
+        <artifactId>zuti</artifactId>
+        <version>${zk.version}</version>
+    </dependency>
+ ```
+
 # Shadow Element Tags
 
 - **Apply**: executable tags to allow you to choose which template is to be applied, it will lookup the template inside-out recursively.
