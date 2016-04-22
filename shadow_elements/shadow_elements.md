@@ -1,4 +1,4 @@
-# Shadow Elements
+﻿# Shadow Elements
 
 # Overview
 A shadow element is like a boilerplate code to help application developers compose the html layout with some dynamic data. It is inspired from [Shadow DOM](http://w3c.github.io/webcomponents/spec/shadow/) to enable better composition of ZK components and support the ZK DataBinding (MVVM) mechanism. A web designer can pre-define a template based on HTML syntax for application developers to use. Technically, shadow elements are not visible while application developers manipulate ZK component's tree as explained below.
