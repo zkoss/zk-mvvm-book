@@ -12,11 +12,13 @@ Description
 
 **Target:** class, getter method
 
-**Purpose:** Marker annotation to indicate an immutable class or a getter method.
+**Purpose:** Marker annotation to indicate a class or result of a getter is to be treated immutable. As a result no Proxy is created around the object.
 
-The properties of an immutable class won't be tracked and thus reduce the resources needed in the application.
+Once a getter method has been marked, the object itself will be cached non-recursively when using a form proxy.
+Calling setters on such an object directly invoke the original setter and thus won't be tracked. 
 
-Once a getter method has been marked, the corresponding element would be cached non-recursively when using a form proxy.
+also see: [ProxyHelper.addIgnoredProxyClass(java.lang.Class)](https://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/proxy/ProxyHelper.html#addIgnoredProxyClass%28java.lang.Class%29)
+This also reduces the resources needed in the application. 
 
 Example
 =======
@@ -34,8 +36,8 @@ public class DataObject {
     //other code...
 
     @Immutable
-	public String getInfo() {
-		return info;
+	public Price getPrice() {
+		return price;
 	}
 }
 ```
