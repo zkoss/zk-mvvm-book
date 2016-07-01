@@ -133,6 +133,7 @@ public class Category {
 Note:
 - The proxy mechanism follows the Java Proxy contract, so the user bean classes need to provide an **empty constructor** for the proxy mechanism to use.
 - In the methods **hashcode** and **equals**, we cannot directly use the instance field to check, because the proxy object can only be handled by the method invocation, not the instance field. For example, use getName() instead of this.name.
+- For the above reason, custom annotations should be specified for methods. In other words, annotations applied to fields and beans will be ignored.
 
 And we use some commands to add/remove a Category.
 
