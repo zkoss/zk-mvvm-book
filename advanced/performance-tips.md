@@ -6,7 +6,7 @@
 
 By expensiveness in memory, they are ranked as follow: `@init` < `@load` | `@save` < `@bind`.
 
-To save a server's memory, use `@init` if you don't need to reload a value when it's changed. A binding inside a `<template>` within Grid, Listbox, Tree usually doesn't need to be reloaded, so it's better to use `@init` like:
+To save a server's memory, use `@init` if you don't need to reload a value when it's changed. A binding to an object of a collection doesn't need to be reloaded for displaying data only, so it's better to use `@init` like:
 
 ```xml
 <grid width="400px" model="@bind(vm.itemList)">
