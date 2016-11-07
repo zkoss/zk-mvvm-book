@@ -1,6 +1,6 @@
 # Performance Tips
 
-## Choose wisely among data bindings
+## Choose data bindings carefully
 
 `@init`, `@load`, `@save`, and `@bind` are mostly common used annotations in data binding. The `@init` will load the ViewModel's value once and don't track the value which is different from other 3 annotations. Therefore, ZK will create tracking nodes in memory for those annotations except `@init`, and those tracking nodes consume a server's memory.
 
