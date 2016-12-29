@@ -86,5 +86,11 @@
         * [@template](syntax/template.md)
         * [@validator](syntax/validator.md)
     * [Shadow Elements](syntax/shadow_elements.md)
+        * [apply](syntax/apply.md)
+        * [choose](syntax/choose.md)
+        * [foreach](syntax/foreach.md)
+        * [if](syntax/if.md)
+        * [otherwise](syntax/otherwise.md)
+        * [when](syntax/when.md)
 * [Configuration](configuration/README.md)
 
