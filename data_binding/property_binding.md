@@ -27,7 +27,7 @@ We usually use save only binding on input components, e.g., textbox, to collect 
 ```
 - In load-only binding, only ViewModel's property change will be load to label.
 
-The timing of saving a component attributes' value to ViewModel is **when the attribute related event fires**. For example, textbox's value is saved on the onChange event firing. After you finish your input in a textbox and move the cursor to next input field, the input data is saved to ViewModel at that time. The timing of loading is specified by ` @NotifyChange `.
+The timing of saving a component attributes' value to ViewModel is **when the attribute related event fires**. For example, textbox's value is saved on the onChange event firing. After you finish your input in a textbox and move the cursor out of the textbox, the input data is saved to ViewModel at that time.
 
 If ViewModel's property is a map, the syntax is as follows:
 ```xml
@@ -286,7 +286,7 @@ It also provides implicit variable: **each** (the instance of item in binding co
 ```
 - Assume that the object in binding collection has a property “type”. Its value could be A or B. (line 1)
 
-Defferred Binding
+Deferred Binding
 ================
 In many cases, it would be sufficient to mark the onChange event deferrable to avoid unnecessary AU requests and fine-tune the application performance.
 You can register component level deferPost by setting custom attributes(org.zkoss.bind.event.deferPost). By specifying this custom attribute to components, “saving” will occur during the next AU request.
