@@ -573,6 +573,8 @@ Form Bean Validator
 
 Like Bean Validator, this validator also integrates JavaBean Validation and validates a bean's all-saving properties. For the configuration and JavaBean usage, please refer to [#Prepare_to_Use_JSR_303](#prepare-to-use-jsr-303)
 
+Since ZK 8.0.0 the form binding is based on Java Proxies, since only methods are intercepted you have to place the [constraint annotations at property level](http://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#_property_level_constraints) (getter methods - and not at field level).
+
 ### Usage
 Use this validator with the name **formBeanValidator** and set a unique<sub>[1]</sub> prefix key by **prefix** argument of validator. When any property of the bean is invalid, it puts the invalid message to into the validation message holder with key **prefix**+propertyName.
 
