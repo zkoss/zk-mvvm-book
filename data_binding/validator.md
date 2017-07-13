@@ -544,10 +544,23 @@ Use this validator with its name *beanValidator* and with syntax:
 
 `@validator('beanValidator')`
 ```xml
+<window id="win"
     viewModel="@id('vm') @init(foo.MyViewModel)"
     validationMessages="@id('vmsgs')">
     <textbox id="tb" value="@bind(vm.user.lastName) @validator('beanValidator')"/>
     <label value="@load(vmsgs[tb])"/>
+</window>
+```
+
+Since ZK 8.5.0 it also supports assigning a self-defined validation message key with syntax:
+
+`@validator('beanValidator', key='someKey')`
+```xml
+<window id="win"
+    viewModel="@id('vm') @init(foo.MyViewModel)"
+    validationMessages="@id('vmsgs')">
+    <textbox value="@bind(vm.user.lastName) @validator('beanValidator', key='lastName')"/>
+    <label value="@load(vmsgs['lastName'])"/>
 </window>
 ```
 
