@@ -23,7 +23,7 @@ public class OrderVM {
 
     // save an order
     // command name is specified
-    @Command('save')
+    @Command("save")
     public void saveOrder() {
         orderService.save(selected);
     }
