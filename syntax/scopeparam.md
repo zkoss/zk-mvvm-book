@@ -13,7 +13,7 @@ Syntax
 
 ``` java
 enum Scope {
-    COMPONENT, SPACE, PAGE, DESKTOP, SESSION, APPLICATION, // single scope
+    COMPONENT, SPACE, PAGE, DESKTOP, SESSION, APPLICATION, EXECUTION // single scope, EXECUTION is since 8.6.0
     AUTO //find by comp.getAttribute(name, true)
 }
 ```
