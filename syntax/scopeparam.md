@@ -14,7 +14,7 @@ Syntax
 ``` java
 enum Scope {
     //EXECUTION is since 8.6.0
-    COMPONENT, SPACE, PAGE, DESKTOP, SESSION, APPLICATION, EXECUTION // single scope
+    COMPONENT, SPACE, PAGE, DESKTOP, EXECUTION, SESSION, APPLICATION // single scope
     AUTO //find by comp.getAttribute(name, true)
 }
 ```
@@ -26,7 +26,7 @@ Description
 
 **Purpose:** Tell binder to retrieve a value with specified scope
 
-The default scope: **AUTO** means searching the value from COMPONENT to SPACE, PAGE, DESKTOP, SESSION, APPLICATION one by one automatically until a non-null value is found. If you specified the **scopes** element, binder will search the only scope you specified.
+The default scope: **AUTO** means searching the value from COMPONENT to SPACE, PAGE, DESKTOP, EXECUTION, SESSION, APPLICATION one by one automatically until a non-null value is found. If you specified the **scopes** element, binder will search the only scope you specified.
 
 Example
 =======
