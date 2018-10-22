@@ -40,6 +40,7 @@
     * [Displaying Huge Amount of Data](advanced/displaying_huge_amount_of_data.md)
     * [Binding Annotation for a Custom Component](advanced/binding_annotation_for_a_custom_component.md)
     * [Pass Arguments to Include Component](advanced/pass_arguments_to_include_component.md)
+    * [Using NavigationModel](advanced/using_navigationmodel.md)
     * [Performance Tips](advanced/performance-tips.md)
 * [Syntax](syntax/README.md)
     * [ViewModel](syntax/viewmodel.md)
