@@ -33,13 +33,13 @@ public class MyVM {
         navModel.put("CCC", new MyObject("CCC", "desc 5"));
     }
  
-    public NavigationModel<String> getNavModel() {
+    public NavigationModel<MyObject> getNavModel() {
         return navModel;
     }
 }
 ```
 - We declared a `NavigationModel` for storing many `MyObject`.
-- The path string `AAA/AAA1` means level 1 is AAA and level 2 is AAA1.
+- The path string `AAA/AAA1` means level 1 is AAA and level 2 is AAA1.
 
 #### Nested level in ZUML
 ``` xml
@@ -96,3 +96,11 @@ Iterate a level
 ===============
 
 To list all items in a level, use `getItems()` or `getItemIterator()` to a list of `Pair` objects which x is key and y is value.
+
+#### ZUML
+``` xml
+<forEach items="@load(level.items)">
+    <a label="@init(each.x)"
+       onClick="@command('navTo', level=level, key=self.label)" />
+</forEach>
+```
