@@ -30,7 +30,7 @@ Following is a comparison table for the two saving syntaxes mentioned above:
 
 |  | Property Binding | Save Before Command |
 | -- | -- | -- |
-| **Syntax Example** | `@bind(vm.account.email)`<br>`@validator(vm.emailValidator)` | `@load(vm.account.email)`<br>`@save(vm.account.email, before='save')`<br>`@validator(vm.emailValidator)` |
+| **Syntax Example** | `@bind(vm.account.email)` <br> `@validator(vm.emailValidator)` | `@load(vm.account.email)` <br> `@save(vm.account.email, before='save')` <br> `@validator(vm.emailValidator)` |
 | **Save When** | a component's attribute related event fires (e.g. onChange for value) |  Before executing a command |
 | **Validation Timing** | <ul><li>Immediately validate for single field</li> <li>No validation when executing a command</li></ul>| <ul><li>Batch validate all fields when triggering specified command</li> <li>No immediate validation of single fields after a user input</li></ul> |
 | **Validation Fails** | **Not** save data to ViewModel | **Not** save data to ViewModel &<br>**Not** execute the command |
