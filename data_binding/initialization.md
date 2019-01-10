@@ -12,7 +12,7 @@ The composer will resolve the string 'foo.MyViewModel' and create a object of it
 
 @init at Component's Attribute
 ==============================
-It's common to use it to initialize a component's attribute with a constant value or a ViewModel's proeprty. The binder loads it once and doesn't synchronize it afterward during following user interaction.
+It's common to use it to initialize a component's attribute with a constant value or a ViewModel's property. The binder loads it once and doesn't synchronize it afterward during following user interaction.
 ``` xml
     <label value="@init(vm.message)"/>
 
