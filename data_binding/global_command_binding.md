@@ -130,7 +130,7 @@ In above example, we bind onClick event to local and global commands, the global
 
 One to Many Communication
 -------------------------
-We can also use global command binding to communicate multiple ViewModels at one event firing. If an event bound to a global command named "show", all global commands with name "who" in all ViewModels will be executed. Another difference from local command is that you can bind an event to a global command without ensuring its existence. If the global command you bound doesn't exist, it has no response and doesn't throw any exception. The relationship between event and global command is like **publisher-subscriber**. Publisher publishes an event, only those ViewModels who subscribes it execute the corresponding global command.
+We can also communicate with multiple ViewModels at one event firing by a global command binding. If an event bound to a global command, "show", ZK willl execute all global commands with the name "show" in all ViewModels in the same desktop. Another difference from local command is that you can bind an event to a global command without the command existence. If the global command you bound doesn't exist, it has no response and doesn't throw any exception. The relationship between event and global command is like **publisher-subscriber**. Publisher publishes an event, only those ViewModels who subscribes it execute the corresponding global command.
 
 Based on previous example, assume that we want to hide and show 2 areas simultaneously with menuitems. We can bind a menuitem's onClick event to a global command named "show', and 2 ViewModels implements the "show" command to show itself. So does "hide" command.
 
