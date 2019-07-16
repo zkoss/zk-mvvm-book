@@ -93,7 +93,7 @@ For example:
 ```
 
 # EL 3.0 Support
-Since ZK 8, data binding support some syntax of  Java EE 7 Expression Language 3.
+Since ZK 8, data binding supports some syntaxes of Java EE 7 Expression Language 3.
 
 ## String Concatenation: `+=`
 
@@ -152,4 +152,5 @@ A static field or static method of a Java class can be referenced with the synta
 ```xml
 <label value="@load((Math.sqrt(16)))" />
 ```
-Note that `java.lang.*` is imported by default.
+You need to import required pakcage/class by [import directive](https://www.zkoss.org/wiki/ZUML%20Reference/ZUML/Processing%20Instructions/import).
+Note that `java.lang.*` is imported by default. 
