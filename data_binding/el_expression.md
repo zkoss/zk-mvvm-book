@@ -91,3 +91,65 @@ For example:
 
 <label value="@bind(vm.age lt 18 ? 'true' : 'false')"/>
 ```
+
+# EL 3.0 Support
+Since ZK 8, data binding support some syntax of  Java EE 7 Expression Language 3.
+
+## String Concatenation: `+=`
+
+
+```xml
+<label value="@load(('Hi, ' += vm.firstname += ' ' += vm.lastname))" />
+```
+
+Remember to enclose string concatenation with **2 extra parentheses**.
+
+
+## Assignment and Semicolon operators
+
+```xml
+<label value="@load((“increase” = x -> x + 1; “increase”(5)))" />
+```
+It will create a new bean “increase” for the function and show 6 as label’s value.
+
+
+## Lambda Expressions
+A converter can be implemented with a lambda expression defined in zul. Take conversion from meter to inch as an example,
+
+```xml
+<textbox value="@load((x -> (x * 100) / 2.54)(vm.value))" 
+    onOK="@command('click', key=((x -> (x * 2.54) / 100)(self.value)))" />
+```
+
+The syntax used is same as ones in Java SE 8 and behaves like an anonymous function which is discarded after evaluated.
+
+We can name a lambda and evaluate indirectly like the example mentioned above.
+
+## Collection Operations
+
+Use collection operations to implement the name filter.
+
+```xml
+<listbox model="@load((vm.names.stream()
+                               .filter(x -> x.contains(vm.filter))
+                               .toList()))">
+```
+
+We create a string list, `vm.names` as listbox’s model so we can turn collection objects into steam. These operations can then be chained together to form a pipeline.
+
+We can also create a list by collection construction,
+
+```xml
+<label value="@load(([1, 2, 3, 4].stream().sum()))" />
+```
+The label will show 10 as the result.
+
+
+## Static Field and Method References
+
+A static field or static method of a Java class can be referenced with the syntax Classname.Field, such as
+
+```xml
+<label value="@load((Math.sqrt(16)))" />
+```
+Note that `java.lang.*` is imported by default.

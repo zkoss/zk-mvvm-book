@@ -177,7 +177,7 @@ When clicking hide menuitem, both ViewModel's global command "hide" will be exec
 
 Command Execution
 =================
-Global command's execution is quite simple. It just executes a command method and then reloads those properties that specified in ` @NotifyChange ` annotation. But if you bind an event to a local and global command at the same time, binder always **executes local command first**. If any reason blocks the local command's execution, e.g. validation fails, it  won't execute the global command.
+Global command's execution is quite simple. It just executes a command method and then reloads those properties that specified in `@NotifyChange` annotation. But if you bind an event to a local and global command at the same time, binder always **executes local command first**. If any reason blocks the local command's execution, e.g. validation fails, it  won't execute the global command.
 
 ![MVVM Global Command Execution](../images/Mvvm-global-command-execution.png)
 
