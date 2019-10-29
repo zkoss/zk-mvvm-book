@@ -228,6 +228,8 @@ public class DurationViewModel  {
 
 ## Notify Programmatically
 Sometimes the changed properties we want to notify depends on value at run-time, so we cannot determine the property's name at design time. In this case, we can use [BindUtils.postNotifyChange(String queueName, String queueScope, Object bean, String property)](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindUtils.html#postNotifyChange(java.lang.String queueName, java.lang.String queueScope, java.lang.Object bean, java.lang.String property)) to notify change dynamically. The underlying mechanism for this notification is binder subscribed event queue that we talk about in [the binder section](../data_binding/binder.html). It uses **desktop scope** event queue by default.
+The Object used for the "bean" parameter can be any object used in a load binding. The "property" string refers to the specific property used in the binding. It is possible to target a bean that was used in a binding implicitely. For example, if collection is bound using forEach, the "each" variable will refer to each element of the collection, and can be notified individualy.
+Additionally, it is possible to notify an individual bean, instead of a bean property by using the "dot" syntax. (see example below)
 
 #### Dynamic Notification
 ```java
@@ -243,6 +245,14 @@ public void cmd() {
         //other codes...
         BindUtils.postNotifyChange(null, null, this, "value2");
     }
+    //notifying individual properties of an arbitrary object
+    BindUtils.postNotifyChange(null, null, myBean, "value2");
+    
+    //notifying all properties of an arbitrary object
+    BindUtils.postNotifyChange(null, null, myOtherBean, "*");
+    
+    //notifying an arbitrary object itself
+    BindUtils.postNotifyChange(null, null, myOtherBean, ".");
 }
 ```
 * The first parameter of postNotifyChange() is queue name and second one is queue scope. You can just leave it null and default queue name ans scope (desktop) will be used.
