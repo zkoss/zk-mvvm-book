@@ -4,6 +4,8 @@ Syntax
 ======
 
 ``` java
+@ExecutionParam
+
 @ExecutionParam("keyString")
 ```
 
@@ -15,6 +17,13 @@ Description
 **Purpose:** Tell binder to retrieve this parameter with specified key from the current execution's attribute.
 
 The annotation is applied to initial (or command) method's parameter. It declares that the applied parameter should come from the current execution's attribute with specified key.
+
+> Since 9.0.1
+
+The value can be omitted if name is the same as the annotated parameter.
+```java
+@ExecutionParam String keyString
+```
 
 Example
 =======

@@ -4,6 +4,8 @@ Syntax
 ======
 
 ``` java
+@BindingParam
+
 @BindingParam("keyString")
 ```
 
@@ -19,6 +21,13 @@ The annotation is applied to command method's parameter. It declares that the ap
 > Since 8.0.0
 
 If using ***Client Binding*** to trigger a command, this annotation would convert JSON data into an appropriate object  automatically.
+
+> Since 9.0.1
+
+The value can be omitted if name is the same as the annotated parameter.
+```java
+@BindingParam String keyString
+```
 
 Example
 =======
