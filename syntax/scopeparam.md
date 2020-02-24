@@ -4,10 +4,6 @@ Syntax
 ======
 
 ``` java
-@ScopeParam
-
-@ScopeParam(scopes=Scope.APPLICATION)
-
 @ScopeParam("keyString")
 
 @ScopeParam(scopes=Scope.APPLICATION, value="keyString")
@@ -31,14 +27,6 @@ Description
 **Purpose:** Tell binder to retrieve a value with specified scope
 
 The default scope: **AUTO** means searching the value from COMPONENT to SPACE, PAGE, DESKTOP, EXECUTION, SESSION, APPLICATION one by one automatically until a non-null value is found. If you specified the **scopes** element, binder will search the only scope you specified.
-
-> Since 9.0.1
-
-The value can be omitted if name is the same as the annotated parameter.
-```java
-@ScopeParam String keyString
-@ScopeParam(scopes=Scope.SESSION) String keyString
-```
 
 Example
 =======

@@ -4,8 +4,6 @@ Syntax
 ======
 
 ``` java
-@SelectorParam
-
 @SelectorParam("#componentId")
 
 @SelectorParam("tagName")
@@ -31,13 +29,6 @@ Description
 The **value** element is the selector for finding components. It uses [Selectors](http://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/select/Selectors.html) to select the components. The base component of the selector is the view component of the binder, the component which uses ViewModel.
 
 If the parameter type is a Collection, binder passes the result directly. Otherwise it passes the first result or null if there is no result.
-
-> Since 9.0.1
-
-The value can be omitted if name is the same as the annotated parameter.
-```java
-@SelectorParam String tagName
-```
 
 Example
 =======
