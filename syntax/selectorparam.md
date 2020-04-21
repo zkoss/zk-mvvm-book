@@ -4,6 +4,8 @@ Syntax
 ======
 
 ``` java
+@SelectorParam
+
 @SelectorParam("#componentId")
 
 @SelectorParam("tagName")
@@ -30,6 +32,13 @@ The **value** element is the selector for finding components. It uses [Selectors
 
 If the parameter type is a Collection, binder passes the result directly. Otherwise it passes the first result or null if there is no result.
 
+> Since 9.1.0
+
+The value can be omitted if name is the same as the annotated parameter.
+```java
+@SelectorParam String tagName
+```
+
 Example
 =======
 
@@ -50,11 +59,11 @@ Example
 public class SelectorParamVM {
 
     @Command
-    public void cmd(@SelectorParam("label") LinkedList<Label> labels, 
+    public void cmd(@SelectorParam LinkedList<Label> label, 
         @SelectorParam("#message") Label msg) {
 
-        for (int i = 0; i < labels.size(); i++) {
-            labels.get(i).setValue("Command " + i);
+        for (int i = 0; i < label.size(); i++) {
+            label.get(i).setValue("Command " + i);
         }
         msg.setValue("msg in command");
     }

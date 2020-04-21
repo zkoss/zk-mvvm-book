@@ -4,6 +4,8 @@ Syntax
 ======
 
 ``` java
+@CookieParam
+
 @CookieParam("keyString")
 ```
 
@@ -15,6 +17,13 @@ Description
 **Purpose:** Tell binder to retrieve this parameter with specified key from the HTTP request cookie.
 
 The annotation is applied to initial (or command) method's parameter. It declares that the applied parameter should come from the HTTP request cookie with specified key.
+
+> Since 9.1.0
+
+The value can be omitted if name is the same as the annotated parameter.
+```java
+@CookieParam String keyString
+```
 
 Example
 =======
