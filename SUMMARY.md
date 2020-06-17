@@ -19,6 +19,7 @@
     * [Property Binding](data_binding/property_binding.md)
     * [Children Binding](data_binding/children_binding.md)
     * [Form Binding](data_binding/form_binding.md)
+        * [Legacy Support (SimpleForm)](data_binding/legacy_support_simpleform.md)
     * [Reference Binding](data_binding/reference_binding.md)
     * [Converter](data_binding/converter.md)
     * [Validator](data_binding/validator.md)
