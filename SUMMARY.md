@@ -65,7 +65,6 @@
         * [@Transient](syntax/transient.md)
         * [Parameters](syntax/parameters.md)
             * [@BindingParam](syntax/bindingparam.md)
-            * [@BindingParams](syntax/bindingparams.md)
             * [@ContextParam](syntax/contextparam.md)
             * [@CookieParam](syntax/cookieparam.md)
             * [@Default](syntax/default.md)

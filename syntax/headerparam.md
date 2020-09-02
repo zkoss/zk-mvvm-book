@@ -4,8 +4,6 @@ Syntax
 ======
 
 ``` java
-@HeaderParam
-
 @HeaderParam("keyString")
 ```
 
@@ -17,13 +15,6 @@ Description
 **Purpose:** Tell binder to retrieve this parameter with specified key from the HTTP request header.
 
 The annotation is applied to the initial (or command) method's parameter. It declares that the applied parameter should come from HTTP request header with specified key.
-
-> Since 9.1.0
-
-The value can be omitted if name is the same as the annotated parameter.
-```java
-@HeaderParam String keyString
-```
 
 Example
 =======
