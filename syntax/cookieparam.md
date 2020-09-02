@@ -18,7 +18,7 @@ Description
 
 The annotation is applied to initial (or command) method's parameter. It declares that the applied parameter should come from the HTTP request cookie with specified key.
 
-> Since 9.1.0
+> Since 9.5.0
 
 The value can be omitted if name is the same as the annotated parameter.
 ```java

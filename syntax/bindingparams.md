@@ -1,5 +1,5 @@
 # @BindingParams
-> Since 9.1.0
+> Since 9.5.0
 
 > Don't get confused with @BindingParam.
 

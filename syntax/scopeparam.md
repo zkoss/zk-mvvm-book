@@ -32,7 +32,7 @@ Description
 
 The default scope: **AUTO** means searching the value from COMPONENT to SPACE, PAGE, DESKTOP, EXECUTION, SESSION, APPLICATION one by one automatically until a non-null value is found. If you specified the **scopes** element, binder will search the only scope you specified.
 
-> Since 9.1.0
+> Since 9.5.0
 
 The value can be omitted if name is the same as the annotated parameter.
 ```java

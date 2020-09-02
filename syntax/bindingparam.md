@@ -22,7 +22,7 @@ The annotation is applied to command method's parameter. It declares that the ap
 
 If using ***Client Binding*** to trigger a command, this annotation would convert JSON data into an appropriate object  automatically.
 
-> Since 9.1.0
+> Since 9.5.0
 
 The value can be omitted if name is the same as the annotated parameter.
 ```java
