@@ -257,6 +257,16 @@ public void cmd() {
 ```
 * The first parameter of postNotifyChange() is queue name and second one is queue scope. You can just leave it null and default queue name ans scope (desktop) will be used.
 
+We provide a simpler way to call postNotifyChange for the most common usage (omitting the queue name and scope) since 9.5.0.
+You can pass the bean instance and one or more properties name of bean only.
+For example:
+```java
+BindUtils.postNotifyChange(this, "propertyOne");
+```
+```java
+BindUtils.postNotifyChange(this, "propertyOne", "propertyTwo", "propertyThree");
+```
+
 
 
 
