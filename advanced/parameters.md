@@ -15,6 +15,10 @@ The syntax is:
 
 The expression is optional. It's used only when you want to pass parameters to command method.
 
+> Since 9.5.0
+We can use simplified syntax to pass parameter by sequential order.
+** @command('commandName', [EL-expression1], [EL-expression2]) **
+
 A Local Command Example
 -----------------------
 Assume we have data in grid. It's common to put a button at the end of a row to manipulate it, like delete or update. We usually need index or domain object of a row to perform a action like update.

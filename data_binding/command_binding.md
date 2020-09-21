@@ -50,6 +50,12 @@ public class OrderVM {
 
 You can pass parameters to a command method. Please refer [Advanced/Parameters](../advanced/parameters.html).
 
+> Since 9.5.0
+We can use simplified syntax to do command binding. Notice that it only works in the matched attribute format: "on" + action (ex. onClick, onChange, ...).
+```xml
+<button label="New" onClick="@('newOrder')" />
+```
+
 Empty Command
 -------------
 If we specify command name with an **empty string literal** or evaluation result of EL inside ` @command() ` is **null**, the binder will ignore that command. It's handy if you want to do nothing in some cases. For example:

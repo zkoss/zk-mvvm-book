@@ -90,3 +90,13 @@ Now then, apply the above resolver on a page or [system scope](http://books.zkos
 </zk>
 ```
 
+> Since 9.5.0
+We can use simplified syntax to init view model. Notice that the id of the view model will be 'vm' by default.
+```xml
+<zk>
+	<div viewModel="@('foo.MyViewModel')">
+		<label value="@load(vm.label)" />
+	</div>
+</zk>
+```
+
