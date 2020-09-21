@@ -5,6 +5,13 @@ Syntax
 
 ` @command(`*`[EL-expression], [arbitraryKey]=[EL-expression]`*`) `
 
+> Since 9.5.0
+` @command(`*`[EL-expression], [EL-expression]`*`) `
+We can use simplified syntax to do command binding. Notice that it only works in the matched attribute format: "on" + action (ex. onClick, onChange, ...).
+```xml
+<button label="New" onClick="@('newOrder')" />
+```
+
 Description
 ===========
 

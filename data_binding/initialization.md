@@ -21,6 +21,12 @@ It's common to use it to initialize a component's attribute with a constant valu
     <checkbox checked="@init(true)"/>
 ```
 
+> Since 9.5.0
+We can use simplified syntax to initialize a component's attribute.
+```xml
+<label value="@(vm.message)"/>
+```
+
 @init at Form Binding
 =====================
 We can also use the initial binding on the form binding to fill in predefined value.

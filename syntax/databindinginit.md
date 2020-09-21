@@ -5,6 +5,13 @@ Syntax
 
 ` @init(`*`[EvaluateOnce EL-expression], [arbitraryKey]=[EL-expression]`*`) `
 
+> Since 9.5.0
+` @(`*`[EvaluateOnce EL-expression], [arbitraryKey]=[EL-expression]`*`) `
+We can use simplified syntax to initialize a component's attribute.
+```xml
+<label value="@(vm.message)"/>
+```
+
 Description
 ===========
 
