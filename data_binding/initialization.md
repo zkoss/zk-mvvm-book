@@ -10,6 +10,16 @@ The first place we usually use this annotation is to assign a ViewModel to a com
 ```
 The composer will resolve the string 'foo.MyViewModel' and create a object of it.
 
+> Since 9.5.0
+We can use simplified syntax to init view model. Notice that the id of the view model will be 'vm' by default. 
+```xml
+<zk>
+	<div viewModel="@('foo.MyViewModel')">
+		<label value="@load(vm.label)" />
+	</div>
+</zk>
+```
+
 @init at Component's Attribute
 ==============================
 It's common to use it to initialize a component's attribute with a constant value or a ViewModel's property. The binder loads it once and doesn't synchronize it afterward during following user interaction.

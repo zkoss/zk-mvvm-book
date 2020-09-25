@@ -56,6 +56,17 @@ We can use simplified syntax to do command binding. Notice that it only works in
 <button label="New" onClick="@('newOrder')" />
 ```
 
+Also, the @Command in the class of view model can be omitted.
+
+#### Command method example
+```java
+public class OrderVM {
+    public void newOrder() {
+        // do something
+    }
+}
+```
+
 Empty Command
 -------------
 If we specify command name with an **empty string literal** or evaluation result of EL inside ` @command() ` is **null**, the binder will ignore that command. It's handy if you want to do nothing in some cases. For example:

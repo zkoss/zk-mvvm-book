@@ -29,12 +29,11 @@ Example
 ```
 
 > Since 9.5.0
-We can use simplified syntax to init view model.
-Notice that the id of the view model will be auto-generated, and the inner data binding will try to bind the nearest view model. 
+We can use simplified syntax to init view model. Notice that the id of the view model will be 'vm' by default. 
 ```xml
 <zk>
 	<div viewModel="@('foo.ChildrenMenuVM')">
-		<label value="@load(label)" />
+		<label value="@load(vm.label)" />
 	</div>
 </zk>
 ```
