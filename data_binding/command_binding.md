@@ -51,7 +51,13 @@ public class OrderVM {
 You can pass parameters to a command method. Please refer [Advanced/Parameters](../advanced/parameters.html).
 
 > Since 9.5.0
-We can use simplified syntax to do command binding. Notice that it only works in the matched attribute format: "on" + action (ex. onClick, onChange, ...).
+
+We can use simplified syntax to do command binding, which means we don't need specify any 'arbitraryKey'.
+
+The command method in ViewModel will be triggered with positional arguments.
+
+Notice that it only works in the matched attribute format: "on" + action (ex. onClick, onChange, ...).
+
 ```xml
 <button label="New" onClick="@('newOrder')" />
 ```
