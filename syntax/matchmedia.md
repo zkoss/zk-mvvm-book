@@ -23,6 +23,10 @@ A <a href="https://www.zkoss.org/javadoc/latest/zk/org/zkoss/zk/ui/event/ClientI
 
 Other parameter annotations could also be used; please refer to subsections of [ Parameters](./parameters.html) for more information.
 
+To make sure a MatchMedia method that will be invoked when matched with a media query as expected, It is recommended that you should define matchMedia more clearly. 
+
+For example: There are two MatchMedia method @MatchMedia("all and (min-width: 300px)") and @MatchMedia("all and (min-width: 600px)"), the @MatchMedia("all and (min-width: 300px)") method won't be invoked when width became 599px from 600px. if you want to do stuff between 300px~599px, it's better to use @MatchMedia("all and (min-width: 300px) and (max-width: 599px)").
+
 Example
 =======
 
