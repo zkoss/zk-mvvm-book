@@ -17,7 +17,7 @@ The expression is optional. It's used only when you want to pass parameters to c
 
 > Since 9.5.0
 We can use simplified syntax to pass parameter by sequential order.
-** @command('commandName', [EL-expression1], [EL-expression2]) **
+** @('commandName', [EL-expression1], [EL-expression2]) **
 
 A Local Command Example
 -----------------------
