@@ -12,7 +12,7 @@ The Command is implemented as ViewModel's method. Because ViewModel is a POJO, i
 #Declare Commands
 
 ## Local Command
-ViewModel's Command is like an event handler, we can bind an event to a Command. The binding between events and a command is what we call "Event-Command Binding". Before establish this binding, we have to declare a Command with its name in a ViewModel. Be careful that command names in a ViewModel cannot be duplicated, or it will cause run-time exception.
+ViewModel's Command is like an event handler, we can bind an event to a Command. The binding between events and a command is what we call "Event-Command Binding". Before establishing this binding, we have to declare a Command with its name in a ViewModel. Be careful that command names in a ViewModel cannot be duplicated, or it will cause a run-time exception.
 ```java
 public class OrderVM {
 

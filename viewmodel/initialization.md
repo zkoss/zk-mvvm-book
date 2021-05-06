@@ -35,7 +35,7 @@ Please notice that child class's initial method **should not override parent cla
 ##Apply on Class
 > Since 6.0.1
 
-If super has an init methold but its ChildViewModel doesn't, you can add `@Init(superclass=true)` on the ChildViewModel to use super's init.
+If super has an init method but its ChildViewModel doesn't, you can add `@Init(superclass=true)` on the ChildViewModel to use super's init.
 ```java
 public class ParentViewModel {
     @Init

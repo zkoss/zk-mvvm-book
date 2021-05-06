@@ -16,7 +16,7 @@ Description
 
 **Purpose:** Marker annotation to identify a initial method.
 
-Binder calls the method with this annotation when initializing a ViewModel. In a ViewModel class, **only one initial method is allowed at the most**. If you set annotation element **superclass** to **true**, the ViewModel's parent class's initial method will be invoked first, then the child's; this logic repeats on super class. If a class has no method with @Init, no method will be called (including the super class's)<sub>[1]</sub>.
+Binder calls the method with this annotation when initializing a ViewModel. In a ViewModel class, **only one initial method is allowed at the most**. If you set annotation element **superclass** to **true**, the ViewModel's parent class's initial method will be invoked first, then the child's; this logic repeats on super class. If a class has no method with `@Init`, no method will be called (including the super class's)<sub>[1]</sub>.
 
 For example, in a class hierarchy:
 ```java
@@ -51,11 +51,11 @@ E is the last child class.
 	1. call A's `@Init` method `initA()`
 
 - When binder initializes **B**, it will...
-	1. call B's `@Init` method `initB()`
-	2. A's `@Init` method will **NOT** be called, bacause `superclass=true` was not set in B's `@Init`
+	1. A's `@Init` method will **NOT** be called, because `superclass=true` was not set in B's `@Init`
+	2. call B's `@Init` method `initB()`
 
 - When binder initializes **C**, it will...
-	1. do nothing, bacause no method was annotated with `@Init`
+	1. do nothing, because no method was annotated with `@Init`
 
 - When binder initializes **D**, it will...
 	1. since `superclass=true`, binder will try to look for `@Init` method in C first
@@ -64,7 +64,7 @@ E is the last child class.
 
 - When binder initializes **E**, it will...
 	1. find `superclass=true`, binder will look for `@Init` method in D first
-	2. findd `superclass=true` again, binder will look for `@Init` method in C first
+	2. find `superclass=true` again, binder will look for `@Init` method in C first
 	3. no `@Init` method exists in C, so nothing happens
 	4. call D's `@Init` method `initD()`
 	5. call E's `@Init` method `initE()`
