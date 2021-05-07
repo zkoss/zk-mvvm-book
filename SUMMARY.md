@@ -26,7 +26,7 @@
     * [Global Command Binding](data_binding/global_command_binding.md)
     * [Collection and Selection](data_binding/collection_and_selection.md)
     * [Client Binding](data_binding/client_binding_api.md)
-* [Shadow Elements](shadow_elements/shadow_elements.md)
+* [Shadow Elements](shadow_elements/README.md)
     * [Iterate Collections](shadow_elements/iterate_collections.md)
     * [Flow Control](shadow_elements/flow_control.md)
     * [UI Template Injection](shadow_elements/ui_template_injection.md)

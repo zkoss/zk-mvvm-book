@@ -1,6 +1,6 @@
 # UI Template Injection
 
-In ZK 8, `<template>` is our recommended form to reuse a view pattern composed by a group of components. Puting components into `<template>` can make them reusable easily by `<apply>`. It usually involves 2 steps:
+In ZK 8, `<template>` is our recommended form to reuse a view pattern composed by a group of components. Putting components into `<template>` can make them reusable easily by `<apply>`. It usually involves 2 steps:
 
 - Define a template
 - Apply a template
@@ -56,7 +56,7 @@ To reuse the `<forEach>`, we turn it into a template named iterate first.
 </template>
 ```
 Line 2: We pass a parameter by menuItems="@ref(vm.menuHierarchy)". Therefore, we can access the menu list in `<forEach>` by items="@load(menuItems)".
-In this simple case (just 2 choices), we can re-write it in a simpler way by creating 2 templates for nav and navitem repectively.
+In this simple case (just 2 choices), we can re-write it in a simpler way by creating 2 templates for nav and navitem respectively.
 
 ```xml
 <template name="menu">

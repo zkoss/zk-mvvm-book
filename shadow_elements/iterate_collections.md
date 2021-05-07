@@ -1,5 +1,5 @@
 # Iterate Collections
-We can use the `<forEach>` tag to iterate over a collection of objects (notice the captalized 'E').
+We can use the `<forEach>` tag to iterate over a collection of objects (notice the capitalized 'E').
 
 Specify the collection by using the **items** attribute, and you can access the current item through a variable named specified at the **var** attribute. Also, we can use the following attributes - **begin**, **end**, and **step** to specify the iteration start point, end point, and iteration step.
 

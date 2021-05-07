@@ -37,7 +37,7 @@ Before using shadow elements, make sure you include the required jar - `zuti.jar
 
 - **Apply**: executable tags to allow you to choose which template is to be applied, it will lookup the template inside-out recursively.
 - **ForEach**: allows you to iterate over a collection of objects. Specify the collection by using the items attribute, and the current item is available through a variable named by the var attribute.
-- **Choose/When/Otherwise**: performs conditional block execution by the embedded <when> subtags. It renders the body of the first <when> tag whose test condition evaluates to be true. If none of the test conditions of nested <when> tags evaluate to be true, the body of an <otherwise> tag is evaluated, if present.
+- **Choose/When/Otherwise**: performs conditional block execution by the embedded `<when>` subtags. It renders the body of the first `<when>` tag whose test condition evaluates to be true. If none of the test conditions of nested `<when>` tags evaluate to be true, the body of an `<otherwise>` tag is evaluated, if present.
 - **If**: allows the conditional execution of its body according to the value of the test attribute.
 Note: you can customize your own shadow elements if required.
 

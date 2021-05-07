@@ -31,4 +31,4 @@ Now, we can test whether a menu node has a subMenus or not by `test="@load(empty
 </navbar>
 ```
 
-But this way we only create a `<nav>` without its `<navitem>`. We need to traverse each node in its sub-menu and create correponding components (`<nav>` or `<navitem>`) which is just like what we would do now for each menu-node. It means we need to reuse this `<forEach>` and its child elements.
+But this way we only create a `<nav>` without its `<navitem>`. We need to traverse each node in its sub-menu and create corresponding components (`<nav>` or `<navitem>`) which is just like what we would do now for each menu-node. It means we need to reuse this `<forEach>` and its child elements.
