@@ -61,6 +61,7 @@
         * [@NotifyCommand](syntax/notifycommand.md)
         * [@NotifyCommands](syntax/notifycommands.md)
         * [@SmartNotifyChange](syntax/smartnotifychange.md)
+        * [@AutoNotifyChange](syntax/autonotifychange.md)
         * [@ToClientCommand](syntax/toclientcommand.md)
         * [@ToServerCommand](syntax/toservercommand.md)
         * [@Transient](syntax/transient.md)

@@ -4,7 +4,7 @@
 The binder is responsible for synchronizing data between the View and ViewModel. Typically the ViewModel is a plain old Java object (POJO) and has no reference to any UI component. Hence it cannot push data to a UI component. Developers have to specify the dependency of ViewModel's properties with ZK provided Java annotation, then binder knows when to reload which property and to update the UI view.
 
 # Notify Change
-ZK bind provides a set of Java annotations ( [@NotifyChange](../syntax/notifychange.html), [@DependsOn](../syntax/dependson.html), [@NotifyChangeDisabled](../syntax/notifychangedisabled.html), [@SmartNotifyChange](../syntax/smartnotifychange.html) ) to specify **when to reload which property to UI components**. Developers have to specify it at design time, and the binder will synchronize data at run-time. The binder keeps track of binding relationships between component's attribute and ViewModel's property. After each time it invokes a ViewModel's method (setter, getter, or command method), it looks for corresponding component attribute to reload according to specified properties in the annotation.
+ZK bind provides a set of Java annotations ( [@NotifyChange](../syntax/notifychange.html), [@DependsOn](../syntax/dependson.html), [@NotifyChangeDisabled](../syntax/notifychangedisabled.html), [@SmartNotifyChange](../syntax/smartnotifychange.html), [@AutoNotifyChange](../syntax/autonotifychange.html) ) to specify **when to reload which property to UI components**. Developers have to specify it at design time, and the binder will synchronize data at run-time. The binder keeps track of binding relationships between component's attribute and ViewModel's property. After each time it invokes a ViewModel's method (setter, getter, or command method), it looks for corresponding component attribute to reload according to specified properties in the annotation.
 
 ## Notify on Command
 During execution of a command, one or more properties are changed because Command method usually contains business or presentation logic. Developers have to specify which property (or properties) is changed in Java annotation's element, then the data binding mechanism can reload them from ViewModel to View at run-time after executing the Command.
@@ -63,6 +63,14 @@ public class OrderVM {
     }
 }
 ```
+
+### Smart Notify Change
+
+> Since 8.0.0
+
+You can use `@SmartNotifyChange` as a drop-in replacement of `@NotifyChange`. The only difference between `@SmartNotifyChange` and `@NotifyChange` is ZK will check if the property is actually changed (dirty). For example, even you specify `@SmartNotifyChange({"prop1", "prop2", "prop3"})`, only the dirty properties will be actually notified.
+
+`@SmartNotifyChange` and `@NotifyChange` can be co-existed since `@NotifyChange` definitions won't be overridden by `@SmartNotifyChange`.
 
 ## Notify on Setter
 For similar reason, property might be changed in setter method. After value is saved to ViewModel's property, multiple components or other properties might depend on the changed property. We also have to specify this data dependency by `@NotifyChange`.
@@ -225,6 +233,38 @@ public class DurationViewModel  {
 }
 ```
 * About how to implement a converter, please refer to [Data Binding/Converter](../data_binding/converter.html).
+
+## Auto Notify Change
+
+> Since 8.5.1
+
+> ZK EE
+
+You can add an `@AutoNotifyChange` on a view model class to enable this feature explicitly or specify the library property `org.zkoss.bind.viewModel.autoNotifyChange.enabled` to `true` in zk.xml to enable this feature by default without the need of an annotation.
+
+``` java
+@AutoNotifyChange
+public class MyVM {
+
+}
+```
+
+``` xml
+<library-property>
+    <name>org.zkoss.bind.viewModel.autoNotifyChange.enabled</name>
+    <value>true</value>
+</library-property>
+```
+
+When Auto NotifyChange is turned on, you don't have to specify any `@NotifyChange` on `@Command` methods anymore. Instead you should call the setter to notify ZK.
+
+``` java
+@Command
+public void cmd(@BindingParam("name") String name) {
+    // _name = name; // old
+    setName(name); // new
+}
+```
 
 ## Notify Programmatically
 Sometimes the changed properties we want to notify depends on value at run-time, so we cannot determine the property's name at design time. In this case, we can use [BindUtils.postNotifyChange(String queueName, String queueScope, Object bean, String property)](https://www.zkoss.org/javadoc/latest/zk/org/zkoss/bind/BindUtils.html#postNotifyChange-java.lang.String-java.lang.String-java.lang.Object-java.lang.String-) to notify change dynamically. The underlying mechanism for this notification is binder subscribed event queue that we talk about in [the binder section](../data_binding/binder.html). It uses **desktop scope** event queue by default.  
