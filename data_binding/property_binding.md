@@ -260,7 +260,7 @@ Dynamic template enables developers to specify **which template to apply upon di
 You could use EL to decide which template to use.
 #### Conditional
 ```xml
-<grid model="@bind(vm.orders) @template(vm.type='foo' ? 'template1' : 'template2')">
+<grid model="@bind(vm.orders) @template(vm.type eq 'foo' ? 'template1' : 'template2')">
     <template name="template1">
     <!-- child components -->
     </template>

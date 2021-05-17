@@ -59,7 +59,7 @@ The most common way to apply a converter is to bind a component attribute to **V
 #### Return a converter as a property
 ```java
 public class MyViewModel{
-    private Converter MyConverter = new MyConverter();
+    private Converter myConverter = new MyConverter();
 
     public Converter getMyConverter(){
         return myConverter;
