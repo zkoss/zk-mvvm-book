@@ -38,7 +38,7 @@ This method is used to trigger a command we have on our server.
 
 ```xml
 <zk xmlns:n="native" xmlns:w="client">
-	<button w:onClick=="@command('doClick', {key1:value1, key2:value2})"/>
+	<button w:onClick="@command('doClick', {key1:value1, key2:value2})"/>
 	<n:button onClick="@command('doClick', {key1:value1, key2:value2})"/>
 </zk>
 ```
