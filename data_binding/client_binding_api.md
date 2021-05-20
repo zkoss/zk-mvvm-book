@@ -34,10 +34,13 @@ This method is used to trigger a command we have on our server.
 
 **Note : ** You could also pass ZK widgets in the data object and use @BindingParam to get the corresponding ZK component on the server.
 
-**Additionally**, you could use `native component` to publish a command.
+**Additionally**, you could use `native component` or `client namespace` to publish a command.
 
 ```xml
-<xhtml:button n:onClick="@command('doClick', {key:value, key1:value1})"/>
+<zk xmlns:n="native" xmlns:w="client">
+	<button w:onClick=="@command('doClick', {key1:value1, key2:value2})"/>
+	<n:button onClick="@command('doClick', {key1:value1, key2:value2})"/>
+</zk>
 ```
 
 **Method 2 - after**
