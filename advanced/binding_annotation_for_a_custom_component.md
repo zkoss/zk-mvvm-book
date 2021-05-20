@@ -19,6 +19,8 @@ public class EditableLabel extends HtmlMacroComponent {
 
     public EditableLabel() {
         setMacroURI("/WEB-INF/component/editablelabel.zul");
+        // force the template to be applied, and to wire members automatically
+        compose();
     }
 
     public String getValue() {
