@@ -76,7 +76,7 @@ public class ObjectViewModel {
         this.name = name;
     }
 
-    public Item getAddress() {
+    public Address getAddress() {
         return address;
     }
     public void setAddress(Address address) {
