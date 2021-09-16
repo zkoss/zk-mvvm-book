@@ -84,7 +84,7 @@ Some EL characters are illegal in XML attribute or ZK annotation, you should rep
 | < | lt |
 | <= | le |
 | > | gt |
-| >= |  e|
+| >= | ge |
 For example:
 ```xml
 <image src="@load(vm.picture ne null ? 'images/'.concat(vm.picture) : 'images/NoImage.png')"/>
