@@ -206,6 +206,7 @@ public void add() {
 }
 ```
 -   The first parameter of BindUtils.postGlobalCommand() is queue name, and the second one is queue scope.
+-   The arguments passed in a global command (from zul or from java) can be retrieved using the [@BindingParam](../syntax/bindingparam.html) syntax.
 
 You can call this method in a composer, and those pages written in MVC pattern can communicate with ViewModel. A sample code snippet is as follows:
 ```java
@@ -219,5 +220,11 @@ public class MyComposer extends SelectorComposer{
         args.put("data", "postX");
         BindUtils.postGlobalCommand("myqueue", EventQueues.DESKTOP, "cmdX", args);
     }
+    
+    @GlobalCommand
+	public void cmdX(@BindingParam("data")String myparam) {
+		Clients.log(myparam);
+	}
+	
 }
 ```
