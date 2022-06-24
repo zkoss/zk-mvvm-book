@@ -7,11 +7,11 @@ annotated with ` @BindingParam ` with the same type and key.
 
 The syntax is:
 
-** @command('commandName', [arbitratyKey]=[EL-expression]) **
+** @command('commandName', [arbitraryKey]=[EL-expression]) **
 
-** @global-command('commandName', [arbitratyKey]=[EL-expression]) **
+** @global-command('commandName', [arbitraryKey]=[EL-expression]) **
 
-**[arbitratyKey]=[EL-expression]**
+**[arbitraryKey]=[EL-expression]**
 
 The expression is optional. It's used only when you want to pass parameters to command method.
 
