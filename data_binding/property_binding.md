@@ -36,16 +36,17 @@ If ViewModel's property is a map, the syntax is as follows:
 
 Limitation
 ----------
-#### Can't save to variable
-In the following example, the value of **person.name** is loaded to textbox and after editing, the value is then saved to **person.name**.
+#### Can't save to a single variable
+In the following example, the save binding works because the expression `person.name` is resolved to a property of an object. 
 ```xml
 <textbox value="@bind(person.name)"/>
 ```
-However, if the expression only contains first-term<sub>[1]</sub>, 'load from' would still work, but 'save to' would not be allowed to perform. In the following example, the value **myname** is loaded to textbox, but after editing the value, EL exception occurs when saving value back.
+
+However, if the expression only contains **a single variable**, a load binding will still work, but a save binding cannot perform. In the following example, the value `myname` is loaded to a textbox, but after editing the value, EL exception occurs when saving value back. Because ZK has no way to save it via a setter.
 ```xml
 <textbox value="@bind(myname)"/>
 ```
-[1]: first-term is a variable that comes from a variable resolver in which its value cannot be saved by EL directly
+
 
 Conditional Binding
 ===================
