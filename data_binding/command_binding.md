@@ -2,13 +2,19 @@
 
 Overview
 ========
-Command binding is a mechanism for hooking up a UI component's event such as button's onClick to ViewModel's Command<sub>[1]</sub> without writing code. This binding is established by ` @command ` with command's name in a ZUL. We can only bind one event to only one Command but can bind multiple events to the same Command.
+Command binding is a mechanism for hooking up a UI component's event such as button's onClick to ViewModel's Command<sub>[1]</sub> without writing code. This binding is established by ` @command ` with the command's name in a ZUL. We can only bind one event to only one Command but can bind multiple events to the same Command.
 
 Command's name is the name of ViewModel's method with Java annotation ` @Command  ` by default. You can also specify a Command's name in ` @Command `'s element.
 
 [1]: [ ViewModel/Commands](../viewmodel/commands.html)
 
-#### Command method example
+## Basic Usage
+This involves 2 steps:
+1. create a public method with `@Commmand` in a ViewModel
+2. specify a command binding in a zul
+Notice that the syntax uses lowercase 'c' e.g. `@command('save')`
+
+### Step 1: create a public method with @Commmand
 ```java
 public class OrderVM {
 
@@ -30,7 +36,7 @@ public class OrderVM {
 }
 ```
 
-####Command binding example
+### Step 2: specify a command binding in a zul
 ```xml
     <toolbar>
         <button label="New" onClick="@command('newOrder')" />
@@ -46,7 +52,7 @@ public class OrderVM {
         </menu>
     </menubar>
 ```
-- When clicking “Save” button or menuitem, the binder will invoke ` saveOrder() ` in a ViewModel.
+- Line 3: When clicking “Save” button or menuitem, the binder will invoke ` saveOrder() ` in a ViewModel.
 
 You can pass parameters to a command method. Please refer [Advanced/Parameters](../advanced/parameters.html).
 
