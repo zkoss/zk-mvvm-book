@@ -2,7 +2,7 @@
 
 Overview
 ========
-**Global Command Binding** is similar to command binding but the target becomes a global command. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The main difference from command binding is the event doesn't have to belong to the ViewModel's root view component or its child component. **By default we can bind an event to any ViewModel's global command within the same desktop**. When we trigger a global command, all matched global command in all ViewModels of the same scope will be executed.
+**Global Command Binding** is similar to command binding but the invoking method is a global command, a public method with `@GlobalCommand` in ViewModels. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The main difference from a command binding is the event doesn't have to belong to the ViewModel's root view component or its child component. **By default we can bind an event to any ViewModel's global command within the same desktop**. When we trigger a global command, all matched global commands in all ViewModels of the same desktop will be executed.
 
 ![MVVM Global Command Overview](../images/Mvvm-global-command-overview.png)
 
@@ -38,7 +38,7 @@ Usage
 
 Notification
 ------------
-Assume we have 2 areas in a page, one is main area for adding items and another is list area for displaying items. Each area is bound to a ViewModel. Two ViewModels can access the same item list from single data source, for simplification we use a static list as data source. The main issue is how to notify another ViewModel to refresh item list after we click the "Add" button (add a new item). We can achieve it by binding "Add" button's onClick event to a global command of list area's ViewModel and in that global command we refresh the item list and notify related properties change to update View.
+Assume we have 2 areas on a page, one is the main area for adding items and another is the list area for displaying items. Each area is bound to a ViewModel. Two ViewModels can access the same item list from a single data source, for simplification we use a static list as a data source. The main issue is how to notify another ViewModel to refresh the item list after we click the "Add" button (add a new item). We can achieve it by binding the "Add" button's onClick event to a global command of the list area's ViewModel and in that global command we refresh the item list and notify related properties to change to update View.
 
 The interface looks like this:
 
