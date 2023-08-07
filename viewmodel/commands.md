@@ -1,18 +1,18 @@
 # Commands
 
 # Introduction
-The ViewModel is an abstraction of the View. The View is responsible for displaying information and interacting with users. The information corresponds to ViewModel's property and interaction corresponds to ViewModel's **Command**. The **Command** is an action to manipulate ViewModel's property. Each command provides an action that the View can perform on ViewModel. These actions are also the ways that users can interact with View. For example, a ViewModel provides 2 commands: "save" and "delete". It means users can only perform these 2 actions on the View with the ViewModel. They could perform actions through clicking buttons or menuitems.
+The ViewModel is an abstraction of the View. The View is responsible for displaying information and interacting with users. The information corresponds to ViewModel's property and interaction corresponds to ViewModel's **Command**. The **Command** is an action to manipulate ViewModel's property. Each command provides an action that the View can perform on ViewModel. These actions are also the ways that users can interact with View. For example, a ViewModel provides 2 commands: "save" and "delete". It means users can only perform these 2 actions on the View with the ViewModel. They could perform actions by clicking buttons or menu items.
 
-As ViewModel acts a role like Controller, developers can bind a UI component's event to a Command by specifying Command's name which is similar to register a event listener. Multiple events can bind to the same Command. When a user interacts with a component (e.g. click a button), the component fire an event then the data binding mechanism triggers the execution of Command. The Command may modify ViewModel's properties and then information displayed on View changes.
+As ViewModel acts as a role like Controller, developers can bind a UI component's event to a Command by specifying Command's name which is similar to registering an event listener. Multiple events can bind to the same Command. When a user interacts with a component (e.g. click a button), the component fire an event then the data binding mechanism triggers the execution of a Command. The Command may modify ViewModel's properties and then the information displayed on View changes.
 
 ![MVVM ViewModel Command](../images/Mvvm-viewmodel-command.png)
 
-The Command is implemented as ViewModel's method. Because ViewModel is a POJO, in order to make data binding mechanism identify which method represent a Command, developers have to annotate the method with ZK provided `@Command` annotation. We'll use the term: **Command method** to depict the special annotated method of a ViewModel in the later section. These methods usually manipulate ViewModel's property, like deleting an item. Firing a component's event triggers the execution of bound command, that is invoking the Command method. During executing the Command, the developer also has to specify what properties change to notify through Java annotation that we will describe in [later section](../syntax/notifychange.html)
+The Command is implemented as ViewModel's method. Because ViewModel is a POJO, in order to make a data binding mechanism to identify which method represents a Command, developers have to annotate the method with ZK-provided `@Command` annotation. We'll use the term: **Command method** to depict the specially annotated method of a ViewModel in the later section. These methods usually manipulate ViewModel's property, like deleting an item. Firing a component's event triggers the execution of the bound command, that is invoking the Command method. During executing the Command, the developer also has to specify what properties change to notify through Java annotation that we will describe in [later section](../syntax/notifychange.html)
 
 #Declare Commands
 
 ## Local Command
-ViewModel's Command is like an event handler, we can bind an event to a Command. The binding between events and a command is what we call "Event-Command Binding". Before establishing this binding, we have to declare a Command with its name in a ViewModel. Be careful that command names in a ViewModel cannot be duplicated, or it will cause a run-time exception.
+ViewModel's Command is like an event handler, we can bind an event to a Command. The binding between events and a command is what we call "Event-Command Binding". Before establishing this binding, we have to declare a public command method in a ViewModel. Be careful that command names in a ViewModel cannot be duplicated, or it will cause a run-time exception.
 ```java
 public class OrderVM {
 
@@ -44,24 +44,24 @@ public class OrderVM {
     }
 }
 ```
-Then we can bind component's event to the command in the ZUL.
+Then we can bind a component's event to the command in the ZUL.
 ```xml
 <toolbar>
     <button label="New" onClick="@command('newOrder')" />
     <button label="Save" onClick="@command('save')" />
 </toolbar>
 ```
-We describe the detail of [command binding here](../data_binding/command_binding.html). This binding allow you to pass parameters to Command method, please refer [here](../advanced/parameters.html).
+We describe the detail of [command binding here](../data_binding/command_binding.html). This binding allows you to pass parameters to the Command method, please refer [here](../advanced/parameters.html).
 
 ## Global Command
-Global Command is also a ViewModel's command and can hook UI component's events to it. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The global command can be triggered by a component's event from any ZUL. The main difference of a global command from local command is that the event doesn't have to belong to the ViewModel's root view component or its child component. By default we can bind an event to any ViewModel's global command **within the same desktop**. A method can be both a local command and a global command.
+Global Command is also a ViewModel's command and can hook UI component's events to it. The local command can only be triggered by events of a ViewModel's Root View Component and its child components. The global command can be triggered by a component's event from any ZUL. The main difference between a global command and a local command is that the event doesn't have to belong to the ViewModel's root view component or its child component. By default we can bind an event to any ViewModel's global command **within the same desktop**. A method can be both a local command and a global command.
 ```java
 @Command("delete") @GlobalCommand("delete")
 public void deleteOrder() {
     //...
 }
 ```
-We can declare multiple global commands with same name in different ViewModel. When an event triggers a global command, all matched command methods in every ViewModel will be executed.
+We can declare multiple global commands with the same name in different ViewModel. When an event triggers a global command, all matched command methods in every ViewModel will be executed.
 ```java
 public class MainViewModel {
 
@@ -80,7 +80,7 @@ public class ListViewModel {
     }
 }
 ```
-* If we trigger global command "show", each binder associated with each ViewModel will execute the show global command method but not in any particular order.
+* If we trigger the global command "show", each binder associated with each ViewModel will execute the show global command method but not in any particular order.
 
 # Command Execution
-A command execution is a mechanism of ZK Bind where it performs a method call on the ViewModel. It binds to a component's event and when a binding event comes, binder will follow the lifecycle to complete the execution. We'll describe this in detail in [Command Binding](../data_binding/command_binding.html) and [Global Command Binding](../data_binding/global_command_binding.html).
+A command execution is a mechanism of ZK Bind where it performs a method call on the ViewModel. It binds to a component's event and when a binding event comes, the binder will follow the lifecycle to complete the execution. We'll describe this in detail in [Command Binding](../data_binding/command_binding.html) and [Global Command Binding](../data_binding/global_command_binding.html).
