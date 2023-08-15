@@ -55,7 +55,6 @@ The client attribute must be initialized using the `${value}` syntax, and doesn'
 
 #### specialAttribute.zul
 ```xml
-<!-- "forEach" versus children binding  -->
 <div xmlns:ca="client/attribute">
     <!-- correct use for non-dynamic attribute values -->
     <checkbox ca:attribute="${vm.value}" />
