@@ -5,7 +5,7 @@ In ZK 8, `<template>` is our recommended form to reuse a view pattern composed b
 - Define a template
 - Apply a template
 
-##Define a template
+## Define a template
 In ZK 8, you can put a `<template>` inside any component. Defining a template will not create any component until you apply it. You can define a template like:
 
 ```xml
@@ -34,6 +34,9 @@ We usually apply a template with its name like:
 Or apply with a path of a zul:
 
 `<apply templateURI="/chapter1/banner.zul"/>`
+
+
+
 Turn into Templates
 
 To reuse the `<forEach>`, we turn it into a template named iterate first.
@@ -75,6 +78,7 @@ Then replace `<choose>`/ `<when>`/ `<otherwise>` with ternary operator ? like:
     </forEach>
 </template>
 ```
+
 Apply a Template inside a Template
 
 Everything is fine so far except that those sub-menu are not rendered. That's because in template menu, we just render a menu node itself as a `<nav>` and don't render its sub-menu. A node in a sub-menu is also a menu node, and it could also have a sub-menu. We still need to render a sub-menu node like we would do for a menu node, using a control structure. The best thing is: we don't need to repeat ourselves in template menu again. We can just apply the template iterate to iterate a collection of menu nodes recursively.
@@ -97,3 +101,28 @@ All 3 templates used in this example
 </template>
 ```
 Line 3: Apply the previous template iterate here to traverse each menu node and render them.
+
+
+# Using Shadow Elements inside a Template Takes Heavy Rendering Cost
+
+The usage like below:
+
+```xml
+ <listbox model="@load(vm.listModel)">
+    <template name="model">
+        <apply template="listitem1" />
+    </template>
+</listbox>
+
+<template name="listitem1">
+    <listitem focus="@load(self.selected)" >
+        <apply template="listcell11" />
+        <apply template="listcell12" />
+    </listitem>
+</template>
+```
+
+The long processing time is caused by shadow elements positioning themselves relative to the other shadow elements located in the same shadow root element.
+Since every shadow element inside the same parent needs to sync its position in the component tree based on its siblings. Adding or removing shadow elements causes "all other shadow elements at the same level" to also recalculate, causing the cumulative processing times.
+
+If you want to determine components used in a template in runtime upon a value, please use [@template](../syntax/template.html). See [Combine with Dynamic Template](../data_binding/children_binding.html).
