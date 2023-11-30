@@ -29,14 +29,14 @@ Include the [client-bind](https://mavensync.zkoss.org/eval/org/zkoss/zk/client-b
 Add the listener for client MVVM in `zk.xml`:
 ```xml
 <listener>
-    <listener-class>org.zkoss.clientbind.inderPropertiesRenderer</listener-class>
+    <listener-class>org.zkoss.clientbind.BinderPropertiesRenderer</listener-class>
 </listener>
 ```
 
 ## Step 3
 ### Option 1: Enable it on a ViewModel
 
-Apply `org.zkoss.clientbind.ClientBindComposer` in a ZUL like:
+Apply [ClientBindComposer](https://www.zkoss.org/javadoc/latest/zk/org/zkoss/clientbind/ClientBindComposer.html) with the target ViewModel a ZUL like:
 
 ``` xml
 <div apply="org.zkoss.clientbind.ClientBindComposer" viewModel="..." >
@@ -46,8 +46,8 @@ Apply `org.zkoss.clientbind.ClientBindComposer` in a ZUL like:
 
 ### Option 2: Enable it globally
 
-We can change the [default applied
-binding composer](https://www.zkoss.org/wiki/ZK_Configuration_Reference/zk.xml/The_Library_Properties/org.zkoss.bind.defaultComposer.class) in `zk.xml`:
+Specify [default-applied
+binding composer](https://www.zkoss.org/wiki/ZK_Configuration_Reference/zk.xml/The_Library_Properties/org.zkoss.bind.defaultComposer.class) in `zk.xml` like:
 
 ``` xml
 <library-property>
@@ -75,19 +75,19 @@ differences compared to the server-side MVVM.
 
 ## 1. EL expression is not supported
 
-EL expression - `${expr}` and EL3 are not supported. For Example, the following expressions are not supported:
+EL expression - `${expr}` and EL 3 are not supported. For Example, the following expressions are not supported:
 
 ``` xml
 <label value="${expr}" />
-<label value="@load(('Hi, ' += vm.person.firstName += ' ' += vm.person.lastName))​" />
+<label value="@load(('Hi, ' += vm.person.firstName += ' ' += vm.person.lastName))" />
 <label value="@load((vm.names.stream().filter(x -> x.contains(vm.filter)).toList()))" />
 ```
 
-## 2. Follow the MVVM pattern
+## 2. Must Obey the MVVM Pattern Strictly
 
 The main feature of MVVM is to decouple the UI and non-UI code, which means components should be controlled by data binding. Developers should avoid
-controlling components directly. Even though we have this guideline, there are cases where developers have been accessing the components
-directly, and they use to work in server MVVM.
+controlling components directly by calling their API. Even though we have this rules, there are cases where developers have been accessing the components
+directly, and they used to work in server MVVM.
 But now, when you enable client MVVM, ZK will update all the binding evaluation results into widget properties. This means the server-side
 does not have the full and most up-to-date information. Therefore, you no longer can access and control those child components
 as a server-side component. You have to stick to the MVVM pattern.
