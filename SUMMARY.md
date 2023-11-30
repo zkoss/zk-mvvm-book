@@ -30,6 +30,7 @@
     * [Iterate Collections](shadow_elements/iterate_collections.md)
     * [Flow Control](shadow_elements/flow_control.md)
     * [UI Template Injection](shadow_elements/ui_template_injection.md)
+* [Client MVVM](client_mvvm/README.md)
 * [Advanced](advanced/README.md)
     * [Parameters](advanced/parameters.md)
     * [Binding in Special Attribute](advanced/binding_in_special_attribute.md)
