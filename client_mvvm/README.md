@@ -1,11 +1,23 @@
-# Why Client MVVM  
-In earlier versions like ZK 9.0, server MVVM required the creation of various server-side objects including binders and data bindings. This architecture, while functional, imposed a considerable memory footprint on the server due to the multitude of objects that needed to be maintained.
+# Overview
+In earlier versions like ZK 9.0, MVVM requires the creation of various server-side objects including binders and data bindings. This architecture, while functional, imposed a considerable memory footprint on the server due to the multitude of objects that needed to be maintained.
 
-The client MVVM also starts from a ZUL and a ViewModel, and the binding information will be passed to the client-side with ZK widgets. When the widgets are created and rendered on the browser, the bindings will also be created at the same time.
+The client MVVM also starts from a ZUL and a ViewModel, but the binding information will be passed to the client-side with ZK widgets. When the widgets are created and rendered on a browser, the bindings will also be created at the same time. To clearly indicate 2 different MVVM features, we call server MVVM for the one before ZK 9. 
 
 ![](../images/client_mvvm_mechanism.jpeg)
 
-The introduction of client MVVM in ZK 10 represents a significant evolution in the framework, particularly in how data binding and UI component management are handled. This new approach brings notable improvements in memory usage and overall performance, primarily due to key changes in the handling of UI components and data bindings. This significant shift yields two main benefits:
+The introduction of client MVVM in ZK 10 represents a significant evolution in the framework, particularly in how data binding and UI component management are handled. This new approach brings notable improvements in memory usage and overall performance, primarily due to key changes in the handling of UI components and data bindings. 
+
+Let me define these 2 MVVM features for clarity:
+
+## Server MVVM
+In ZK versions up to 9.0, involves handling most of the MVVM pattern's logic on the server side. This includes the creation and management of binders and data bindings, resulting in a substantial server memory footprint due to the numerous server-side objects that need to be maintained.
+
+## Client MVVM
+Introduced in ZK 10, represents a paradigm shift where the data binding and UI component management are largely executed on the client side. In this approach, binding information is passed to the client through ZK widgets, significantly reducing the server's memory and processing load, and enhancing overall application performance.
+
+
+# Benefits
+This significant shift yields two main benefits:
 
 ## Memory Reduction
 When enabled, it eliminates the need to create Java objects for each UI component on the server side, with the exception of the root component tied to a ViewModel. For its child components, ZK only generates JavaScript widgets on the client side.
@@ -64,7 +76,7 @@ Then, you can use a ViewModel without explicitly specifying a composer:
 </div>
 ```
 
-If you enable client MVVM globally but still want to apply a different composer on a specific VM (e.g. use classic server MVVM), you can specify the `apply` attribute on that VM with the your composer, and the manually specified apply will have the priority.
+If you enable client MVVM globally but still want to apply a different composer on a specific VM (e.g. use classic server MVVM), you can specify the `apply` attribute on that VM with your composer, and the manually specified apply will have the priority.
 
 Once it is correctly configured, we can start to enjoy the benefits of client MVVM!
 
@@ -83,7 +95,7 @@ EL expression - `${expr}` and EL 3 are not supported. For Example, the following
 <label value="@load((vm.names.stream().filter(x -> x.contains(vm.filter)).toList()))" />
 ```
 
-## 2. Must Obey the MVVM Pattern Strictly
+## 2. Strict Implementation of MVVM Pattern
 
 The main feature of MVVM is to decouple the UI and non-UI code, which means components should be controlled by data binding. Developers should avoid
 controlling components directly by calling their API. Even though we have this rules, there are cases where developers have been accessing the components
@@ -100,15 +112,15 @@ as a server-side component. You have to stick to the MVVM pattern.
 
 
 -   [@Listen](https://www.zkoss.org/wiki/ZK_Developer's_Reference/Event_Handling/Event_Listening),
-    [@Wire](http://books.zkoss.org/zk-mvvm-book/9.5/advanced/wire_components.html),
-    [@WireVariable](https://books.zkoss.org/zk-mvvm-book/9.5/advanced/wire_components.html)
+    [@Wire](../advanced/wire_components.html),
+    [@WireVariable](../advanced/wire_components.html)
     and
-    [@SelectorParam](http://books.zkoss.org/zk-mvvm-book/9.5/syntax/selectorparam.html)
+    [@SelectorParam](../syntax/selectorparam.html)
     are not supported.
 -   You cannot use
-    [@BindingParam](http://books.zkoss.org/zk-mvvm-book/9.5/syntax/bindingparam.html)
+    [@BindingParam](../syntax/bindingparam.html)
     and
-    [@ContextParam](http://books.zkoss.org/zk-mvvm-book/9.5/syntax/contextparam.html) to get components.
+    [@ContextParam](../syntax/contextparam.html) to get components.
 
 ``` java
 @Command
@@ -148,14 +160,8 @@ org.zkoss.bind.Converter#coerceToUi(B beanProp, C component, BindContext ctx);
 org.zkoss.bind.Converter#coerceToBean(U compAttr, C component, BindContext ctx);
 ```
 
-## 3. Getter Method should be pure in View Model
 
-To send those data of the view model to the client side, client MVVM depends on the getter methods to retrieve data.
-
-For example, the return value of a getter method should not be always a
-"new" object.
-
-## 4. Deferred Binding is no longer supported
+## 3. Deferred Binding is no longer supported
 
 Deferred Binding is no longer supported. This feature is to avoid
 unnecessary AU requests (data updates). Since client MVVM does those
@@ -167,13 +173,13 @@ bindings on the client-side, it doesn\'t require such an update.
 </textbox>
 ```
 
-## 5. SmartNotifyChange always on
+## 4. SmartNotifyChange always on
 
 SmartNotifyChange is always enabled in Client MVVM​, which means that the
 properties will only update (reload) when the value of the expression is
 changed.
 
-## 6. Conditional Binding works differently
+## 5. Conditional Binding works differently
 
 Conditional Binding works differently when the command updates the value
 without doing \"NotifyChange\". For example:
@@ -197,8 +203,8 @@ In ZK MVVM, the value of Label will be \"123changed\" after the button -
 In client MVVM, the value will remain \"123\". If you intend to see
 \"123changed\" you will need to do NotifyChange.
 
-## 7. AnnotateDataBinder and Calling Binder API are no longer supported {#annotatedatabinder_and_calling_binder_api_are_no_longer_supported}
 
+## 6. AnnotateDataBinder and Calling Binder API are no longer supported
 AnnotateDataBinder is the old ZK binding in zkplus module. And the
 Binder API is for server MVVM. For example:
 
@@ -219,12 +225,20 @@ Or using custom Binder
 <window viewModel="..." binder="@id('mybinder') @init(vm.binder)">
 </window>
 ```
+<!--
+## 3. Getter Method should be pure in View Model
+
+To send those data of the view model to the client side, client MVVM depends on the getter methods to retrieve data.
+
+For example, the return value of a getter method should not be always a
+"new" object.
+-->
 
 # Client MVVM Linter - a checking tool
 
-For migration, you can use [ZK Client MVVM
+We made [ZK Client MVVM
 Linter](https://blog.zkoss.org/2023/08/01/zk-10-preview-introducing-zk-client-mvvm-linter/)
-to check your ZK MVVM project.
+to identify those unsupported server MVVM usages under client MVVM enabled. See [linter starter](https://github.com/zkoss-demo/zk-client-mvvm-linter-starter/tree/master) know how to use it. 
 
 # Debugging Tips
 
@@ -232,7 +246,53 @@ Unsupported/incompatible usages mentioned in the previous section will be report
 
 # Upgrade Tips
 
-- Migrating server-side MVVM to client-side MVVM is generally straightforward, except for cases where unsupported usages are involved.
-- Client-side MVVM can be selectively implemented for specific ViewModels, allowing gradual integration rather than an all-at-once approach.
+- Migrating server MVVM to client-side MVVM is generally straightforward, except for cases where unsupported usages are involved.
+- You can selectively enable client MVVM for specific ViewModels, allowing gradual integration rather than an all-at-once approach.
 - Consider updating your code to address any incompatibilities, especially if the performance and memory improvements of client MVVM are significant for your application.
 - Client-side MVVM is an optional feature in ZK 10. You can upgrade to ZK 10 without adopting client MVVM immediately, continuing to use the server MVVM as needed.
+
+# Supported features
+Client MVVM can transparently support server MVVM features below: 
+
+* form binding
+* children binding
+* reference binding
+* converter
+* validator
+* global command
+* shadow elements
+* ROD
+
+
+# Right feature for the right Job
+As mentioned above the core benefit of using client MVVM is to save the server memory and improve performance. Instead of spending the time checking the limitations and upgrading client MVVM throughout the whole project, we recommend you apply client MVVM to the following pages:
+
+* pages with massive load bindings or save bindings
+* pages visited by a large number of concurrent users
+
+Both scenarios produce more binding tracker nodes, so applying client MVVM to these cases can effectively reduce the memory footprint.
+
+
+# FAQ
+
+## What if I am currently mixing MVC and MVVM, can I apply client MVVM?
+With client MVVM, ZK doesn't create those child components at the server-side (no Java objects for ZK components created). Therefore, you can no longer access and control components as a server-side component. We'd recommend you either:
+
+1. keep using server MVVM
+2. refactor your code to follow the MVVM pattern strictly, then turn it into client MVVM
+
+## How much improvement I can expect?
+It depends on the number of components and the type and amount of bindings you are currently using. You need to do a profiling to know the difference.
+
+
+## How is client MVVM different from fragment?
+* fragment integrates Vue framework.
+
+Since Vue supports different data binding syntax from ZK MVVM, not all features can be integrated with ZK. The integration focuses on supporting basic and commonly shared data binding syntax.
+
+* client MVVM aims to support all server MVVM features
+
+Hence, it can support a more complete set of data-binding syntax and behavior. Also, it allows you to migrate your existing server MVVM to client MVVM easily.
+
+## Is client MVVM specific for clustering environment?
+The client MVVM is not specifically designed for a clustered environment, it has the same level of clustering support as server MVVM. It still keeps the Desktop and some component states in a server. When deploying to a clustering environment, you still need to follow the instructions in [ZK Developer's Reference/Clustering](https://www.zkoss.org/wiki/ZK_Developer%27s_Reference/Clustering).
