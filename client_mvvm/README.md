@@ -165,7 +165,7 @@ org.zkoss.bind.Converter#coerceToBean(U compAttr, C component, BindContext ctx);
 
 Deferred Binding is no longer supported. This feature is to avoid
 unnecessary AU requests (data updates). Since client MVVM does those
-bindings on the client-side, it doesn\'t require such an update.
+bindings on the client-side, it doesn't require such an update.
 
 ``` xml
 <textbox value="@bind(vm.text1)">
@@ -175,14 +175,14 @@ bindings on the client-side, it doesn\'t require such an update.
 
 ## 4. SmartNotifyChange always on
 
-SmartNotifyChange is always enabled in Client MVVM​, which means that the
+`@SmartNotifyChange` is always enabled in client MVVM, which means that the
 properties will only update (reload) when the value of the expression is
 changed.
 
 ## 5. Conditional Binding works differently
 
-Conditional Binding works differently when the command updates the value
-without doing \"NotifyChange\". For example:
+Conditional binding works differently when the command updates the value
+without doing `@NotifyChange`. For example:
 
 ``` xml
 <label value="@load(vm.text, after='doChange')" />
@@ -197,15 +197,14 @@ public void doChange() {
 }
 ```
 
-In ZK MVVM, the value of Label will be \"123changed\" after the button -
-\"Do Change\" is clicked.
+In server MVVM, the value of Label will be "123changed" after the "Do Change" button is clicked.
 
-In client MVVM, the value will remain \"123\". If you intend to see
-\"123changed\" you will need to do NotifyChange.
+In client MVVM, the value will remain "123". If you intend to see
+"123changed" you will need to apply `@NotifyChange`.
 
 
 ## 6. AnnotateDataBinder and Calling Binder API are no longer supported
-AnnotateDataBinder is the old ZK binding in zkplus module. And the
+`AnnotateDataBinder` is the old ZK binding in zkplus module. And the
 Binder API is for server MVVM. For example:
 
 ``` xml
