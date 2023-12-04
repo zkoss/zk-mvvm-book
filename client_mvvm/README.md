@@ -83,7 +83,7 @@ Once it is correctly configured, we can start to enjoy the benefits of client MV
 # Restrictions and Differences
 
 With client MVVM, the data binding is now done at the client-side instead of the server-side, there are several limitations and
-differences compared to the server-side MVVM.
+differences compared to the server MVVM.
 
 ## 1. EL expression is not supported
 
@@ -100,27 +100,21 @@ EL expression - `${expr}` and EL 3 are not supported. For Example, the following
 The main feature of MVVM is to decouple the UI and non-UI code, which means components should be controlled by data binding. Developers should avoid
 controlling components directly by calling their API. Even though we have this rules, there are cases where developers have been accessing the components
 directly, and they used to work in server MVVM.
+
 But now, when you enable client MVVM, ZK will update all the binding evaluation results into widget properties. This means the server-side
 does not have the full and most up-to-date information. Therefore, you no longer can access and control those child components
-as a server-side component. You have to stick to the MVVM pattern.
+via a Java object. You have to stick to the MVVM pattern.
 
-- Traversing components, like using `self` and `.parent` are not supported.
+
+Traversing components, like using `self` and `.parent` are not supported.
 
 ``` xml
 <button onClick="@command('delete', index=self.parent.parent.index)"/>
 ```
 
 
--   [@Listen](https://www.zkoss.org/wiki/ZK_Developer's_Reference/Event_Handling/Event_Listening),
-    [@Wire](../advanced/wire_components.html),
-    [@WireVariable](../advanced/wire_components.html)
-    and
-    [@SelectorParam](../syntax/selectorparam.html)
-    are not supported.
--   You cannot use
-    [@BindingParam](../syntax/bindingparam.html)
-    and
-    [@ContextParam](../syntax/contextparam.html) to get components.
+[@Listen](https://www.zkoss.org/wiki/ZK_Developer's_Reference/Event_Handling/Event_Listening), [@Wire](../advanced/wire_components.html), [@WireVariable](../advanced/wire_components.html), and [@SelectorParam](../syntax/selectorparam.html) are not supported.
+You cannot use [@BindingParam](../syntax/bindingparam.html) and [@ContextParam](../syntax/contextparam.html) to get components.
 
 ``` java
 @Command
@@ -145,7 +139,8 @@ public void commandB(@BindingParam("foo") String foo,
 }
 ```
 
--   Component related API might return null (no component on the
+
+Component related API might return null (no component on the
     server-side).
 
 ``` java
@@ -218,12 +213,15 @@ Binder API is for server MVVM. For example:
 </window>
 ```
 
-Or using custom Binder
+Or using custom Binder:
 
 ``` xml
 <window viewModel="..." binder="@id('mybinder') @init(vm.binder)">
 </window>
 ```
+
+All those usages are not support with client MVVM.
+
 <!--
 ## 3. Getter Method should be pure in View Model
 
@@ -235,9 +233,10 @@ For example, the return value of a getter method should not be always a
 
 # Client MVVM Linter - a checking tool
 
-We made [ZK Client MVVM
+[ZK Client MVVM
 Linter](https://blog.zkoss.org/2023/08/01/zk-10-preview-introducing-zk-client-mvvm-linter/)
-to identify those unsupported server MVVM usages under client MVVM enabled. See [linter starter](https://github.com/zkoss-demo/zk-client-mvvm-linter-starter/tree/master) know how to use it. 
+can scan your zul and java files to find out those unsupported MVVM usages under client MVVM enabled. See [linter starter](https://github.com/zkoss-demo/zk-client-mvvm-linter-starter/tree/master) know how to use it. 
+
 
 # Debugging Tips
 
@@ -285,7 +284,7 @@ It depends on the number of components and the type and amount of bindings you a
 
 
 ## How is client MVVM different from fragment?
-* fragment integrates Vue framework.
+* [fragment](https://www.zkoss.org/wiki/ZK%20Component%20Reference/Containers/Fragment) integrates Vue framework.
 
 Since Vue supports different data binding syntax from ZK MVVM, not all features can be integrated with ZK. The integration focuses on supporting basic and commonly shared data binding syntax.
 
