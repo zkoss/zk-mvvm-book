@@ -127,6 +127,11 @@ The printed message looks like:
 [6431]    *[load:prop-load] vm.element.name > value A-GCMD1 <label uuid="j5VUf" id="" />
 ```
 
+> Since 10.0.0
+
+ZK Bind debugging information is logged via SLF4J, allowing developers to enable/disable logging for specific view model packages.
+For details on the logger configuration, please refer to the relevant documentation for your chosen logger implementation.
+
 Debugging Tool: ZK Binding Tracker
 ----------------------------------
 
