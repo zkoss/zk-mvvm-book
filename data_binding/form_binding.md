@@ -12,7 +12,40 @@ Form binding can keep target object in ViewModel unchanged before executing a Co
 ![MVVM Form Binding](../images/Mvvm-form-binding.png)
 
 
-## Steps
+## Problems Using Property Binding in a Form
+Assume a form to fill a book's data:
+```xml
+ <grid hflex="true" >
+     <columns>
+         <column width="120px"/>
+         <column/>
+     </columns>
+     <rows>
+         <row>
+             Id <label value="@load(vm.currentBook.id)"/>
+         </row>
+         <row>
+             Name <textbox value="@bind(vm.currentBook.name)"/>
+         </row>
+         <row>
+             Author <textbox value="@bind(vm.currentBook.author)"/>
+         </row>
+         <row>
+             Price <doublebox value="@bind(vm.currentBook.price)" format="###,##0.00" />
+         </row>
+     </rows>
+ </grid>
+```
+There are few problems:
+* **No way to revert back**<br/>
+When users input data into a textbox, it immediately updates `vm.currentBook`. This direct update mechanism overwrites the original book data, leaving no option for users to revert to the original data if they decide to discard current changes.
+* **Inability to detect unsaved changes** <br/>
+The absence of a separate record of the original book data makes it impossible to identify and display a 'dirty' status. This status indicates whether the current book information has been modified but not yet saved.
+
+
+## Steps to Create a Form Binding
+Based on the problems mentioned above, you can solve it by a form binding:
+
 1. Give an id to middle object in form attribute with `@id`.
     * You can reference the middle object in ZK bind expression with id.
 2. Specify ViewModel's property to be loaded with ` @load `
@@ -22,34 +55,7 @@ Form binding can keep target object in ViewModel unchanged before executing a Co
     * You should use middle object's id specified in ` @id ` to reference its property.
 
 
-An example using property binding :
-```xml
-<groupbox >
-    <grid hflex="true" >
-        <columns>
-            <column width="120px"/>
-            <column/>
-        </columns>
-        <rows>
-            <row>
-                Id <label value="@load(vm.currentBook.id)"/>
-            </row>
-            <row>
-                Name <textbox value="@bind(vm.currentBook.name)"/>
-            </row>
-            <row>
-                Author <textbox value="@bind(vm.currentBook.author)"/>
-            </row>
-            <row>
-                Price <doublebox value="@bind(vm.currentBook.price)" format="###,##0.00" />
-            </row>
-        </rows>
-    </grid>
-</groupbox>
-```
-- The input data is directly saved to `vm.currentBook`. No middle object.
-
-The same example but using form binding:
+Rewrite same example with form bindings:
 ```xml
 <groupbox form="@id('fx') @load(vm.currentBook) @save(vm.currentBook, before='save')">
     <grid hflex="true" >
@@ -82,8 +88,7 @@ In the code above, each time a user triggers an `onChange` event, zk saves input
 
 ## Form Proxy Object
 
-Form binding automatically creates a middle object for you to store properties from a ViewModel's object you specified. The 
-It can deeply support these types - **Collections**, **Map**, and **POJO** in a form concept, as a proxy object for developers to manipulate them when users edit data in the form field. 
+Form binding automatically creates a middle object (`FormProxyObject`) for you to store properties from a ViewModel's object you specified. It can deeply support these types - **Collections**, **Map**, and **POJO** in a form concept, as a proxy object for developers to manipulate them when users edit data in the form field. 
 Once the form is submitted, all the edited data will be synchronized to the original  object.
 
 Continuing with the above example, we define a **Collections** property in the user bean.
@@ -138,26 +143,80 @@ public class Category {
 - For the above reasons, custom annotations should be specified for methods. In other words, annotations applied to fields and beans will be ignored.
 <!--  if the proxy's getter is expected to return a primitive and a null is returned from the invoke() method of the MethodHandler. Since primitives can't be null, trying to auto-unbox a null would cause a NullPointerException.-->
 
-And we use some commands to add/remove a Category.
 
-In VM.java:
+## Accessing a FormProxyObject
+In a basic usage, you usually don't need to access form proxy object itself. But if you want to manipulate an Object's property which is a collection, you need to directly access the form proxy object.  
+
+In above example, Book has a property `categories`:
+
 ```java
-@Command("addCategory")
-public void doAddCategory(@BindingParam("form") Book form,
-		@BindingParam("cateName") String cateName) {
-	Set<Category> categories = (Set<Category>) form.getCategories();
-	categories.add(new Category(cateName));
-}
+public class Book {
+	private Set<Category> categories = new LinkedHashSet<Category>();
+   ...
+	public Set<Category> getCategories() {
+		return categories;
+	}
+```
 
+To add/remove a `Category` into that collection, you can not rely on data binding expression. You need to call the Collection's `add()` or `revmoe()`.
+So you need to pass the FormProxyObject into a command:
+
+```xml
+<a iconSclass="z-icon-minus-circle icon-red"
+   onClick="@command('removeCategory', form=fx, category=each)" />
+```
+
+
+Then call `remove()` in the command method:
+`BooksViewModel`
+```java
 @Command("removeCategory")
 public void doRemoveCategory(@BindingParam("form") Book form,
-		@BindingParam("category") Category cate) {
+		@BindingParam("category") Category category) {
 	Set<Category> categories = (Set<Category>) form.getCategories();
 	categories.remove(cate);
 }
+
+@Command("addCategory")
+public void doAddCategory(@BindingParam("form") Book form,
+                          @BindingParam("cateName") String categoryName) {
+   Set<Category> categories = (Set<Category>) form.getCategories();
+   categories.add(new Category(categoryName));
+}
 ```
+* line 2: notice that the proxy object is also an instance of target object which means `form instanceof Book` is `true`. 
+* line 5: When invoking `remove()` on the proxy object, `form`, it modifies the proxy instance without affecting the original `Book` object.. 
+
 The form proxy would synchronize back the edited data (`Category`) after the form submitted.
 
+
+### Reset Methods
+Form proxy object provides 9 built-in properties transparently for developers to clean up the component value as follows.
+
+- `resetEmptyStringValue`: returning an empty string value
+- `resetNullValue`: returning a null value
+- `resetByteValue`: returning a byte value (0)
+- `resetShortValue`: returning a short value (0)
+- `resetIntValue`: returning an int value (0)
+- `resetLongValue`: returning a long value (0L)
+- `resetFloatValue`: returning a float value (0.0f)
+- `resetDoubleValue`: returning a double value (0.0d)
+- `resetBooleanValue`: returning a boolean value (false)
+- `resetCharValue`: returning a char value (‘\u0000′)
+
+For example:
+```xml
+<hlayout>
+    Add Category
+    <textbox value="@load(fx.resetEmptyStringValue, after={'addCategory', 'cancel'})" />
+    <a iconsclass="z-icon-plus-circle" 
+      onclick="@command('addCategory', form=fx, cateName=self.previousSibling.value)"></a>
+</hlayout>
+```
+
+As shown above in line 3, the `fx.resetEmptyStringValue` expression is used to clean up the value of the textbox when those two command “**addCategory**” or “**cancel**” executed.
+
+## Exclude Calculated Properties
 Notice that the form proxy would cache all the properties in the user bean. You can use `@Transient` to mark an element transient, and the element would not be cached.
 
 ```java
@@ -175,31 +234,7 @@ Because the result of `getAreal()` is a calculation, we don't need to cache the 
 The form proxy would proxy properties deeply by default, you can use `@Immutable` to mark
 some elements. Once a getter method has been marked, the corresponding element would be cached non-recursively when using a form proxy.
 
-### Reset Methods
-Form proxy object provides 9 built-in methods transparently for developers to clean up the component value as follows.
 
-- resetEmptyStringValue: returning an empty string value
-- resetNullValue: returning a null value
-- resetByteValue: returning a byte value (0)
-- resetShortValue: returning a short value (0)
-- resetIntValue: returning an int value (0)
-- resetLongValue: returning a long value (0L)
-- resetFloatValue: returning a float value (0.0f)
-- resetDoubleValue: returning a double value (0.0d)
-- resetBooleanValue: returning a boolean value (false)
-- resetCharValue: returning a char value (‘\u0000′)
-
-For example:
-```xml
-<hlayout>
-    Add Category
-    <textbox value="@load(fx.resetEmptyStringValue, after={'addCategory', 'cancel'})" />
-    <a iconsclass="z-icon-plus-circle" 
-      onclick="@command('addCategory', form=fx, cateName=self.previousSibling.value)"></a>
-</hlayout>
-```
-
-As shown above in line 5, the “fx.resetEmptyStringValue” expression is used to clean up the value of the textbox when those two command “**addCategory**” or “**cancel**” executed.
 
 ## Form Status Variable
 
