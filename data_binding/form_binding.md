@@ -1,7 +1,6 @@
 # Form Binding
 
-Overview
-========
+## Overview
 Form binding is like a buffer. It automatically creates a middle object. Before saving to ViewModel all input data is saved to the middle object. This way we can keep dirty data from saving into the ViewModel before
 user confirmation. Assuming a user fills a form in a web application, user input data is directly saved to ViewModel's properties, the target object. Then the user cancels the filling action before submitting the
 form, thus the data stored in ViewModel is deprecated. This would cause trouble if we process the deprecated data further, so developers might store input data in a middle place first before moving to the real target object,
@@ -9,19 +8,19 @@ after the user confirmation. Form binding provides a middle object to store unco
 
 Form binding can keep target object in ViewModel unchanged before executing a Command for confirmation. Before saving to ViewModel's properties (target object) upon a Command, we can save input in Form binding's middle object. When the command is executed (e.g. button is clicked), input data is really saved to ViewModel's properties. Developers can achieve the whole process easily just by writing ZK bind expression, as it reduces developer's burden of cleaning dirty data manually or implementing the buffer himself.
 
-#### The data flow among ZUL, middle object, and the target object is illustrated below:
+## The data flow among ZUL, middle object, and the target object is illustrated below:
 ![MVVM Form Binding](../images/Mvvm-form-binding.png)
 
 
-Steps
------
-1. Give an id to middle object in form attribute with ` @id `.
+## Steps
+1. Give an id to middle object in form attribute with `@id`.
     * You can reference the middle object in ZK bind expression with id.
 2. Specify ViewModel's property to be loaded with ` @load `
 3. Specify ViewModel's property to save and before which Command with ` @save `
-    * This means binder will save middle object's properties to ViewModel before a Command
+    * This means a binder will save middle object's properties to ViewModel before a command execution
 4. Bind component's attribute to middle object's properties like you would in property binding.
     * You should use middle object's id specified in ` @id ` to reference its property.
+
 
 An example using property binding :
 ```xml
@@ -48,7 +47,7 @@ An example using property binding :
     </grid>
 </groupbox>
 ```
-- The input data is directly saved to properties of vm.currentBook. No middle object.
+- The input data is directly saved to `vm.currentBook`. No middle object.
 
 The same example but using form binding:
 ```xml
@@ -75,15 +74,17 @@ The same example but using form binding:
     </grid>
 </groupbox>
 ```
-- We give an id: ` fx ` to the middle object. (line 1)
-- The properties of `fx` we can access are identical to vm.currentBook. (line 9, 12, 15, 18)
-- Each time a user triggers an onChange event, binder saves input data into `fx`, middle object. When clicking a button bound to Command 'save', it will save middle object's data to `vm.currentBook`.
+- line 1: We give an id: `fx` to the middle object.
+- line 9, 12, 15, 18: The properties of `fx` we can access are identical to `vm.currentBook`.
 
-Form Proxy Object
--------------
-Form binding automatically creates a middle object for you to store properties from the ViewModel's object you specified.
+In the code above, each time a user triggers an `onChange` event, zk saves input data into `fx`, middle object. When clicking a button bound to Command 'save', zk will save middle object's data into `vm.currentBook`.
+
+
+## Form Proxy Object
+
+Form binding automatically creates a middle object for you to store properties from a ViewModel's object you specified. The 
 It can deeply support these types - **Collections**, **Map**, and **POJO** in a form concept, as a proxy object for developers to manipulate them when users edit data in the form field. 
-Once the form is submitted, all the edited data will be synchronized to the original data object.
+Once the form is submitted, all the edited data will be synchronized to the original  object.
 
 Continuing with the above example, we define a **Collections** property in the user bean.
 
@@ -130,10 +131,12 @@ public class Category {
 }
 ```
 
-Note:
+## Criteria for Beans Used as Form Proxy Objects
 - The proxy mechanism follows the Java Proxy contract, so the user bean classes need to provide an **empty constructor** for the proxy mechanism to use.
-- In the methods **hashcode** and **equals**, we cannot directly use the instance field to check, because the proxy object can only be handled by the method invocation, not the instance field. For example, use getName() instead of this.name.
-- For the above reason, custom annotations should be specified for methods. In other words, annotations applied to fields and beans will be ignored.
+- When implementing `hashcode()` and `equals()`, you cannot directly use the instance field to check e.g. `this.name`, because a proxy object can only be handled by the method invocation, not the instance field. Hence, you need to call getter methods e.g. `getName()` instead of `this.name`.
+- Getter method should return an Object e.g. `Integer` or `Double` instead of a primitive type like `int` or `double`.
+- For the above reasons, custom annotations should be specified for methods. In other words, annotations applied to fields and beans will be ignored.
+<!--  if the proxy's getter is expected to return a primitive and a null is returned from the invoke() method of the MethodHandler. Since primitives can't be null, trying to auto-unbox a null would cause a NullPointerException.-->
 
 And we use some commands to add/remove a Category.
 
@@ -198,8 +201,8 @@ For example:
 
 As shown above in line 5, the “fx.resetEmptyStringValue” expression is used to clean up the value of the textbox when those two command “**addCategory**” or “**cancel**” executed.
 
-Form Status Variable
-====================
+## Form Status Variable
+
 Form binding also records middle object's modification status. It’s a common requirement for users to know whether they have modified a form’s data (dirty status) or not; developers therefore would add a feature that would remind users of this with an UI effect. For example, some text editors appends a star symbol ‘*’ on the title bar to remind users of modified text file. “Form binding” preserves the dirty status in an variable that we can utilize.
 
 Dirty status is stored in an auto-created **form status variable** with a naming convention of:
@@ -227,6 +230,6 @@ After users modified a field, the cancel button would be enabled.
 
 Form
 
-Form Validation
-===============
+## Form Validation
+
 Before saving data to form's middle object, we can also validate user input with validator. Please refer to [Data Binding/Validator](./validator.html).
