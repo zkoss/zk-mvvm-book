@@ -14,35 +14,38 @@ history.
 
 SimpleForm and related classes/interfaces
 
-```
-org.zkoss.bind.Form / FormExt
+```java
+org.zkoss.bind.Form
+org.zkoss.bind.FormExt
 org.zkoss.bind.impl.FormImpl
 org.zkoss.bind.SimpleForm
 ```
 ## ZK 8.x, 9.0.x, 9.1.x
 
+```java
+org.zkoss.bind.Form  /* base interface for Form Proxies*/
 ```
-org.zkoss.bind.Form  (base interface for Form Proxies)
-```
 
-`SimpleForm` is not available in these versions.
+`org.zkoss.bind.SimpleForm` is not available in these versions.
 
-## from ZK 9.5.0
+## Since ZK 9.5.0
 
-Updated class Hierarchy enabling both Form Proxies and SimpleForm.
+Updated class hierarchy enabling both Form Proxies and SimpleForm.
 
-```
+```java
 org.zkoss.bind.Form
-org.zkoss.bind.FormLegacy / FormLegacyExt (re-added / deprecated / available for ZK 7 compatibility)
-org.zkoss.bind.impl.FormImpl              (re-added / deprecated / available for ZK 7 compatibility)
-org.zkoss.bind.SimpleForm                 (re-added / deprecated / available for ZK 7 compatibility)
+/* re-added / deprecated / available for ZK 7 compatibility */
+org.zkoss.bind.FormLegacy
+org.zkoss.bind.FormLegacyExt
+org.zkoss.bind.impl.FormImpl
+org.zkoss.bind.SimpleForm
 ```
 
 ### Upgrade/refactor steps:
 
 **Renamed interfaces**
 
-```
+```java
 org.zkoss.bind.Form -> org.zkoss.bind.FormLegacy
 org.zkoss.bind.FormExt -> org.zkoss.bind.FormLegacyExt
 ```
@@ -51,14 +54,14 @@ org.zkoss.bind.FormExt -> org.zkoss.bind.FormLegacyExt
 
 The default usage from a zul file will still create a `FormProxyObject` (default since ZK 8.0.x)
 
-```
+```xml
 <div form="@id('fx') @load(...) @save(...)">
 ```
 
-Instead a `SimpleForm` can be initialized from zul code (compatible to ZK 7 - without changing Java code) using the 
+Instead, a `SimpleForm` can be initialized from zul code (compatible to ZK 7 - without changing Java code) using the 
 [TLD function `c:new`](https://www.zkoss.org/wiki/ZUML%20Reference/EL%20Expressions/Core%20Methods/new).
 
-```
+```xml
 <?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
 ...
 <div form="@id('fx') @init(c:new('org.zkoss.bind.SimpleForm')) @load(...) @save(...)">
@@ -66,6 +69,6 @@ Instead a `SimpleForm` can be initialized from zul code (compatible to ZK 7 - wi
 
 As in ZK 7 a pre-created `SimpleForm` instance can be accessed from a view model.
 
-```
+```xml
 <div form="@id('fx') @init(vm.myForm) @load(...) @save(...)">
 ```
