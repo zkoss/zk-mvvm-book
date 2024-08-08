@@ -113,7 +113,7 @@ Traversing components, like using `self` and `.parent` are not supported.
 ```
 
 
-[@Listen](https://www.zkoss.org/wiki/ZK_Developer's_Reference/Event_Handling/Event_Listening), [@Wire](../advanced/wire_components.html), [@WireVariable](../advanced/wire_components.html), and [@SelectorParam](../syntax/selectorparam.html) are not supported.
+[@Listen](https://www.zkoss.org/wiki/ZK_Developer's_Reference/Event_Handling/Event_Listening), [@Wire](../advanced/wire_components.html) and [@SelectorParam](../syntax/selectorparam.html) are not supported.
 You cannot use [@BindingParam](../syntax/bindingparam.html) and [@ContextParam](../syntax/contextparam.html) to get components.
 
 ``` java
